@@ -1,4 +1,3 @@
-import { MineHeader } from '../views/mineheader';
 @Entry
 @Component
 struct Index {
