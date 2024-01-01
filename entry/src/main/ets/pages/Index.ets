@@ -13,13 +13,13 @@ struct Index {
   @State currentIndex: number = 0;
   private tabsController: TabsController = new TabsController();
   private tabList: Array<ITab> = [
-    {title: '首页', index:0, selectedIcon:$r('app.media.home3'), normalIcon:$r('app.media.home1')},
-    {title: '搜索', index:1, selectedIcon:$r('app.media.Search_3'), normalIcon:$r('app.media.Search_1')},
-    {title: '购物车', index:2, selectedIcon:$r('app.media.Bag'), normalIcon:$r('app.media.Bag2_3x')},
-    {title: '我的', index:3, selectedIcon:$r('app.media.user_3'), normalIcon:$r('app.media.user_1')}
+    { title: '首页', index: 0, selectedIcon: $r('app.media.home3'), normalIcon: $r('app.media.home1') },
+    { title: '搜索', index: 1, selectedIcon: $r('app.media.Search_3'), normalIcon: $r('app.media.Search_1') },
+    { title: '购物车', index: 2, selectedIcon: $r('app.media.Bag'), normalIcon: $r('app.media.Bag2_3x') },
+    { title: '我的', index: 3, selectedIcon: $r('app.media.user_3'), normalIcon: $r('app.media.user_1') }
   ];
 
-  @Builder tabBuilder(title: string, index: number, selectedIcon: Resource, normalIcon: Resource) {
+  @Builder tabBuilder({title, index, selectedIcon, normalIcon}: ITab) {
     Column() {
       Image(this.currentIndex === index ? selectedIcon : normalIcon)
         .width(24)
@@ -39,21 +39,19 @@ struct Index {
   build() {
     Column() {
       Tabs({ index: this.currentIndex, controller: this.tabsController, barPosition: BarPosition.End }) {
-        TabContent() {
-          Text('这是首页')
-        }.tabBar(this.tabBuilder('首页', 0, $r('app.media.home3'), $r('app.media.home1')))
-
-        TabContent() {
-          Text('这是搜索页')
-        }.tabBar(this.tabBuilder('搜索', 1, $r('app.media.Search_3'), $r('app.media.Search_1')))
-
-        TabContent() {
-          Text('这是购物车')
-        }.tabBar(this.tabBuilder('购物车', 2, $r('app.media.Bag'), $r('app.media.Bag2_3x')))
-
-        TabContent() {
-          Mine()
-        }.tabBar(this.tabBuilder('我的', 3, $r('app.media.user_3'), $r('app.media.user_1')))
+        ForEach(this.tabList, (tab: ITab) => {
+          TabContent() {
+            if (tab.index === 0) {
+              Text('这是首页')
+            } else if (tab.index === 1) {
+              Text('这是搜索页')
+            } else if (tab.index === 2) {
+              Text('这是购物车')
+            } else if (tab.index === 3) {
+              Mine()
+            }
+          }.tabBar(this.tabBuilder(tab))
+        })
       }
       .barHeight(56)
       .onChange((index: number) => this.currentIndex = index)
