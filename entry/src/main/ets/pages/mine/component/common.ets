@@ -1,3 +1,5 @@
+import promptAction from '@ohos.promptAction'
+
 @Preview
 @Component
 export struct CellTitle {
@@ -19,7 +21,9 @@ export struct CellTitle {
 }
 
 @Builder
-export function builderCellItem(label: string, icon: Resource) {
+export function builderCellItem(label: string, icon: Resource, fn: () => void = () => {
+  promptAction.showToast({ message: 'label', duration: 1000 })
+}) {
   Row() {
     Image(icon)
       .width(20)
@@ -38,4 +42,5 @@ export function builderCellItem(label: string, icon: Resource) {
   .width('100%')
   .height(55)
   .padding({ left: 20, right: 20 })
+  .onClick(fn)
 }
