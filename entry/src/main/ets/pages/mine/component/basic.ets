@@ -1,4 +1,5 @@
 import { builderCellItem, CellTitle } from './common'
+
 interface IInfoItem {
   icon: Resource;
   title: string;
