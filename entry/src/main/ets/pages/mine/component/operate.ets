@@ -9,7 +9,7 @@ interface IInfoItem {
 @Component
 export default struct OtherOperate {
   private otherOperateList: Array<IInfoItem> = [
-    { icon: $r('app.media.user'), title: '注销' }
+    { icon: $r('app.media.nologin'), title: '注销' }
   ]
 
   build() {
