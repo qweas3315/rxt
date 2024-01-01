@@ -1,8 +1,23 @@
+import Mine from './mine/index';
+
+interface ITab {
+  title: string;
+  index: number;
+  selectedIcon: Resource;
+  normalIcon: Resource;
+}
+
 @Entry
 @Component
 struct Index {
   @State currentIndex: number = 0;
   private tabsController: TabsController = new TabsController();
+  private tabList: Array<ITab> = [
+    {title: '首页', index:0, selectedIcon:$r('app.media.home3'), normalIcon:$r('app.media.home1')},
+    {title: '搜索', index:1, selectedIcon:$r('app.media.Search_3'), normalIcon:$r('app.media.Search_1')},
+    {title: '购物车', index:2, selectedIcon:$r('app.media.Bag'), normalIcon:$r('app.media.Bag2_3x')},
+    {title: '我的', index:3, selectedIcon:$r('app.media.user_3'), normalIcon:$r('app.media.user_1')}
+  ];
 
   @Builder tabBuilder(title: string, index: number, selectedIcon: Resource, normalIcon: Resource) {
     Column() {
@@ -25,7 +40,7 @@ struct Index {
     Column() {
       Tabs({ index: this.currentIndex, controller: this.tabsController, barPosition: BarPosition.End }) {
         TabContent() {
-          MineHeader()
+          Text('这是首页')
         }.tabBar(this.tabBuilder('首页', 0, $r('app.media.home3'), $r('app.media.home1')))
 
         TabContent() {
@@ -37,7 +52,7 @@ struct Index {
         }.tabBar(this.tabBuilder('购物车', 2, $r('app.media.Bag'), $r('app.media.Bag2_3x')))
 
         TabContent() {
-          Text('这是个人中心')
+          Mine()
         }.tabBar(this.tabBuilder('我的', 3, $r('app.media.user_3'), $r('app.media.user_1')))
       }
       .barHeight(56)
