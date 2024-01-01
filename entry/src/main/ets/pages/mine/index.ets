@@ -16,6 +16,7 @@ export default struct Mine {
       MineCardInfo({ isLogin: this.isLogin })
       MineNavigator()
       BasicInfo()
+      FinancingInfo()
     }
     .width('100%')
     .height('100%')
