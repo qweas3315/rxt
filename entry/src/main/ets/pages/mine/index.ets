@@ -17,6 +17,7 @@ export default struct Mine {
       MineNavigator()
       BasicInfo()
       FinancingInfo()
+      OtherOperate()
     }
     .width('100%')
     .height('100%')
