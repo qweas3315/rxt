@@ -9,9 +9,9 @@ interface IInfoItem {
 @Component
 export default struct FinancingInfo {
   private financingList: Array<IInfoItem> = [
-    { icon: $r('app.media.user'), title: '智能匹配' },
-    { icon: $r('app.media.tabler_credit_card'), title: '融资申请' },
-    { icon: $r('app.media.map_pin'), title: '我的融资' }
+    { icon: $r('app.media.message_dots'), title: '智能匹配' },
+    { icon: $r('app.media.notes'), title: '融资申请' },
+    { icon: $r('app.media.star'), title: '我的融资' }
   ]
 
   build() {
