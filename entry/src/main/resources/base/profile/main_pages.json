@@ -25,6 +25,8 @@
     "pages/mine/goods/MinePurchasedGoodsList",
     "pages/mine/goods/MineSoldGoodsList",
     "pages/mine/purchase/MinePurchaseList",
-    "pages/mine/purchase/MinePurchaseRelease"
+    "pages/mine/purchase/MinePurchaseRelease",
+    "pages/mine/goods/ReleaseGoodsList",
+    "pages/mine/goods/ReleaseGoods"
   ]
 }
