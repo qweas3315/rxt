@@ -23,6 +23,7 @@
     "pages/mine/appointment/MineAppointmentList",
     "pages/mine/appointment/MineAppointmentDetail",
     "pages/mine/goods/MinePurchasedGoodsList",
-    "pages/mine/goods/MineSoldGoodsList"
+    "pages/mine/goods/MineSoldGoodsList",
+    "pages/mine/purchase/MinePurchaseList"
   ]
 }
