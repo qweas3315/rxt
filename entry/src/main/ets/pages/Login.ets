@@ -1,7 +1,12 @@
 import router from '@ohos.router'
+import promptAction from '@ohos.promptAction'
+
 @Entry
 @Component
 struct Login {
+  @State username: string = ''
+  @State password: string = ''
+
   build() {
     Stack() {
       Row() {
@@ -29,6 +34,66 @@ struct Login {
           .height(60)
           .width('100%')
           .margin({ top: 10 })
+
+          Image($r('app.media.log'))
+            .width(140)
+            .height(140)
+            .margin({ top: 40 })
+          Text('融销通')
+            .fontColor('#a4cd3d')
+            .fontSize(24)
+            .margin(15)
+
+          Row() {
+            Text('账 号：')
+              .fontSize(14)
+              .margin({ left: 15 })
+              .fontColor(Color.Gray)
+            TextInput({ placeholder: '请输入账号', text: this.username })
+              .borderWidth(0)
+              .backgroundColor(Color.Transparent)
+              .flexGrow(1)
+              .placeholderColor(Color.Gray)
+              .fontSize(12)
+              .onChange((value: string) => this.username = value)
+          }
+          .width('90%')
+          .height(40)
+          .margin({ top: 40 })
+          .backgroundColor(Color.White)
+          .borderRadius(10)
+
+          Row() {
+            Text('密 码：')
+              .fontSize(14)
+              .margin({ left: 15 })
+              .fontColor(Color.Gray)
+            TextInput({ placeholder: '请输入密码', text: this.password })
+              .borderWidth(0)
+              .backgroundColor(Color.Transparent)
+              .flexGrow(1)
+              .placeholderColor(Color.Gray)
+              .fontSize(12)
+              .type(InputType.Password)
+              .onChange((value: string) => this.password = value)
+          }
+          .width('90%')
+          .height(40)
+          .margin({ top: 40 })
+          .backgroundColor(Color.White)
+          .borderRadius(10)
+
+          Button('登 录')
+            .width('90%')
+            .height(50)
+            .margin({ top: 40 })
+            .borderRadius(8)
+            .backgroundColor(Color.White)
+            .fontColor(Color.Gray)
+            .fontSize(16)
+            .onClick(() => {
+              promptAction.showToast({message: this.username + '-' + this.password, duration: 1000})
+            })
         }
         .width('100%')
         .height("100%")
