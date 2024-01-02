@@ -24,6 +24,7 @@
     "pages/mine/appointment/MineAppointmentDetail",
     "pages/mine/goods/MinePurchasedGoodsList",
     "pages/mine/goods/MineSoldGoodsList",
-    "pages/mine/purchase/MinePurchaseList"
+    "pages/mine/purchase/MinePurchaseList",
+    "pages/mine/purchase/MinePurchaseRelease"
   ]
 }
