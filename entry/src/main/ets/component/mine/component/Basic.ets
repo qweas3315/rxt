@@ -30,3 +30,11 @@ export default struct UserBasicInfo {
     }
   }
 }
+
+@Preview
+@Component
+export struct ExpertBasicInfo {
+  build() {
+
+  }
+}
