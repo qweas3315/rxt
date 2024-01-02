@@ -38,3 +38,11 @@ export struct ExpertBasicInfo {
 
   }
 }
+
+@Preview
+@Component
+export struct AdminBasicInfo {
+  build() {
+
+  }
+}
