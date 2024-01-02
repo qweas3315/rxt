@@ -20,6 +20,7 @@
     "pages/mine/setting/PasswordChange",
     "pages/mine/chat/MineChatList",
     "pages/mine/chat/MineChatDetail",
-    "pages/mine/appointment/MineAppointmentList"
+    "pages/mine/appointment/MineAppointmentList",
+    "pages/mine/appointment/MineAppointmentDetail"
   ]
 }
