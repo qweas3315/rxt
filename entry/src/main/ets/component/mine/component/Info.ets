@@ -12,7 +12,7 @@ export default struct MineCardInfo {
         Image($r('app.media.nologin'))
           .width(70)
           .borderRadius(35)
-        Text('登录')
+        Text('登 录')
           .fontSize(18)
           .fontColor('#FFFFFF')
           .fontWeight(700)
