@@ -7,7 +7,7 @@ interface IInfoItem {
 
 @Preview
 @Component
-export default struct BasicInfo {
+export default struct UserBasicInfo {
   private basicInfoList: Array<IInfoItem> = [
     { icon: $r('app.media.user'), title: '我的需求' },
     { icon: $r('app.media.tabler_credit_card'), title: '我发布的' },
@@ -28,5 +28,21 @@ export default struct BasicInfo {
       .backgroundColor(Color.White)
       .divider({ strokeWidth: 1, color: '#F1F1F1', startMargin: 0, endMargin: 0 })
     }
+  }
+}
+
+@Preview
+@Component
+export struct ExpertBasicInfo {
+  build() {
+
+  }
+}
+
+@Preview
+@Component
+export struct AdminBasicInfo {
+  build() {
+
   }
 }

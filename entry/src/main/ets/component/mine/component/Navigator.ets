@@ -5,7 +5,7 @@ interface INavigator {
 
 @Preview
 @Component
-export default struct MineNavigator {
+export struct UserMineNavigator {
   private navigatorList: Array<INavigator> = [
     { title: '我的问答', icon: $r('app.media.3D') },
     { title: '我的预约', icon: $r('app.media.Clock1') },
@@ -36,5 +36,20 @@ export default struct MineNavigator {
     .borderRadius(10)
     .shadow({ radius: 4, color: '#EBEBEB', offsetX: 2 })
     .justifyContent(FlexAlign.SpaceAround)
+  }
+}
+
+@Preview
+@Component
+export struct AdminMineNavigator {
+  build() {
+
+  }
+}
+
+@Preview
+@Component
+export struct ExpertMineNavigator {
+  build() {
   }
 }

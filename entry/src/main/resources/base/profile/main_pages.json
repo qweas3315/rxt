@@ -1,6 +1,22 @@
 {
   "src": [
     "pages/Index",
-    "pages/Login"
+    "pages/Login",
+    "pages/Register",
+    "pages/home/goods/GoodsSourceList",
+    "pages/home/purchase/PurchaseDemandList",
+    "pages/home/goods/GoodsSourceDetail",
+    "pages/home/purchase/PurchaseDemandDetail",
+    "pages/home/knowledge/AgriculturalKnowledgeList",
+    "pages/home/knowledge/AgriculturalKnowledgeDetail",
+    "pages/home/guidance/ExpertChatList",
+    "pages/home/guidance/ExpertChatDetail",
+    "pages/home/guidance/AskQuestions",
+    "pages/home/guidance/AppointmentExpert",
+    "pages/home/search/SearchList",
+    "pages/cart/ShoppingCart",
+    "pages/mine/setting/PersonalInformation",
+    "pages/mine/setting/PersonalInformationChange",
+    "pages/mine/setting/PasswordChange"
   ]
 }
