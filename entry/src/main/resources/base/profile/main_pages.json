@@ -27,6 +27,7 @@
     "pages/mine/purchase/MinePurchaseList",
     "pages/mine/purchase/MinePurchaseRelease",
     "pages/mine/goods/ReleaseGoodsList",
-    "pages/mine/goods/ReleaseGoods"
+    "pages/mine/goods/ReleaseGoods",
+    "pages/mine/address/MineShippingAddressManage"
   ]
 }
