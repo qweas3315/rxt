@@ -1,3 +1,6 @@
+/**
+ * 我的预约列表
+ */
 @Entry
 @Component
 struct AppointmentList {
