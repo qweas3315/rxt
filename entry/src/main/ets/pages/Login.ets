@@ -83,7 +83,7 @@ struct Login {
           .backgroundColor(Color.White)
           .borderRadius(10)
 
-          Button('登 录')
+          Button('登 录', { type: ButtonType.Normal })
             .width('90%')
             .height(50)
             .margin({ top: 40 })
@@ -92,7 +92,7 @@ struct Login {
             .fontColor(Color.Gray)
             .fontSize(16)
             .onClick(() => {
-              promptAction.showToast({message: this.username + '-' + this.password, duration: 1000})
+              promptAction.showToast({ message: this.username + '-' + this.password, duration: 1000 })
             })
         }
         .width('100%')
