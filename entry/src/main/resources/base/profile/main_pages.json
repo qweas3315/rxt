@@ -21,6 +21,7 @@
     "pages/mine/chat/MineChatList",
     "pages/mine/chat/MineChatDetail",
     "pages/mine/appointment/MineAppointmentList",
-    "pages/mine/appointment/MineAppointmentDetail"
+    "pages/mine/appointment/MineAppointmentDetail",
+    "pages/goods/MinePurchasedGoodsList"
   ]
 }
