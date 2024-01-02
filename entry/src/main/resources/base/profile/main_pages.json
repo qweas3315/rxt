@@ -22,7 +22,7 @@
     "pages/mine/chat/MineChatDetail",
     "pages/mine/appointment/MineAppointmentList",
     "pages/mine/appointment/MineAppointmentDetail",
-    "pages/goods/MinePurchasedGoodsList",
-    "pages/goods/MineSoldGoodsList"
+    "pages/mine/goods/MinePurchasedGoodsList",
+    "pages/mine/goods/MineSoldGoodsList"
   ]
 }
