@@ -1,5 +1,6 @@
 import router from '@ohos.router'
 import promptAction from '@ohos.promptAction'
+import { userLogin } from '../api/user'
 
 @Entry
 @Component
@@ -92,7 +93,14 @@ struct Login {
             .fontColor(Color.Gray)
             .fontSize(16)
             .onClick(() => {
-              promptAction.showToast({ message: this.username + '-' + this.password, duration: 1000 })
+              const promise = userLogin({ username: this.username, password: this.password })
+              promise.then(res => {
+                globalThis.token = JSON.parse(res.result.toString())
+                router.back()
+                promptAction.showDialog({ message: JSON.stringify(res.result) })
+              }).catch(error => {
+                promptAction.showDialog({ message: JSON.stringify(error) })
+              })
             })
         }
         .width('100%')
