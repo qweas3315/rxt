@@ -17,6 +17,8 @@
     "pages/cart/ShoppingCart",
     "pages/mine/setting/PersonalInformation",
     "pages/mine/setting/PersonalInformationChange",
-    "pages/mine/setting/PasswordChange"
+    "pages/mine/setting/PasswordChange",
+    "pages/mine/chat/MineChatList",
+    "pages/mine/chat/MineChatDetail"
   ]
 }
