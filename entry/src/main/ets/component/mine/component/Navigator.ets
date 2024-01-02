@@ -38,3 +38,11 @@ export struct UserMineNavigator {
     .justifyContent(FlexAlign.SpaceAround)
   }
 }
+
+@Preview
+@Component
+export struct AdminMineNavigator {
+  build() {
+
+  }
+}
