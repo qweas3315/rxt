@@ -46,3 +46,10 @@ export struct AdminMineNavigator {
 
   }
 }
+
+@Preview
+@Component
+export struct ExpertMineNavigator {
+  build() {
+  }
+}
