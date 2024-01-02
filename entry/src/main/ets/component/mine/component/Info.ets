@@ -1,3 +1,4 @@
+import router from '@ohos.router'
 @Preview
 @Component
 export default struct MineCardInfo {
@@ -16,6 +17,7 @@ export default struct MineCardInfo {
           .fontColor('#FFFFFF')
           .fontWeight(700)
           .height(25)
+          .onClick(() => router.pushUrl({url: 'pages/Login'}))
       }
     }
     .width('100%')

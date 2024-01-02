@@ -1,4 +1,4 @@
-import { builderCellItem, CellTitle } from './common'
+import { builderCellItem, CellTitle } from './Common'
 
 interface IInfoItem {
   icon: Resource;

@@ -1,9 +1,9 @@
-import PageHeader from '../../component/header'
-import BasicInfo from './component/basic'
-import FinancingInfo from './component/financing'
-import MineCardInfo from './component/info'
-import MineNavigator from './component/navigator'
-import OtherOperate from './component/operate'
+import PageHeader from '../header'
+import BasicInfo from './component/Basic'
+import FinancingInfo from './component/Financing'
+import MineCardInfo from './component/Info'
+import MineNavigator from './component/Navigator'
+import OtherOperate from './component/Operate'
 
 @Preview
 @Component

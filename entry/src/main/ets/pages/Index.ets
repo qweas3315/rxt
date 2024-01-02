@@ -1,4 +1,4 @@
-import Mine from './mine/index';
+import Mine from '../component/mine';
 
 interface ITab {
   title: string;
