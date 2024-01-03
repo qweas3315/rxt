@@ -1,4 +1,3 @@
-import promptAction from '@ohos.promptAction'
 
 @Preview
 @Component

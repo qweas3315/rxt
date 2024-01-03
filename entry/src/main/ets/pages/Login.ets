@@ -1,5 +1,4 @@
 import router from '@ohos.router'
-import promptAction from '@ohos.promptAction'
 import { userLoginApi } from '../api/user'
 import { IResponse } from '../model/common'
 
