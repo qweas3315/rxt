@@ -26,10 +26,7 @@ export const getOrderPage = (current: number) => {
     });
 }
 
-export const getGoodsPage = ({type,pageNum}: {
-  type: string,
-  pageNum: number
-}) => {
+export const getGoodsPage = (type: string, pageNum: number) => {
   const httpRequest = http.createHttp();
   return httpRequest.request(
     encodeURI(`${AppConfig.baseUrl}/order/${type}/${pageNum}`),
