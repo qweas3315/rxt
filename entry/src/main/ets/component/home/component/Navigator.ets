@@ -2,6 +2,7 @@
  * 首页导航
  */
 import router from '@ohos.router'
+
 interface IHomeNavigator {
   title: string;
   icon: Resource;
@@ -24,7 +25,7 @@ export default struct HomeNavigator {
         Column() {
           Image(item.icon).width(70).margin({ bottom: 10 })
           Text(item.title).fontSize(14)
-        }.onClick(() => router.pushUrl({url: item.path}))
+        }.onClick(() => router.pushUrl({ url: item.path }))
       })
     }.margin({ top: 20, bottom: 20 })
   }
