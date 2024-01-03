@@ -2,6 +2,9 @@
  * 专家指导
  */
 import router from '@ohos.router'
+import ExpertInformationList from '../../../component/guidance/ExpertInformationList'
+import QuestionAnswerInformationList from '../../../component/guidance/QuestionAnswerInformationList'
+
 @Entry
 @Component
 struct ExpertGuidance {
@@ -47,12 +50,12 @@ struct ExpertGuidance {
         barPosition: BarPosition.Start
       }) {
         TabContent() {
-          Text('问答列表')
+          QuestionAnswerInformationList()
         }
         .tabBar(this.TabBuilder('问答信息列表', 0))
 
         TabContent() {
-          Text('专家列表')
+          ExpertInformationList()
         }
         .tabBar(this.TabBuilder('专家信息列表', 1))
       }
