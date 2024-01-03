@@ -79,26 +79,26 @@ export type IPasswordParam = {
   oldPassword:string
 }
 
-// export type IPurchaseDetail = {
-//   count:number
-//   detailId:number
-//   orderId:number
-//   purchaseId:number
-//   sumPrice:number
-//   uninPrice:number
-// }
-
-export type  IQuestion = {
-  answer:string
-  expertName:string
-  id:number
-  phone:string
-  plantName:string
-  question:string
-  questioner:string
-  status:number
-  title:string
+export type IPurchaseDetail = {
+  count:number
+  detailId:number
+  orderId:number
+  purchaseId:number
+  sumPrice:number
+  uninPrice:number
 }
+
+// export type  IQuestion = {
+//   answer:string
+//   expertName:string
+//   id:number
+//   phone:string
+//   plantName:string
+//   question:string
+//   questioner:string
+//   status:number
+//   title:string
+// }
 
 export type IReserve = {
   address:string
