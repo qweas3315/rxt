@@ -52,27 +52,27 @@ export type IIntention = {
   userName:string
 }
 
-// export type IKnowledge = {
-//   content:string
-//   createTime:string
-//   knowledgeId:number
-//   ownName:string
-//   picPath:string
-//   title:string
-//   updateTime:string
-// }
-
-export type IMyPurchase = {
-  address:string
+export type IKnowledge = {
+  content:string
   createTime:string
+  knowledgeId:number
   ownName:string
-  picture:string
-  purchaseId:number
-  purchaseStatus:number
-  purchaseType:number
-  totalPrice:number
+  picPath:string
+  title:string
   updateTime:string
 }
+
+// export type IMyPurchase = {
+//   address:string
+//   createTime:string
+//   ownName:string
+//   picture:string
+//   purchaseId:number
+//   purchaseStatus:number
+//   purchaseType:number
+//   totalPrice:number
+//   updateTime:string
+// }
 
 export type IPasswordParam = {
   newPassword:string
