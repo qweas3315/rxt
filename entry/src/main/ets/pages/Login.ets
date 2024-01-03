@@ -1,6 +1,7 @@
 import router from '@ohos.router'
 import promptAction from '@ohos.promptAction'
 import { userLoginApi } from '../api/user'
+import { IResponse } from '../model/common'
 
 @Entry
 @Component
@@ -8,15 +9,25 @@ struct Login {
   @State username: string = ''
   @State password: string = ''
 
-  handleLogon() {
-    const promise = userLoginApi({ username: this.username, password: this.password })
-    promise.then(res => {
-      globalThis.token = JSON.parse(res.result.toString())
-      router.back()
-      promptAction.showDialog({ message: JSON.stringify(res.result) })
-    }).catch(error => {
-      promptAction.showDialog({ message: JSON.stringify(error) })
-    })
+  async handleLogon() {
+    const res = await userLoginApi({ username: this.username, password: this.password })
+    const data: IResponse<string> = <IResponse<string>> JSON.parse(res.result.toString())
+    if (data.code == 20000) {
+      globalThis.token = data.data
+      console.info('userLoginInfo: ', res.result.toString())
+      console.info('userLogin: ', JSON.stringify(data.data))
+      router.replaceUrl({ url: "pages/Index" })
+    } else {
+      AlertDialog.show({
+        title: '提示',
+        message: "账号或密码有误",
+        primaryButton: {
+          value: '确定',
+          action: () => {
+          }
+        }
+      })
+    }
   }
 
   build() {
