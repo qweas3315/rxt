@@ -17,7 +17,6 @@ export default struct Mine {
   private scroller: Scroller = new Scroller();
 
   async aboutToAppear() {
-    console.info('userInfo: ', globalThis.userInfo)
     if (globalThis.userInfo) {
       this.userInfo = globalThis.userInfo
       return
