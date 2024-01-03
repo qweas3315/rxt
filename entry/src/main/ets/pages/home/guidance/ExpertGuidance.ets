@@ -1,9 +1,9 @@
 /**
- * 专家问答信息列表
+ * 专家指导
  */
 @Entry
 @Component
-struct ExpertChatList {
+struct ExpertGuidance {
   @State message: string = 'Hello World'
 
   build() {

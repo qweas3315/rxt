@@ -1,17 +1,19 @@
+import router from '@ohos.router'
 import { builderCellItem, CellTitle } from './Common'
 
 interface IInfoItem {
   icon: Resource;
   title: string;
+  fun: () => void;
 }
 
 @Preview
 @Component
 export default struct FinancingInfo {
   private financingList: Array<IInfoItem> = [
-    { icon: $r('app.media.message_dots'), title: '智能匹配' },
-    { icon: $r('app.media.notes'), title: '融资申请' },
-    { icon: $r('app.media.star'), title: '我的融资' }
+    { icon: $r('app.media.message_dots'), title: '智能匹配', fun: () => router.pushUrl({ url: '' }) },
+    { icon: $r('app.media.notes'), title: '融资申请', fun: () => router.pushUrl({ url: '' }) },
+    { icon: $r('app.media.star'), title: '我的融资', fun: () => router.pushUrl({ url: '' }) }
   ]
 
   build() {
@@ -20,7 +22,7 @@ export default struct FinancingInfo {
       List() {
         ForEach(this.financingList, (item: IInfoItem) => {
           ListItem() {
-            builderCellItem(item.title, item.icon)
+            builderCellItem(item.title, item.icon, item.fun)
           }
         })
       }

@@ -1,26 +1,28 @@
+import router from '@ohos.router'
 import { builderCellItem, CellTitle } from './Common'
 
 interface IInfoItem {
   icon: Resource;
   title: string;
+  fun: () => void;
 }
 
 @Preview
 @Component
-export default struct UserBasicInfo {
+export struct UserBasicInfo {
   private basicInfoList: Array<IInfoItem> = [
-    { icon: $r('app.media.user'), title: '我的需求' },
-    { icon: $r('app.media.tabler_credit_card'), title: '我发布的' },
-    { icon: $r('app.media.map_pin'), title: '收货地址' }
+    { icon: $r('app.media.user'), title: '我的需求', fun: () => router.pushUrl({ url: '' }) },
+    { icon: $r('app.media.tabler_credit_card'), title: '我发布的', fun: () => router.pushUrl({ url: '' }) },
+    { icon: $r('app.media.map_pin'), title: '收货地址', fun: () => router.pushUrl({ url: '' }) }
   ]
 
   build() {
     Column() {
-      CellTitle({title: '基础信息'})
+      CellTitle({ title: '基础信息' })
       List() {
         ForEach(this.basicInfoList, (item: IInfoItem) => {
           ListItem() {
-            builderCellItem(item.title, item.icon)
+            builderCellItem(item.title, item.icon, item.fun)
           }
         })
       }
@@ -34,15 +36,50 @@ export default struct UserBasicInfo {
 @Preview
 @Component
 export struct ExpertBasicInfo {
-  build() {
+  private basicInfoList: Array<IInfoItem> = [
+    { icon: $r('app.media.fabu'), title: '发布知识', fun: () => router.pushUrl({ url: '' }) },
+    { icon: $r('app.media.map_pin'), title: '收货地址', fun: () => router.pushUrl({ url: '' }) }
+  ]
 
+  build() {
+    Column() {
+      CellTitle({ title: '基础信息' })
+      List() {
+        ForEach(this.basicInfoList, (item: IInfoItem) => {
+          ListItem() {
+            builderCellItem(item.title, item.icon, item.fun)
+          }
+        })
+      }
+      .width('100%')
+      .backgroundColor(Color.White)
+      .divider({ strokeWidth: 1, color: '#F1F1F1', startMargin: 0, endMargin: 0 })
+    }
   }
 }
 
 @Preview
 @Component
 export struct AdminBasicInfo {
-  build() {
+  private basicInfoList: Array<IInfoItem> = [
+    { icon: $r('app.media.user'), title: '用户管理', fun: () => router.pushUrl({ url: '' }) },
+    { icon: $r('app.media.goods'), title: '商品货源', fun: () => router.pushUrl({ url: '' }) },
+    { icon: $r('app.media.goods'), title: '求购需求', fun: () => router.pushUrl({ url: '' }) }
+  ]
 
+  build() {
+    Column() {
+      CellTitle({ title: '基础信息' })
+      List() {
+        ForEach(this.basicInfoList, (item: IInfoItem) => {
+          ListItem() {
+            builderCellItem(item.title, item.icon, item.fun)
+          }
+        })
+      }
+      .width('100%')
+      .backgroundColor(Color.White)
+      .divider({ strokeWidth: 1, color: '#F1F1F1', startMargin: 0, endMargin: 0 })
+    }
   }
 }

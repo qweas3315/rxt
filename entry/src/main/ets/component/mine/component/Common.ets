@@ -21,9 +21,7 @@ export struct CellTitle {
 }
 
 @Builder
-export function builderCellItem(label: string, icon: Resource, fn: () => void = () => {
-  promptAction.showToast({ message: 'label', duration: 1000 })
-}) {
+export function builderCellItem(label: string, icon: Resource, fun: () => void) {
   Row() {
     Image(icon)
       .width(20)
@@ -42,5 +40,5 @@ export function builderCellItem(label: string, icon: Resource, fn: () => void = 
   .width('100%')
   .height(55)
   .padding({ left: 20, right: 20 })
-  .onClick(fn)
+  .onClick(fun)
 }
