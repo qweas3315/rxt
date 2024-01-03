@@ -38,6 +38,8 @@
     "pages/mine/financing/MineFinancingInformationManage",
     "pages/mine/financing/MineFinancingInformationEdit",
     "pages/mine/chat/ExpertChatManage",
-    "pages/mine/chat/QuestionAnswering"
+    "pages/mine/chat/QuestionAnswering",
+    "pages/mine/appointment/ExpertAppointmentList",
+    "pages/mine/appointment/ExpertAppointmentDetail"
   ]
 }
