@@ -5,10 +5,21 @@ import { ISearchDTO } from '../model/order';
 export const searchAllByKeys = (data: ISearchDTO) => {
   const httpRequest = http.createHttp();
   return httpRequest.request(
-    `${AppConfig.baseUrl}/order/searchAllByKeys/${data.keyword}/${data.pageNum}`,
+    encodeURI(`${AppConfig.baseUrl}/order/searchAllByKeys/${data.keyword}/${data.pageNum}`),
     {
       method: http.RequestMethod.GET,
-      extraData: data,
+      header: {
+        'Content-Type': 'application/json'
+      }
+    });
+}
+
+export const getOrderPage = (current: number) => {
+  const httpRequest = http.createHttp();
+  return httpRequest.request(
+    encodeURI(`${AppConfig.baseUrl}/order/All/${current}`),
+    {
+      method: http.RequestMethod.GET,
       header: {
         'Content-Type': 'application/json'
       }

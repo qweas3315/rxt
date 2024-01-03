@@ -1,8 +1,7 @@
 /**
  * 首页组件
  */
-import promptAction from '@ohos.promptAction'
-import { searchAllByKeys } from '../../api/order'
+import { getOrderPage, searchAllByKeys } from '../../api/order'
 import { AppConfig } from '../../config'
 import { IPageInfo, IResponse } from '../../model/common'
 import { IOrderInfo } from '../../model/order'
@@ -12,27 +11,36 @@ import HomeNavigator from './component/Navigator'
 @Preview
 @Component
 export default struct Home {
-  @State keyword: string = '苹果'
+  @State keyword: string = ''
   @State pageNum: number = 1;
   @State goodsList: Array<IOrderInfo> = []
   private scroller: Scroller = new Scroller()
 
+  async handleLoadGoodsPage(current: number) {
+    this.pageNum = current
+    try {
+      const res = await getOrderPage(this.pageNum)
+      const data: IResponse<IPageInfo<IOrderInfo>> = <IResponse<IPageInfo<IOrderInfo>>> JSON.parse(res.result.toString())
+      data.data.list.forEach((item: IOrderInfo) => {
+        this.goodsList.push(item)
+      })
+    } catch (error) {
+      console.error('handleLoadGoodsPage.error: ', error.message)
+    }
+  }
+
   async handleSearch(current: number) {
     if (this.keyword.trim().length === 0) {
-      promptAction.showToast({ message: '请输入搜索内容后进行搜索', duration: 1000 })
+      this.handleLoadGoodsPage(1)
       return
     }
     this.pageNum = current
     try {
       const res = await searchAllByKeys({ keyword: this.keyword, pageNum: this.pageNum })
       const data: IResponse<IPageInfo<IOrderInfo>> = <IResponse<IPageInfo<IOrderInfo>>> JSON.parse(res.result.toString())
-      console.info('searchAllByKeys1', res.result)
-      promptAction.showToast({ message: JSON.stringify(data), duration: 1000 })
-      if (data.flag) {
-        this.goodsList = []
-        this.goodsList = data.data?.list || []
-        console.info('goodsList: ', this.goodsList)
-      }
+      data.data.list.forEach((item: IOrderInfo) => {
+        this.goodsList.push(item)
+      })
     } catch (error) {
       console.error('handleSearch.error: ', error.message)
     }
@@ -46,6 +54,9 @@ export default struct Home {
     return title.length > 15 ? title.substring(0, 15) : title
   }
 
+  aboutToAppear() {
+    this.handleLoadGoodsPage(1)
+  }
   build() {
     Column() {
       Row() {
@@ -72,7 +83,10 @@ export default struct Home {
         Button('确定')
           .margin({ right: 10 })
           .backgroundColor(Color.Transparent)
-          .onClick(() => this.handleSearch(1))
+          .onClick(() => {
+            this.goodsList = []
+            this.handleSearch(1)
+          })
           .fontColor(Color.Black)
       }
       .backgroundColor(Color.White)
@@ -142,11 +156,11 @@ export default struct Home {
         .height(400)
         .margin({ top: 10, right: 10, left: 10 })
         .onScrollEdge(() => {
-          // if (this.keyword == '') {
-          //   this.getAllGoods(this.pageNum + 1)
-          // } else {
-          //   this.getGoodsByParam(this.pageNum + 1)
-          // }
+          if (this.keyword.trim().length === 0) {
+            this.handleLoadGoodsPage(this.pageNum + 1)
+          } else {
+            this.handleSearch(this.pageNum + 1)
+          }
         })
       } else {
         Text("没有符合条件的数据")
