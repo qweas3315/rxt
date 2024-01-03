@@ -1,3 +1,4 @@
+import Home from '../component/home/Index';
 import Mine from '../component/mine';
 
 interface ITab {
@@ -42,7 +43,7 @@ struct Index {
         ForEach(this.tabList, (tab: ITab) => {
           TabContent() {
             if (tab.index === 0) {
-              Text('这是首页')
+              Home()
             } else if (tab.index === 1) {
               Text('这是搜索页')
             } else if (tab.index === 2) {
