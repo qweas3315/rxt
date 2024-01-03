@@ -1,6 +1,7 @@
 /**
  * 首页组件
  */
+import { getIP, getLocation } from '../../api/common'
 import { getOrderPage, searchAllByKeys } from '../../api/order'
 import { AppConfig } from '../../config'
 import { IPageInfo, IResponse } from '../../model/common'
@@ -14,6 +15,7 @@ export default struct Home {
   @State keyword: string = ''
   @State pageNum: number = 1;
   @State goodsList: Array<IOrderInfo> = []
+  @State cityName: string = ''
   private scroller: Scroller = new Scroller()
 
   async handleLoadGoodsPage(current: number) {
@@ -54,14 +56,21 @@ export default struct Home {
     return title.length > 15 ? title.substring(0, 15) : title
   }
 
-  aboutToAppear() {
+  async aboutToAppear() {
     this.handleLoadGoodsPage(1)
+    const ipResponse = await getIP()
+    const ip = ipResponse.result.toString().replace(/\n/g, "");
+    console.info("ipResponse: ", ipResponse.result)
+    const locationResponse = await getLocation(ip)
+    console.info("locationResponse: ", locationResponse.responseCode)
+    const cityName = JSON.parse(locationResponse.result.toString()).result.cityName
+    this.cityName = cityName
   }
 
   build() {
     Column() {
       Row() {
-        Text("青岛")
+        Text(this.cityName)
           .padding({ left: 5 })
         Text()
           .height(35)
