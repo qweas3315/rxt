@@ -43,6 +43,7 @@
     "pages/mine/appointment/ExpertAppointmentDetail",
     "pages/mine/knowledge/ExpertKnowledgeList",
     "pages/mine/knowledge/ExpertKnowledgeDetail",
-    "pages/mine/knowledge/ExpertKnowledgeEdit"
+    "pages/mine/knowledge/ExpertKnowledgeEdit",
+    "pages/mine/setting/ExpertInformationChanage"
   ]
 }
