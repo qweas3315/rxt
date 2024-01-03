@@ -34,6 +34,7 @@
     "pages/mine/financing/BankInformationList",
     "pages/mine/financing/BankInformation",
     "pages/mine/financing/PersonalLoanInformationEdit",
-    "pages/mine/financing/PortfolioLoanInformationEdit"
+    "pages/mine/financing/PortfolioLoanInformationEdit",
+    "pages/mine/financing/MineFinancingInformationManage"
   ]
 }
