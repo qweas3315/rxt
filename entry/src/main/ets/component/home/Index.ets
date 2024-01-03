@@ -1,6 +1,7 @@
 /**
  * 首页组件
  */
+import router from '@ohos.router'
 import { getIP, getLocation } from '../../api/common'
 import { getOrderPage, searchAllByKeys } from '../../api/order'
 import { AppConfig } from '../../config'
@@ -157,8 +158,10 @@ export default struct Home {
               .borderColor('#ffffff')
               .margin(5)
               .padding(10)
-              .onClick(() => {
-              })
+              .onClick(() => router.pushUrl({
+                url: 'pages/home/goods/GoodsSourcePurchaseDetail',
+                params: { 'goodsDetail': item }
+              }))
             })
           }.width('100%')
         }

@@ -84,6 +84,10 @@ struct GoodsSourceList {
               .shadow({ radius: 5, color: '#f2f2f2', offsetX: 5, offsetY: 5 })
               .margin(5)
               .padding(10)
+              .onClick(() => router.pushUrl({
+                url: 'pages/home/goods/GoodsSourcePurchaseDetail',
+                params: { 'goodsDetail': item }
+              }))
             })
           }.width('100%')
         }
