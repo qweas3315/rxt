@@ -131,13 +131,13 @@ export type ISellPurchase = {
   updateTime:number
 }
 
-// export type IShoppingModel = {
-//   content:string
-//   count:number
-//   orderId:number
-//   ownName:string
-//   picture:string
-//   price:string
-//   shoppingId:number
-//   title:string
-// }
+export type IShoppingModel = {
+  content:string
+  count:number
+  orderId:number
+  ownName:string
+  picture:string
+  price:string
+  shoppingId:number
+  title:string
+}
