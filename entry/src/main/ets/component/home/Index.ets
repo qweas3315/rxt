@@ -60,9 +60,7 @@ export default struct Home {
     this.handleLoadGoodsPage(1)
     const ipResponse = await getIP()
     const ip = ipResponse.result.toString().replace(/\n/g, "");
-    console.info("ipResponse: ", ipResponse.result)
     const locationResponse = await getLocation(ip)
-    console.info("locationResponse: ", locationResponse.responseCode)
     const cityName = JSON.parse(locationResponse.result.toString()).result.cityName
     this.cityName = cityName
   }
