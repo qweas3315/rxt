@@ -36,6 +36,8 @@
     "pages/mine/financing/PersonalLoanInformationEdit",
     "pages/mine/financing/PortfolioLoanInformationEdit",
     "pages/mine/financing/MineFinancingInformationManage",
-    "pages/mine/financing/MineFinancingInformationEdit"
+    "pages/mine/financing/MineFinancingInformationEdit",
+    "pages/mine/chat/ExpertChatManage",
+    "pages/mine/chat/QuestionAnswering"
   ]
 }
