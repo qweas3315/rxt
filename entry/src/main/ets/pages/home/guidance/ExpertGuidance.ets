@@ -1,9 +1,9 @@
 /**
- * 提问问题
+ * 专家指导
  */
 @Entry
 @Component
-struct AskQuestions {
+struct ExpertGuidance {
   @State message: string = 'Hello World'
 
   build() {
