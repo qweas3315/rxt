@@ -102,6 +102,18 @@ struct Login {
                 promptAction.showDialog({ message: JSON.stringify(error) })
               })
             })
+          Row() {
+            Text("快速注册")
+              .fontSize(14)
+              .margin({ right: 10 })
+              .onClick(() => {
+                router.pushUrl({ url: "pages/Register" })
+              })
+          }
+          .width('90%')
+          .height(30)
+          .margin({ top: 30 })
+          .justifyContent(FlexAlign.End)
         }
         .width('100%')
         .height("100%")
