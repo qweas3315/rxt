@@ -15,7 +15,7 @@ export default struct HomeNavigator {
     { title: '商品货源', icon: $r('app.media.image'), path: 'pages/home/goods/GoodsSourceList' },
     { title: '求购需求', icon: $r('app.media.icon2'), path: 'pages/home/purchase/PurchaseDemandList' },
     { title: '农业知识', icon: $r('app.media.icon3'), path: 'pages/home/knowledge/AgriculturalKnowledgeList' },
-    { title: '专家指导', icon: $r('app.media.icon4'), path: '' }
+    { title: '专家指导', icon: $r('app.media.icon4'), path: 'pages/home/guidance/ExpertGuidance' }
   ]
 
   build() {
