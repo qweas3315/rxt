@@ -41,6 +41,6 @@
     "pages/mine/chat/QuestionAnswering",
     "pages/mine/appointment/ExpertAppointmentList",
     "pages/mine/appointment/ExpertAppointmentDetail",
-    "pages/mine/knowledge/MineKnowledgeList"
+    "pages/mine/knowledge/ExpertKnowledgeList"
   ]
 }
