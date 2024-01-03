@@ -62,22 +62,22 @@ export type IKnowledge = {
   updateTime:string
 }
 
-// export type IMyPurchase = {
-//   address:string
-//   createTime:string
-//   ownName:string
-//   picture:string
-//   purchaseId:number
-//   purchaseStatus:number
-//   purchaseType:number
-//   totalPrice:number
-//   updateTime:string
-// }
-
-export type IPasswordParam = {
-  newPassword:string
-  oldPassword:string
+export type IMyPurchase = {
+  address:string
+  createTime:string
+  ownName:string
+  picture:string
+  purchaseId:number
+  purchaseStatus:number
+  purchaseType:number
+  totalPrice:number
+  updateTime:string
 }
+//
+// export type IPasswordParam = {
+//   newPassword:string
+//   oldPassword:string
+// }
 
 export type IPurchaseDetail = {
   count:number
