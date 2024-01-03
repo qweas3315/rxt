@@ -1,20 +1,20 @@
-// export type IAddress = {
-//   addressDetail:string
-//   consignee:string
-//   id:number
-//   isDefault:boolean
-//   ownName:string
-//   phone:string
-// }
-
-export type IExpert = {
-  belong:string
+export type IAddress = {
+  addressDetail:string
+  consignee:string
+  id:number
+  isDefault:boolean
+  ownName:string
   phone:string
-  position:string
-  profession:string
-  realName:string
-  userName:string
 }
+
+// export type IExpert = {
+//   belong:string
+//   phone:string
+//   position:string
+//   profession:string
+//   realName:string
+//   userName:string
+// }
 
 export type IFinance = {
   bankId:number
