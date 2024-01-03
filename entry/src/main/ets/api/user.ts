@@ -27,3 +27,13 @@ export const userRegisterApi = (data: IUserRegisterDTO) => {
       }
     });
 }
+
+export const getUserInfoApi = () => {
+  const httpRequest = http.createHttp();
+  return httpRequest.request(`${AppConfig.baseUrl}/user/loginSelectByUsername`, {
+    method: http.RequestMethod.GET,
+    header: {
+      Authorization: globalThis.token
+    }
+  })
+}
