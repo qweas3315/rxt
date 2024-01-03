@@ -38,29 +38,29 @@ export type IFinance = {
   updateTime:string
 }
 
-// export type IIntention = {
-//   address:string
-//   amount:number
-//   application:string
-//   area:number
-//   createTime:string
-//   item:string
-//   phone:string
-//   realName:string
-//   repaymentPeriod:number
-//   updateTime:string
-//   userName:string
-// }
-
-export type IKnowledge = {
-  content:string
+export type IIntention = {
+  address:string
+  amount:number
+  application:string
+  area:number
   createTime:string
-  knowledgeId:number
-  ownName:string
-  picPath:string
-  title:string
+  item:string
+  phone:string
+  realName:string
+  repaymentPeriod:number
   updateTime:string
+  userName:string
 }
+
+// export type IKnowledge = {
+//   content:string
+//   createTime:string
+//   knowledgeId:number
+//   ownName:string
+//   picPath:string
+//   title:string
+//   updateTime:string
+// }
 
 export type IMyPurchase = {
   address:string
