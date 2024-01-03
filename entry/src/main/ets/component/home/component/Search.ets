@@ -2,18 +2,18 @@
  * 搜索框
  */
 import promptAction from '@ohos.promptAction'
+import { searchAllByKeys } from '../../../api/order'
 
 @Preview
 @Component
 export default struct HomeSearch {
-  @State searchValue: string = ''
+  @State keyword: string = ''
 
   handleSearch() {
-    if (this.searchValue.trim().length === 0) {
+    if (this.keyword.trim().length === 0) {
       promptAction.showToast({ message: '请输入搜索内容后进行搜索', duration: 1000 })
       return
     }
-
   }
 
   build() {
@@ -30,7 +30,7 @@ export default struct HomeSearch {
         .margin({ left: 10 })
       TextInput({ placeholder: '搜索' })
         .onChange((value: string) => {
-          this.searchValue = value
+          this.keyword = value
         })
         .layoutWeight(1)
         .borderWidth(0)
