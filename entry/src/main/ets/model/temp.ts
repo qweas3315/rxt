@@ -100,36 +100,36 @@ export type  IQuestion = {
   title:string
 }
 
-// export type IReserve = {
-//   address:string
-//   answer:string
-//   area:string
-//   expertName:string
-//   id:number
-//   message:string
-//   phone:string
-//   plantCondition:string
-//   plantDetail:string
-//   plantName:string
-//   questioner:string
-//   soilCondition:string
-//   status:number
-// }
-
-export type ISellPurchase = {
+export type IReserve = {
   address:string
-  createTime:string
-  orderId:number
-  ownName:string
+  answer:string
+  area:string
+  expertName:string
+  id:number
+  message:string
   phone:string
-  purchaseId:number
-  purchaseStatus:number
-  purchaseType:number
-  sellPurchaseId:number
-  sumPrice:number
-  uninPricee:number
-  updateTime:number
+  plantCondition:string
+  plantDetail:string
+  plantName:string
+  questioner:string
+  soilCondition:string
+  status:number
 }
+
+// export type ISellPurchase = {
+//   address:string
+//   createTime:string
+//   orderId:number
+//   ownName:string
+//   phone:string
+//   purchaseId:number
+//   purchaseStatus:number
+//   purchaseType:number
+//   sellPurchaseId:number
+//   sumPrice:number
+//   uninPricee:number
+//   updateTime:number
+// }
 
 export type IShoppingModel = {
   content:string
