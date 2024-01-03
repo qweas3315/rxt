@@ -57,6 +57,7 @@ export default struct Home {
   aboutToAppear() {
     this.handleLoadGoodsPage(1)
   }
+
   build() {
     Column() {
       Row() {
