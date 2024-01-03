@@ -1,16 +1,19 @@
+import router from '@ohos.router'
+
 interface INavigator {
   title: string;
-  icon: Resource
+  icon: Resource;
+  fun: () => void;
 }
 
 @Preview
 @Component
 export struct UserMineNavigator {
   private navigatorList: Array<INavigator> = [
-    { title: '我的问答', icon: $r('app.media.3D') },
-    { title: '我的预约', icon: $r('app.media.Clock1') },
-    { title: '我的购买', icon: $r('app.media.car') },
-    { title: '我的售卖', icon: $r('app.media.Inbox') },
+    { title: '我的问答', icon: $r('app.media.3D'), fun: () => router.pushUrl({ url: '' }) },
+    { title: '我的预约', icon: $r('app.media.Clock1'), fun: () => router.pushUrl({ url: '' }) },
+    { title: '我的购买', icon: $r('app.media.car'), fun: () => router.pushUrl({ url: '' }) },
+    { title: '我的售卖', icon: $r('app.media.Inbox'), fun: () => router.pushUrl({ url: '' }) },
   ]
 
   build() {
@@ -26,6 +29,7 @@ export struct UserMineNavigator {
             .fontColor('#666666')
             .height(25)
         }
+        .onClick(item.fun)
       })
       Blank()
     }
@@ -60,10 +64,10 @@ export struct AdminMineNavigator {
 @Component
 export struct ExpertMineNavigator {
   private navigatorList: Array<INavigator> = [
-    { title: '我的问答', icon: $r('app.media.3D') },
-    { title: '我的预约', icon: $r('app.media.Clock1') },
-    { title: '我的知识', icon: $r('app.media.car') },
-    { title: '专家信息', icon: $r('app.media.Inbox') },
+    { title: '我的问答', icon: $r('app.media.3D'), fun: () => router.pushUrl({ url: '' }) },
+    { title: '我的预约', icon: $r('app.media.Clock1'), fun: () => router.pushUrl({ url: '' }) },
+    { title: '我的知识', icon: $r('app.media.car'), fun: () => router.pushUrl({ url: '' }) },
+    { title: '专家信息', icon: $r('app.media.Inbox'), fun: () => router.pushUrl({ url: '' }) },
   ]
 
   build() {
@@ -79,6 +83,7 @@ export struct ExpertMineNavigator {
             .fontColor('#666666')
             .height(25)
         }
+        .onClick(item.fun)
       })
       Blank()
     }
