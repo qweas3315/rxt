@@ -12,9 +12,9 @@ interface IHomeNavigator {
 @Component
 export default struct HomeNavigator {
   private navigatorList: Array<IHomeNavigator> = [
-    { title: '商品货源', icon: $r('app.media.image'), path: '' },
-    { title: '求购需求', icon: $r('app.media.icon2'), path: '' },
-    { title: '农业知识', icon: $r('app.media.icon3'), path: '' },
+    { title: '商品货源', icon: $r('app.media.image'), path: 'pages/home/goods/GoodsSourceList' },
+    { title: '求购需求', icon: $r('app.media.icon2'), path: 'pages/home/purchase/PurchaseDemandList' },
+    { title: '农业知识', icon: $r('app.media.icon3'), path: 'pages/home/knowledge/AgriculturalKnowledgeList' },
     { title: '专家指导', icon: $r('app.media.icon4'), path: '' }
   ]
 
