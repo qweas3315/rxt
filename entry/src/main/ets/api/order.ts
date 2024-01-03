@@ -7,7 +7,7 @@ export const searchAllByKeys = (data: ISearchDTO) => {
   return httpRequest.request(
     `${AppConfig.baseUrl}/order/searchAllByKeys/${data.keyword}/${data.pageNum}`,
     {
-      method: http.RequestMethod.POST,
+      method: http.RequestMethod.GET,
       extraData: data,
       header: {
         'Content-Type': 'application/json'
