@@ -3,13 +3,11 @@
  */
 import HomeBroadcast from './component/Broadcast'
 import HomeNavigator from './component/Navigator'
-import HomeSearch from './component/Search'
 @Preview
 @Component
 export default struct Home {
   build() {
     Column() {
-      HomeSearch()
       HomeBroadcast()
       HomeNavigator()
     }
