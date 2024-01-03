@@ -73,20 +73,20 @@ export type IMyPurchase = {
   totalPrice:number
   updateTime:string
 }
-//
-// export type IPasswordParam = {
-//   newPassword:string
-//   oldPassword:string
-// }
 
-export type IPurchaseDetail = {
-  count:number
-  detailId:number
-  orderId:number
-  purchaseId:number
-  sumPrice:number
-  uninPrice:number
+export type IPasswordParam = {
+  newPassword:string
+  oldPassword:string
 }
+
+// export type IPurchaseDetail = {
+//   count:number
+//   detailId:number
+//   orderId:number
+//   purchaseId:number
+//   sumPrice:number
+//   uninPrice:number
+// }
 
 export type  IQuestion = {
   answer:string
