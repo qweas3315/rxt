@@ -9,10 +9,6 @@
     "pages/home/purchase/PurchaseDemandDetail",
     "pages/home/knowledge/AgriculturalKnowledgeList",
     "pages/home/knowledge/AgriculturalKnowledgeDetail",
-    "pages/home/guidance/ExpertChatList",
-    "pages/home/guidance/ExpertChatDetail",
-    "pages/home/guidance/AskQuestions",
-    "pages/home/guidance/AppointmentExpert",
     "pages/home/search/SearchList",
     "pages/cart/ShoppingCart",
     "pages/mine/setting/PersonalInformation",
@@ -48,6 +44,7 @@
     "pages/mine/knowledge/KnowledgeRelease",
     "pages/mine/user/UserList",
     "pages/mine/user/UserDetail",
-    "pages/mine/user/UserEdit"
+    "pages/mine/user/UserEdit",
+    "pages/home/guidance/ExpertGuidance"
   ]
 }
