@@ -9,3 +9,19 @@ export type IUserRegisterDTO = {
   nickName: string;
   avatar: string;
 }
+
+export type IUser = {
+  address: string;
+  avatar: string;
+  createTime: string;
+  credit: number;
+  identityNum: string;
+  integral: number;
+  nickName: string;
+  password: string;
+  phone: string;
+  realName: string;
+  role: string;
+  updateTime: string;
+  userName: string;
+}
