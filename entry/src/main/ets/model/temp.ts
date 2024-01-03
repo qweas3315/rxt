@@ -7,36 +7,36 @@ export type IAddress = {
   phone:string
 }
 
-// export type IExpert = {
-//   belong:string
-//   phone:string
-//   position:string
-//   profession:string
-//   realName:string
-//   userName:string
-// }
-
-export type IFinance = {
-  bankId:number
-  combinationIdnum1:string
-  combinationIdnum2:string
-  combinationName1:string
-  combinationName2:string
-  combinationPhone1:string
-  combinationPhone2:string
-  createTime:string
-  fileInfo:string
-  financeId:number
-  idNum:string
-  money:number
-  ownName:string
+export type IExpert = {
+  belong:string
   phone:string
-  rate:number
+  position:string
+  profession:string
   realName:string
-  repayment:number
-  status:number
-  updateTime:string
+  userName:string
 }
+
+// export type IFinance = {
+//   bankId:number
+//   combinationIdnum1:string
+//   combinationIdnum2:string
+//   combinationName1:string
+//   combinationName2:string
+//   combinationPhone1:string
+//   combinationPhone2:string
+//   createTime:string
+//   fileInfo:string
+//   financeId:number
+//   idNum:string
+//   money:number
+//   ownName:string
+//   phone:string
+//   rate:number
+//   realName:string
+//   repayment:number
+//   status:number
+//   updateTime:string
+// }
 
 export type IIntention = {
   address:string
