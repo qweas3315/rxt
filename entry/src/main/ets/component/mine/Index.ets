@@ -5,7 +5,7 @@ import { UserRoleEnum } from '../../enums/role'
 import { IResponse } from '../../model/common'
 import { IUser } from '../../model/user'
 import PageHeader from '../header'
-import BasicInfo from './component/Basic'
+import {UserBasicInfo, AdminBasicInfo, ExpertBasicInfo} from './component/Basic'
 import FinancingInfo from './component/Financing'
 import { UserMineNavigator, AdminMineNavigator, ExpertMineNavigator } from './component/Navigator'
 import OtherOperate from './component/Operate'
@@ -106,12 +106,14 @@ export default struct Mine {
 
         if (this.userInfo?.role === UserRoleEnum.ADMIN) {
           AdminMineNavigator()
+          AdminBasicInfo()
         } else if (this.userInfo?.role === UserRoleEnum.EXPERT) {
           ExpertMineNavigator()
+          ExpertBasicInfo()
         } else {
           UserMineNavigator()
+          UserBasicInfo()
         }
-        BasicInfo()
         FinancingInfo()
         OtherOperate()
       }
