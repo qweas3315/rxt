@@ -8,6 +8,17 @@ struct Login {
   @State username: string = ''
   @State password: string = ''
 
+  handleLogon() {
+    const promise = userLoginApi({ username: this.username, password: this.password })
+    promise.then(res => {
+      globalThis.token = JSON.parse(res.result.toString())
+      router.back()
+      promptAction.showDialog({ message: JSON.stringify(res.result) })
+    }).catch(error => {
+      promptAction.showDialog({ message: JSON.stringify(error) })
+    })
+  }
+
   build() {
     Stack() {
       Row() {
@@ -92,16 +103,7 @@ struct Login {
             .backgroundColor(Color.White)
             .fontColor(Color.Gray)
             .fontSize(16)
-            .onClick(() => {
-              const promise = userLoginApi({ username: this.username, password: this.password })
-              promise.then(res => {
-                globalThis.token = JSON.parse(res.result.toString())
-                router.back()
-                promptAction.showDialog({ message: JSON.stringify(res.result) })
-              }).catch(error => {
-                promptAction.showDialog({ message: JSON.stringify(error) })
-              })
-            })
+            .onClick(() => this.handleLogon())
           Row() {
             Text("快速注册")
               .fontSize(14)
