@@ -46,6 +46,7 @@
     "pages/mine/knowledge/ExpertKnowledgeEdit",
     "pages/mine/setting/ExpertInformationChanage",
     "pages/mine/knowledge/KnowledgeRelease",
-    "pages/mine/user/UserList"
+    "pages/mine/user/UserList",
+    "pages/mine/user/UserDetail"
   ]
 }
