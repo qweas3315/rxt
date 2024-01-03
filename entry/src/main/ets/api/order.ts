@@ -25,3 +25,15 @@ export const getOrderPage = (current: number) => {
       }
     });
 }
+
+export const getGoodsPage = (type: string, pageNum: number) => {
+  const httpRequest = http.createHttp();
+  return httpRequest.request(
+    encodeURI(`${AppConfig.baseUrl}/order/${type}/${pageNum}`),
+    {
+      method: http.RequestMethod.GET,
+      header: {
+        'Content-Type': 'application/json'
+      }
+    });
+}
