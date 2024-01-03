@@ -2,7 +2,7 @@ import PageHeader from '../header'
 import BasicInfo from './component/Basic'
 import FinancingInfo from './component/Financing'
 import MineCardInfo from './component/Info'
-import MineNavigator from './component/Navigator'
+import {UserMineNavigator} from './component/Navigator'
 import OtherOperate from './component/Operate'
 
 @Preview
@@ -14,7 +14,7 @@ export default struct Mine {
     Column() {
       PageHeader({ title: '我的' })
       MineCardInfo({ isLogin: this.isLogin })
-      MineNavigator()
+      UserMineNavigator()
       BasicInfo()
       FinancingInfo()
       OtherOperate()
