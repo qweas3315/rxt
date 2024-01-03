@@ -40,6 +40,7 @@
     "pages/mine/chat/ExpertChatManage",
     "pages/mine/chat/QuestionAnswering",
     "pages/mine/appointment/ExpertAppointmentList",
-    "pages/mine/appointment/ExpertAppointmentDetail"
+    "pages/mine/appointment/ExpertAppointmentDetail",
+    "pages/mine/knowledge/MineKnowledgeList"
   ]
 }
