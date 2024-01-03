@@ -36,7 +36,6 @@ export default class EntryAbility extends UIAbility {
   }
 
   onWindowStageDestroy() {
-    // Main window is destroyed, release UI related resources
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageDestroy');
   }
 
