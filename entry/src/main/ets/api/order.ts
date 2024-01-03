@@ -1,11 +1,11 @@
 import http from '@ohos.net.http';
 import { AppConfig } from '../config'
-import { IUserLoginDTO } from '../model/user';
+import { ISearchDTO } from '../model/order';
 
-export const userLoginApi = (data: IUserLoginDTO) => {
+export const searchAllByKeys = (data: ISearchDTO) => {
   const httpRequest = http.createHttp();
   return httpRequest.request(
-    `${AppConfig.baseUrl}/user/login`,
+    `${AppConfig.baseUrl}/order/searchAllByKeys/${data.keyword}/${data.pageNum}`,
     {
       method: http.RequestMethod.POST,
       extraData: data,

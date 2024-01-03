@@ -1,6 +1,6 @@
 import router from '@ohos.router'
 import promptAction from '@ohos.promptAction'
-import { userLogin } from '../api/user'
+import { userLoginApi } from '../api/user'
 
 @Entry
 @Component
@@ -93,7 +93,7 @@ struct Login {
             .fontColor(Color.Gray)
             .fontSize(16)
             .onClick(() => {
-              const promise = userLogin({ username: this.username, password: this.password })
+              const promise = userLoginApi({ username: this.username, password: this.password })
               promise.then(res => {
                 globalThis.token = JSON.parse(res.result.toString())
                 router.back()

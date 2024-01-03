@@ -29,6 +29,25 @@
     "pages/mine/goods/ReleaseGoodsList",
     "pages/mine/goods/ReleaseGoods",
     "pages/mine/address/MineShippingAddressManage",
-    "pages/mine/address/MineShippingAddressEdit"
+    "pages/mine/address/MineShippingAddressEdit",
+    "pages/mine/financing/RecommendFinanciers",
+    "pages/mine/financing/BankInformationList",
+    "pages/mine/financing/BankInformation",
+    "pages/mine/financing/PersonalLoanInformationEdit",
+    "pages/mine/financing/PortfolioLoanInformationEdit",
+    "pages/mine/financing/MineFinancingInformationManage",
+    "pages/mine/financing/MineFinancingInformationEdit",
+    "pages/mine/chat/ExpertChatManage",
+    "pages/mine/chat/QuestionAnswering",
+    "pages/mine/appointment/ExpertAppointmentList",
+    "pages/mine/appointment/ExpertAppointmentDetail",
+    "pages/mine/knowledge/ExpertKnowledgeList",
+    "pages/mine/knowledge/ExpertKnowledgeDetail",
+    "pages/mine/knowledge/ExpertKnowledgeEdit",
+    "pages/mine/setting/ExpertInformationChanage",
+    "pages/mine/knowledge/KnowledgeRelease",
+    "pages/mine/user/UserList",
+    "pages/mine/user/UserDetail",
+    "pages/mine/user/UserEdit"
   ]
 }
