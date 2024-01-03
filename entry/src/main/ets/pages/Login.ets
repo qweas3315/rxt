@@ -14,8 +14,6 @@ struct Login {
     const data: IResponse<string> = <IResponse<string>> JSON.parse(res.result.toString())
     if (data.code == 20000) {
       globalThis.token = data.data
-      console.info('userLoginInfo: ', res.result.toString())
-      console.info('userLogin: ', JSON.stringify(data.data))
       router.replaceUrl({ url: "pages/Index" })
     } else {
       AlertDialog.show({
