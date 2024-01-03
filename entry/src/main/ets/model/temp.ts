@@ -116,28 +116,28 @@ export type IReserve = {
   status:number
 }
 
-// export type ISellPurchase = {
-//   address:string
-//   createTime:string
-//   orderId:number
-//   ownName:string
-//   phone:string
-//   purchaseId:number
-//   purchaseStatus:number
-//   purchaseType:number
-//   sellPurchaseId:number
-//   sumPrice:number
-//   uninPricee:number
-//   updateTime:number
-// }
-
-export type IShoppingModel = {
-  content:string
-  count:number
+export type ISellPurchase = {
+  address:string
+  createTime:string
   orderId:number
   ownName:string
-  picture:string
-  price:string
-  shoppingId:number
-  title:string
+  phone:string
+  purchaseId:number
+  purchaseStatus:number
+  purchaseType:number
+  sellPurchaseId:number
+  sumPrice:number
+  uninPricee:number
+  updateTime:number
 }
+
+// export type IShoppingModel = {
+//   content:string
+//   count:number
+//   orderId:number
+//   ownName:string
+//   picture:string
+//   price:string
+//   shoppingId:number
+//   title:string
+// }
