@@ -1,6 +1,7 @@
 import router from '@ohos.router'
 import promptAction from '@ohos.promptAction';
 import { AppConfig } from '../../../config'
+import http from '@ohos.net.http';
 
 @Preview
 @Entry
@@ -39,6 +40,7 @@ struct ShowUserInfoPage {
             router.back();
           }).margin({ left: 10 })
       }.height(60).width('100%').margin({ top: 10 })
+
       Scroll(this.scroller){
         Column(){
           List(){
@@ -110,19 +112,19 @@ struct ShowUserInfoPage {
                   secondaryButton:{
                     value:'确定',
                     action:()=>{
-                      // deleteUserInfo(this.user.userName)
-                      //   .then(rst=>{
-                      //     let data=JSON.parse(rst.result.toString());
-                      //     if(data.code==20000){
-                      //       promptAction.showToast({message:'删除成功!',duration:2000})
-                      //       setTimeout(()=>{
-                      //         router.clear();
-                      //         router.replaceUrl({url:'pages/admin/ShowUsersPage'})
-                      //       },2000);
-                      //     }else{
-                      //       promptAction.showToast({message:data.data,duration:2000})
-                      //     }
-                      //   })
+                      deleteUserInfo(this.user.userName)
+                        .then(rst=>{
+                          let data=JSON.parse(rst.result.toString());
+                          if(data.code==20000){
+                            promptAction.showToast({message:'删除成功!',duration:2000})
+                            setTimeout(()=>{
+                              router.clear();
+                              router.replaceUrl({url:'pages/admin/ShowUsersPage'})
+                            },2000);
+                          }else{
+                            promptAction.showToast({message:data.data,duration:2000})
+                          }
+                        })
                     }
                   }
                 })
@@ -188,22 +190,22 @@ struct ShowUserInfoPage {
             }
           }.width('100%')
           Row(){
-            // Button("确定").type(ButtonType.Normal).borderRadius(10).width(80).onClick(()=>{
-            //   this.user.user_name=this.user.userName
-            //   updateUserInfo(this.user).then(rst=>{
-            //     console.info("============updateUserInfo="+rst.result.toString())
-            //     let data=JSON.parse(rst.result.toString());
-            //     if(data.code==20000){
-            //       promptAction.showToast({message:'修改成功!',duration:2000})
-            //       this.show=false
-            //     }else{
-            //       promptAction.showToast({message:data.message,duration:2000})
-            //     }
-            //   })
-            // })
-            // Button("取消").type(ButtonType.Normal).borderRadius(10).width(80).onClick(()=>{
-            //   this.show=false;
-            // })
+            Button("确定").type(ButtonType.Normal).borderRadius(10).width(80).onClick(()=>{
+              this.user.user_name=this.user.userName
+              updateUserInfo(this.user).then(rst=>{
+                console.info("============updateUserInfo="+rst.result.toString())
+                let data=JSON.parse(rst.result.toString());
+                if(data.code==20000){
+                  promptAction.showToast({message:'修改成功!',duration:2000})
+                  this.show=false
+                }else{
+                  promptAction.showToast({message:data.message,duration:2000})
+                }
+              })
+            })
+            Button("取消").type(ButtonType.Normal).borderRadius(10).width(80).onClick(()=>{
+              this.show=false;
+            })
           }.justifyContent(FlexAlign.SpaceAround).width('100%').margin({top:10})
         }.width('100%')
       }
@@ -214,4 +216,34 @@ struct ShowUserInfoPage {
     .backgroundImage($r('app.media.bg'))
     .backgroundImageSize(ImageSize.Cover)
   }
+}
+export function deleteUserInfo(userName:string){
+
+  const httpRequest = http.createHttp();
+  return httpRequest.request(`${AppConfig.baseUrl}/user/${userName}`, {
+    method: http.RequestMethod.DELETE,
+    header: {
+      Authorization: globalThis.token
+    }
+  })
+}
+
+export function updateUserInfo(user:any){
+
+  const httpRequest = http.createHttp();
+  return httpRequest.request(`${AppConfig.baseUrl}/user/${user.userName}`, {
+    method: http.RequestMethod.PUT,
+    header: {
+      Authorization: globalThis.token
+    },
+    extraData:{
+      address:user.address,
+      identityNum:user.identityNum,
+      nickName:user.nickName,
+      phone:user.phone,
+      role:user.role,
+      user_name:user.userName
+    }
+  })
+
 }
