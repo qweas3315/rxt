@@ -1,5 +1,6 @@
 import Home from '../component/home/Index';
 import Mine from '../component/mine';
+import SearchComponent from '../component/search/Index';
 
 interface ITab {
   title: string;
@@ -45,7 +46,7 @@ struct Index {
             if (tab.index === 0) {
               Home()
             } else if (tab.index === 1) {
-              Text('这是搜索页')
+              SearchComponent()
             } else if (tab.index === 2) {
               Text('这是购物车')
             } else if (tab.index === 3) {
