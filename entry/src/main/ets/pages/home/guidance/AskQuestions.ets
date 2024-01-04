@@ -23,7 +23,6 @@ struct AskQuestions {
     try {
       const res = await addQuestionApi(this.question)
       const data: IResponse<any> = <IResponse<any>> JSON.parse(res.result.toString())
-      promptAction.showDialog({ message: JSON.stringify(res) })
       if (data?.code === 20000) {
         promptAction.showToast({
           message: '提交成功!',
