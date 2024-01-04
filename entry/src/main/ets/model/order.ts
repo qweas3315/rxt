@@ -4,18 +4,18 @@ export type ISearchDTO = {
 }
 
 export type IOrderInfo = {
-  address: string;
-  content: string;
-  cooperationName: string;
-  createTime: string;
-  orderId: number;
-  orderStatus: number;
-  ownName: string;
-  picture: string;
-  price: string;
-  title: string;
-  type: string;
-  updateTime: string;
+  address?: string;
+  content?: string;
+  cooperationName?: string;
+  createTime?: string;
+  orderId?: number;
+  orderStatus?: number;
+  ownName?: string;
+  picture?: string;
+  price?: string;
+  title?: string;
+  type?: string;
+  updateTime?: string;
 }
 
 export type IShoppingModel = {
