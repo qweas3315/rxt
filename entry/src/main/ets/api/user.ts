@@ -48,3 +48,17 @@ export const editUserInfoApi = (data: IUser) => {
     extraData: data
   })
 }
+
+export const updatePasswordApi = (newPassword: string, oldPassword: string) => {
+  const httpRequest = http.createHttp();
+  return httpRequest.request(`${AppConfig.baseUrl}/user/loginUpdatePassword`, {
+    method: http.RequestMethod.POST,
+    header: {
+      Authorization: globalThis.token
+    },
+    extraData: {
+      newPassword: newPassword,
+      oldPassword: oldPassword
+    }
+  })
+}
