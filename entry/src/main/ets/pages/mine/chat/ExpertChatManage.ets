@@ -151,7 +151,6 @@ struct ExpertChatManage {
       .mode(PanelMode.Half)
       .dragBar(true) // 默认开启
       .halfHeight(300) // 默认一半
-
     }
     .height('100%')
     .width('100%')
