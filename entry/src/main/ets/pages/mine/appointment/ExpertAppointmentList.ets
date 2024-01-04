@@ -17,7 +17,6 @@ struct ExpertAppointmentList {
 
   findExpertReserveAll(){
     findExpertReserveAll().then(rst=>{
-      promptAction.showDialog({message: rst.result.toString()})
       let items=JSON.parse(rst.result.toString()).data;
       for(let item of items){
         this.reserveList.push(item);
