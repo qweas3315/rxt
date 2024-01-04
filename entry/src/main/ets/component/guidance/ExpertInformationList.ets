@@ -1,4 +1,5 @@
 import promptAction from '@ohos.promptAction'
+import router from '@ohos.router'
 import { getExpertListApi } from '../../api/question'
 import { IPageInfo, IResponse } from '../../model/common'
 import { IExpert } from '../../model/question'
@@ -71,6 +72,10 @@ export default struct ExpertInformationList {
                     Blank()
                     Text('向我提问')
                       .fontSize(14)
+                      .onClick(() => router.pushUrl({
+                        url: 'pages/home/guidance/AskQuestions',
+                        params: { expertName: item.realName }
+                      }))
                     Blank()
                     Text('线下预约')
                       .fontSize(14)

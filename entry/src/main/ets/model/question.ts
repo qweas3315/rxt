@@ -1,11 +1,11 @@
 export type IQuestion = {
-  answer: string
+  answer?: string
   expertName: string
-  id: number
+  id?: number
   phone: string
   plantName: string
   question: string
-  questioner: string
+  questioner?: string
   status: number
   title: string
 }
