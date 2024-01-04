@@ -2,14 +2,21 @@
  * 用户列表
  */
 import router from '@ohos.router'
+import http from '@ohos.net.http'
+import { AppConfig } from '../../../config'
 
 @Entry
 @Component
 struct UserList {
   @State users:any = []
   private scroller: Scroller = new Scroller()
+  baseUrl = 'http://101.201.59.201:9090'
 
-
+  aboutToAppear() {
+    findAllUser().then(rst=>{
+      this.users=JSON.parse(rst.result.toString()).data.list;
+    });
+  }
 
   build() {
     Column() {
@@ -71,3 +78,23 @@ struct UserList {
     .backgroundImageSize(ImageSize.Cover)
   }
 }
+export const findAllUser = () => {
+  const httpRequest = http.createHttp();
+  return httpRequest.request(`${AppConfig.baseUrl}/user/search/1`, {
+    method: http.RequestMethod.GET,
+    header: {
+      Authorization: globalThis.token
+    }
+  })
+}
+// function findAllUser() {
+//   return HttpManager.getInstance()
+//     .request({
+//       url:`http://101.201.59.201:9090/user`,
+//       method:http.RequestMethod.GET,
+//       header:{
+//         Authorization:globalThis.token
+//       }
+//     })
+// throw new Error('Function not implemented.');
+// }
