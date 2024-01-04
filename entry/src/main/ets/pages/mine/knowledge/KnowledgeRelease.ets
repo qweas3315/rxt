@@ -12,6 +12,8 @@ struct KnowledgeRelease {
   @State title: string = ''
   @State content: string = ''
   @State type: string = ''
+  @State img: string = ''
+  @State picPath: string = ''
 
   build() {
     Stack() {
@@ -51,7 +53,7 @@ struct KnowledgeRelease {
               Row() {
                 Text('照片:')
                   .width(40)
-                Image($r('app.media.welcome')) //添加好的照片
+                Image(this.img) //添加好的照片
                   .width(150)
                   .height(150)
                   .borderRadius(10)
