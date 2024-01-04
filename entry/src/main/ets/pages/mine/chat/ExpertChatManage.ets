@@ -9,7 +9,7 @@ import { AppConfig } from '../../../config';
 @Component
 struct ExpertChatManage {
   @State isShow: boolean = false
-  @State wenDaData: any = [];
+  @State wenDaData: any = [1];
   @State wenDa: any = {}
   private scroller: Scroller = new Scroller()
 
@@ -20,7 +20,7 @@ struct ExpertChatManage {
   }
 
   build() {
-    Stack({ alignContent: Alignment.Top }) {
+    Column() {
       Stack({ alignContent: Alignment.Start }) {
         Text('问答信息')
           .width('100%')
@@ -66,7 +66,12 @@ struct ExpertChatManage {
                 }
               }
             }
-
+            .borderWidth(1)
+            .borderRadius(10)
+            .borderColor(Color.Grey)
+            .margin(10)
+            .padding(10)
+            .width('95%')
           },(item, index) => item + index)
 
         }
