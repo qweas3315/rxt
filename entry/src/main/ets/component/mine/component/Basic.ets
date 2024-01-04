@@ -11,9 +11,21 @@ interface IInfoItem {
 @Component
 export struct UserBasicInfo {
   private basicInfoList: Array<IInfoItem> = [
-    { icon: $r('app.media.user'), title: '我的需求', fun: () => router.pushUrl({ url: 'pages/mine/purchase/MinePurchaseList' }) },
-    { icon: $r('app.media.tabler_credit_card'), title: '我发布的', fun: () => router.pushUrl({ url: 'pages/mine/goods/ReleaseGoodsList' }) },
-    { icon: $r('app.media.map_pin'), title: '收货地址', fun: () => router.pushUrl({ url: 'pages/mine/address/MineShippingAddressManage' }) }
+    {
+      icon: $r('app.media.user'),
+      title: '我的需求',
+      fun: () => router.pushUrl({ url: 'pages/mine/goods/ReleaseGoodsList', params: { pageType: 'needs' } })
+    },
+    {
+      icon: $r('app.media.tabler_credit_card'),
+      title: '我发布的',
+      fun: () => router.pushUrl({ url: 'pages/mine/goods/ReleaseGoodsList', params: { pageType: 'goods' } })
+    },
+    {
+      icon: $r('app.media.map_pin'),
+      title: '收货地址',
+      fun: () => router.pushUrl({ url: 'pages/mine/address/MineShippingAddressManage' })
+    }
   ]
 
   build() {
@@ -37,8 +49,16 @@ export struct UserBasicInfo {
 @Component
 export struct ExpertBasicInfo {
   private basicInfoList: Array<IInfoItem> = [
-    { icon: $r('app.media.fabu'), title: '发布知识', fun: () => router.pushUrl({ url: 'pages/mine/knowledge/KnowledgeRelease' }) },
-    { icon: $r('app.media.map_pin'), title: '收货地址', fun: () => router.pushUrl({ url: 'pages/mine/address/MineShippingAddressManage' }) }
+    {
+      icon: $r('app.media.fabu'),
+      title: '发布知识',
+      fun: () => router.pushUrl({ url: 'pages/mine/knowledge/KnowledgeRelease' })
+    },
+    {
+      icon: $r('app.media.map_pin'),
+      title: '收货地址',
+      fun: () => router.pushUrl({ url: 'pages/mine/address/MineShippingAddressManage' })
+    }
   ]
 
   build() {
