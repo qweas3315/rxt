@@ -14,3 +14,16 @@ export const getCartListApi = () => {
       }
     });
 }
+
+export const addCartApi = (goodsId: string) => {
+  const httpRequest = http.createHttp();
+  return httpRequest.request(
+    encodeURI(`${AppConfig.baseUrl}/cart/add/${goodsId}`),
+    {
+      method: http.RequestMethod.POST,
+      header: {
+        'Content-Type': 'application/json',
+        'Authorization': globalThis.token
+      }
+    });
+}
