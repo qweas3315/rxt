@@ -15,7 +15,7 @@ export const getCartListApi = () => {
     });
 }
 
-export const addCartApi = (goodsId: string) => {
+export const addCartApi = (goodsId: number) => {
   const httpRequest = http.createHttp();
   return httpRequest.request(
     encodeURI(`${AppConfig.baseUrl}/cart/add/${goodsId}`),
@@ -54,7 +54,7 @@ export const deleteCartApi = (shoppingId: number) => {
     });
 }
 
-export const submitCartApi = (userId: number, total: number, data: IShoppingModel) => {
+export const submitCartApi = (userId: number, total: number, data: any) => {
   const httpRequest = http.createHttp();
   return httpRequest.request(
     encodeURI(`${AppConfig.baseUrl}/cart/commitOrder/${userId}/${total}`),

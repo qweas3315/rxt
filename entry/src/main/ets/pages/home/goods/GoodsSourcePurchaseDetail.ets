@@ -2,6 +2,8 @@
  * 商品货源和求购需求详情
  */
 import router from '@ohos.router';
+import promptAction from '@ohos.promptAction';
+import { addCartApi } from '../../../api/cart';
 import { AppConfig } from '../../../config';
 import { IOrderInfo } from '../../../model/order'
 
@@ -90,6 +92,30 @@ struct GoodsSourceDetail {
             Button('加入购物车')
               .visibility(this.goodsDetail.type == 'goods' ? Visibility.Visible : Visibility.None)
               .backgroundColor(Color.Red)
+              .onClick(() => {
+                if (globalThis.token) {
+                  let id: number = this.goodsDetail.orderId
+                  addCartApi(this.goodsDetail.orderId)
+                    .then((res) => {
+                      let data = JSON.parse(res.result.toString());
+                      if (data.code == 20000) {
+                        promptAction.showToast({ message: "添加商品到购物车成功！", duration: 2000 })
+                      } else {
+                        promptAction.showToast({ message: "添加商品到购物车失败！", duration: 2000 })
+                      }
+                    })
+                } else {
+                  AlertDialog.show({
+                    title: '提示',
+                    message: "请先登录！",
+                    primaryButton: {
+                      value: '确定',
+                      action: () => {
+                      }
+                    }
+                  })
+                }
+              })
             Button('联系买家')
               .visibility(this.goodsDetail.type == 'needs' ? Visibility.Visible : Visibility.None)
               .onClick(() => this.isShow = true)
