@@ -1,15 +1,15 @@
 export type IReserve = {
-  address: string
+  address?: string
   answer?: string
-  area: string
-  expertName: string
+  area?: string
+  expertName?: string
   id?: number
   message?: string
-  phone: string
-  plantCondition: string
-  plantDetail: string
-  plantName: string
+  phone?: string
+  plantCondition?: string
+  plantDetail?: string
+  plantName?: string
   questioner?: string
-  soilCondition: string
-  status: number
+  soilCondition?: string
+  status?: number
 }
