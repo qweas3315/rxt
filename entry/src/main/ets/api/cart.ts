@@ -40,3 +40,16 @@ export const updateCartCountApi = (shoppingId: number, count: number) => {
       }
     });
 }
+
+export const deleteCartApi = (shoppingId: number) => {
+  const httpRequest = http.createHttp();
+  return httpRequest.request(
+    encodeURI(`${AppConfig.baseUrl}/cart/delete/${shoppingId}`),
+    {
+      method: http.RequestMethod.DELETE,
+      header: {
+        'Content-Type': 'application/json',
+        'Authorization': globalThis.token
+      }
+    });
+}
