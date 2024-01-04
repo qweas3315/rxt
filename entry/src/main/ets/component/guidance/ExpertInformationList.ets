@@ -79,6 +79,10 @@ export default struct ExpertInformationList {
                     Blank()
                     Text('线下预约')
                       .fontSize(14)
+                      .onClick(() => router.pushUrl({
+                        url: 'pages/home/guidance/AppointmentExpert',
+                        params: { expertName: item.realName }
+                      }))
                     Blank()
                   }
                   .height('100%')

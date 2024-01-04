@@ -45,6 +45,7 @@
     "pages/mine/user/UserEdit",
     "pages/home/guidance/ExpertGuidance",
     "pages/home/guidance/QuestionInformationDetail",
-    "pages/home/guidance/AskQuestions"
+    "pages/home/guidance/AskQuestions",
+    "pages/home/guidance/AppointmentExpert"
   ]
 }

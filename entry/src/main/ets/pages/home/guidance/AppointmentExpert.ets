@@ -1,27 +1,30 @@
 /**
- * 提问问题
+ * 预约专家
  */
 import router from '@ohos.router';
 import promptAction from '@ohos.promptAction';
-import { IQuestion } from '../../../model/question'
-import { addQuestionApi } from '../../../api/question';
+import { addReserveApi } from '../../../api/reserve';
 import { IResponse } from '../../../model/common';
+import { IReserve } from '../../../model/reserve'
 
 @Entry
 @Component
-struct AskQuestions {
-  @State question: IQuestion = {
+struct AppointmentExpert {
+  @State reserve: IReserve = {
+    address: '',
+    area: '',
     expertName: '',
     phone: '',
+    plantCondition: '',
+    plantDetail: '',
     plantName: '',
-    question: '',
-    status: 0,
-    title: ''
+    soilCondition: '',
+    status: 0
   }
 
-  async handleAddQuestion() {
+  async handleAddReserve() {
     try {
-      const res = await addQuestionApi(this.question)
+      const res = await addReserveApi(this.reserve)
       const data: IResponse<any> = <IResponse<any>> JSON.parse(res.result.toString())
       if (data?.code === 20000) {
         promptAction.showToast({
@@ -35,19 +38,19 @@ struct AskQuestions {
         promptAction.showToast({ message: '提交失败!', duration: 2000 });
       }
     } catch (error) {
-      console.error('handleAddQuestion.error: ', error.message)
+      console.error('handleAddReserve.error: ', error.message)
     }
   }
 
   aboutToAppear() {
     let expertName = router.getParams()["expertName"];
-    this.question.expertName = expertName;
+    this.reserve.expertName = expertName;
   }
 
   build() {
     Column() {
       Stack({ alignContent: Alignment.Start }) {
-        Text('提问问题')
+        Text('预约专家')
           .width('100%')
           .height(60)
           .fontSize(20)
@@ -68,12 +71,12 @@ struct AskQuestions {
         List() {
           ListItem() {
             Row() {
-              Text('标题:')
+              Text('地址:')
                 .width(100)
               TextInput()
                 .borderWidth(0)
                 .backgroundColor(Color.Transparent)
-                .onChange((value: string) => this.question.title = value)
+                .onChange((value: string) => this.reserve.address = value)
             }
           }
           .padding({ left: 20, right: 20 })
@@ -81,12 +84,12 @@ struct AskQuestions {
 
           ListItem() {
             Row() {
-              Text('内容:')
+              Text('种植作物:')
                 .width(100)
               TextInput()
                 .borderWidth(0)
                 .backgroundColor(Color.Transparent)
-                .onChange((value: string) => this.question.question = value)
+                .onChange((value: string) => this.reserve.plantName = value)
             }
           }
           .padding({ left: 20, right: 20 })
@@ -94,12 +97,12 @@ struct AskQuestions {
 
           ListItem() {
             Row() {
-              Text('农作物名称:')
+              Text('作物详细信:')
                 .width(100)
               TextInput()
                 .borderWidth(0)
                 .backgroundColor(Color.Transparent)
-                .onChange((value: string) => this.question.plantName = value)
+                .onChange((value: string) => this.reserve.plantDetail = value)
             }
           }
           .padding({ left: 20, right: 20 })
@@ -107,12 +110,51 @@ struct AskQuestions {
 
           ListItem() {
             Row() {
-              Text('手机号码:')
+              Text('作物条件:')
                 .width(100)
               TextInput()
                 .borderWidth(0)
                 .backgroundColor(Color.Transparent)
-                .onChange((value: string) => this.question.phone = value)
+                .onChange((value: string) => this.reserve.plantCondition = value)
+            }
+          }
+          .padding({ left: 20, right: 20 })
+          .height(60)
+
+          ListItem() {
+            Row() {
+              Text('土壤条件:')
+                .width(100)
+              TextInput()
+                .borderWidth(0)
+                .backgroundColor(Color.Transparent)
+                .onChange((value: string) => this.reserve.soilCondition = value)
+            }
+          }
+          .padding({ left: 20, right: 20 })
+          .height(60)
+
+          ListItem() {
+            Row() {
+              Text('面积:')
+                .width(100)
+              TextInput()
+                .borderWidth(0)
+                .backgroundColor(Color.Transparent)
+                .onChange((value: string) => this.reserve.area = value)
+            }
+          }
+          .padding({ left: 20, right: 20 })
+          .height(60)
+
+          ListItem() {
+            Row() {
+              Text('电话:')
+                .width(100)
+              TextInput()
+                .borderWidth(0)
+                .backgroundColor(Color.Transparent)
+                .onChange((value: string) => this.reserve.phone = value)
             }
           }
           .padding({ left: 20, right: 20 })
@@ -128,13 +170,13 @@ struct AskQuestions {
 
 
       Row() {
-        Button("提交")
+        Button("保存")
           .fontColor(Color.White)
           .backgroundColor(Color.Red)
           .type(ButtonType.Normal)
           .width('100%')
           .borderRadius(20)
-          .onClick(() => this.handleAddQuestion())
+          .onClick(() => this.handleAddReserve())
       }
       .alignItems(VerticalAlign.Bottom)
       .padding(10)
