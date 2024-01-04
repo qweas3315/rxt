@@ -1,6 +1,7 @@
 import router from '@ohos.router'
 import promptAction from '@ohos.promptAction';
 import { AppConfig } from '../../../config'
+import http from '@ohos.net.http';
 
 @Preview
 @Entry
@@ -39,6 +40,7 @@ struct ShowUserInfoPage {
             router.back();
           }).margin({ left: 10 })
       }.height(60).width('100%').margin({ top: 10 })
+
       Scroll(this.scroller){
         Column(){
           List(){
@@ -110,19 +112,19 @@ struct ShowUserInfoPage {
                   secondaryButton:{
                     value:'确定',
                     action:()=>{
-                      // deleteUserInfo(this.user.userName)
-                      //   .then(rst=>{
-                      //     let data=JSON.parse(rst.result.toString());
-                      //     if(data.code==20000){
-                      //       promptAction.showToast({message:'删除成功!',duration:2000})
-                      //       setTimeout(()=>{
-                      //         router.clear();
-                      //         router.replaceUrl({url:'pages/admin/ShowUsersPage'})
-                      //       },2000);
-                      //     }else{
-                      //       promptAction.showToast({message:data.data,duration:2000})
-                      //     }
-                      //   })
+                      deleteUserInfo(this.user.userName)
+                        .then(rst=>{
+                          let data=JSON.parse(rst.result.toString());
+                          if(data.code==20000){
+                            promptAction.showToast({message:'删除成功!',duration:2000})
+                            setTimeout(()=>{
+                              router.clear();
+                              router.replaceUrl({url:'pages/admin/ShowUsersPage'})
+                            },2000);
+                          }else{
+                            promptAction.showToast({message:data.data,duration:2000})
+                          }
+                        })
                     }
                   }
                 })
@@ -214,4 +216,14 @@ struct ShowUserInfoPage {
     .backgroundImage($r('app.media.bg'))
     .backgroundImageSize(ImageSize.Cover)
   }
+}
+export function deleteUserInfo(userName:string){
+
+  const httpRequest = http.createHttp();
+  return httpRequest.request(`${AppConfig.baseUrl}/user/${userName}`, {
+    method: http.RequestMethod.DELETE,
+    header: {
+      Authorization: globalThis.token
+    }
+  })
 }
