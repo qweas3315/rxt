@@ -11,7 +11,7 @@ struct ExpertChatManage {
   build() {
     Stack({ alignContent: Alignment.Top }) {
       Stack({ alignContent: Alignment.Start }) {
-        Text('信息问答')
+        Text('问答信息')
           .width('100%')
           .height(60)
           .fontSize(20)

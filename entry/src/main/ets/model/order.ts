@@ -17,3 +17,14 @@ export type IOrderInfo = {
   type: string;
   updateTime: string;
 }
+
+export type IShoppingModel = {
+  content: string
+  count: number
+  orderId: number
+  ownName: string
+  picture: string
+  price: string
+  shoppingId: number
+  title: string
+}

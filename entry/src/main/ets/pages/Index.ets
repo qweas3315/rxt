@@ -1,3 +1,4 @@
+import ShoppingCart from '../component/cart/Index';
 import Home from '../component/home/Index';
 import Mine from '../component/mine';
 import SearchComponent from '../component/search/Index';
@@ -48,7 +49,7 @@ struct Index {
             } else if (tab.index === 1) {
               SearchComponent()
             } else if (tab.index === 2) {
-              Text('这是购物车')
+              ShoppingCart()
             } else if (tab.index === 3) {
               Mine()
             }
