@@ -1,6 +1,6 @@
 import http from '@ohos.net.http';
 import { AppConfig } from '../config'
-import { IUserLoginDTO, IUserRegisterDTO } from '../model/user';
+import { IUser, IUserLoginDTO, IUserRegisterDTO } from '../model/user';
 
 export const userLoginApi = (data: IUserLoginDTO) => {
   const httpRequest = http.createHttp();
@@ -35,5 +35,16 @@ export const getUserInfoApi = () => {
     header: {
       Authorization: globalThis.token
     }
+  })
+}
+
+export const editUserInfoApi = (data: IUser) => {
+  const httpRequest = http.createHttp();
+  return httpRequest.request(`${AppConfig.baseUrl}/user/loginUpdateByUsername`, {
+    method: http.RequestMethod.POST,
+    header: {
+      Authorization: globalThis.token
+    },
+    extraData: data
   })
 }
