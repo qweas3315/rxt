@@ -8,7 +8,7 @@ import QuestionAnswerInformationList from '../../../component/guidance/QuestionA
 @Entry
 @Component
 struct ExpertGuidance {
-  @State currentIndex: number = 1
+  @State currentIndex: number = 0
   private tabsController: TabsController = new TabsController()
 
   @Builder TabBuilder(title: string, targetIndex: number) {
