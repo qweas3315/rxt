@@ -1,4 +1,5 @@
 import promptAction from '@ohos.promptAction'
+import router from '@ohos.router'
 import { getQuestionList } from '../../api/question'
 import { IPageInfo, IResponse } from '../../model/common'
 import { IQuestion } from '../../model/question'
@@ -27,6 +28,17 @@ export default struct QuestionAnswerInformationList {
 
   aboutToAppear() {
     this.handleLoadQuestion()
+    this.questionList.push({
+      answer: 'answer',
+      expertName: 'expertName',
+      id: 1,
+      phone: 'phone',
+      plantName: 'plantName',
+      question: 'question',
+      questioner: 'questioner',
+      status: 1,
+      title: 'title',
+    })
   }
 
   build() {
@@ -56,6 +68,10 @@ export default struct QuestionAnswerInformationList {
                 }
                 .padding({ left: 20, right: 20, bottom: 20, top: 20 })
                 .width('100%')
+                .onClick(() => router.pushUrl({
+                  url: 'pages/home/guidance/QuestionInformationDetail',
+                  params: { questionDetail: item }
+                }))
               }
             })
           }

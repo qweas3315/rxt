@@ -43,6 +43,7 @@
     "pages/mine/user/UserList",
     "pages/mine/user/UserDetail",
     "pages/mine/user/UserEdit",
-    "pages/home/guidance/ExpertGuidance"
+    "pages/home/guidance/ExpertGuidance",
+    "pages/home/guidance/QuestionInformationDetail"
   ]
 }
