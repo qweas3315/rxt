@@ -190,22 +190,22 @@ struct ShowUserInfoPage {
             }
           }.width('100%')
           Row(){
-            // Button("确定").type(ButtonType.Normal).borderRadius(10).width(80).onClick(()=>{
-            //   this.user.user_name=this.user.userName
-            //   updateUserInfo(this.user).then(rst=>{
-            //     console.info("============updateUserInfo="+rst.result.toString())
-            //     let data=JSON.parse(rst.result.toString());
-            //     if(data.code==20000){
-            //       promptAction.showToast({message:'修改成功!',duration:2000})
-            //       this.show=false
-            //     }else{
-            //       promptAction.showToast({message:data.message,duration:2000})
-            //     }
-            //   })
-            // })
-            // Button("取消").type(ButtonType.Normal).borderRadius(10).width(80).onClick(()=>{
-            //   this.show=false;
-            // })
+            Button("确定").type(ButtonType.Normal).borderRadius(10).width(80).onClick(()=>{
+              this.user.user_name=this.user.userName
+              updateUserInfo(this.user).then(rst=>{
+                console.info("============updateUserInfo="+rst.result.toString())
+                let data=JSON.parse(rst.result.toString());
+                if(data.code==20000){
+                  promptAction.showToast({message:'修改成功!',duration:2000})
+                  this.show=false
+                }else{
+                  promptAction.showToast({message:data.message,duration:2000})
+                }
+              })
+            })
+            Button("取消").type(ButtonType.Normal).borderRadius(10).width(80).onClick(()=>{
+              this.show=false;
+            })
           }.justifyContent(FlexAlign.SpaceAround).width('100%').margin({top:10})
         }.width('100%')
       }
@@ -226,4 +226,24 @@ export function deleteUserInfo(userName:string){
       Authorization: globalThis.token
     }
   })
+}
+
+export function updateUserInfo(user:any){
+
+  const httpRequest = http.createHttp();
+  return httpRequest.request(`${AppConfig.baseUrl}/user/${user.userName}`, {
+    method: http.RequestMethod.PUT,
+    header: {
+      Authorization: globalThis.token
+    },
+    extraData:{
+      address:user.address,
+      identityNum:user.identityNum,
+      nickName:user.nickName,
+      phone:user.phone,
+      role:user.role,
+      user_name:user.userName
+    }
+  })
+
 }
