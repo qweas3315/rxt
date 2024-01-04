@@ -37,3 +37,16 @@ export const getGoodsPage = (type: string, pageNum: number) => {
       }
     });
 }
+
+export const getUserBuyGoods = () => {
+  const httpRequest = http.createHttp();
+  return httpRequest.request(
+    encodeURI(`${AppConfig.baseUrl}/order/selectBuys`),
+    {
+      method: http.RequestMethod.GET,
+      header: {
+        'Content-Type': 'application/json',
+        'Authorization': globalThis.token
+      }
+    });
+}
