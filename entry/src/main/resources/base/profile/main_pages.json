@@ -7,7 +7,6 @@
     "pages/home/goods/GoodsSourcePurchaseDetail",
     "pages/home/knowledge/AgriculturalKnowledgeList",
     "pages/home/knowledge/AgriculturalKnowledgeDetail",
-    "pages/home/search/SearchList",
     "pages/cart/ShoppingCart",
     "pages/mine/setting/PersonalInformation",
     "pages/mine/setting/PersonalInformationChange",
