@@ -50,3 +50,16 @@ export const getUserBuyGoods = () => {
       }
     });
 }
+
+export const getUserSellGoodsList = () => {
+  const httpRequest = http.createHttp();
+  return httpRequest.request(
+    encodeURI(`${AppConfig.baseUrl}/order/selectSells`),
+    {
+      method: http.RequestMethod.GET,
+      header: {
+        'Content-Type': 'application/json',
+        'Authorization': globalThis.token
+      }
+    });
+}
