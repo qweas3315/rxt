@@ -21,9 +21,9 @@ struct ExpertChatManage {
     })
   }
 
-  // aboutToAppear() {
-  //   this.findExpertQuestion()
-  // }
+  aboutToAppear() {
+    this.findExpertQuestion()
+  }
 
   build() {
     Stack({ alignContent: Alignment.Top }) {
