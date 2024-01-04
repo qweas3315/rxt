@@ -11,7 +11,7 @@ import { AppConfig } from '../../../config';
 import router from '@ohos.router';
 import common from '@ohos.app.ability.common';
 
-const  context = getContext(this) as common.UIAbilityContext;
+const context = getContext(this) as common.UIAbilityContext;
 
 @Entry
 @Component
@@ -78,6 +78,7 @@ struct PersonalInformation {
             const end = headerStr.indexOf("\\r\\n", begin)
             const fileName = headerStr.substring(begin, end);
             this.userInfo.avatar = fileName
+            this.userInfo.password = undefined
             editUserInfoApi(this.userInfo).then(_ => {
               globalThis.info = this.userInfo
             })
@@ -93,9 +94,12 @@ struct PersonalInformation {
 
   async handleLoadUserInfo() {
     if (globalThis.userInfo) {
+      console.info('handleLoadUserInfo: ', globalThis.userInfo)
       this.userInfo = globalThis.userInfo
+      console.info('handleLoadUserInfo.this: ', JSON.stringify(this.userInfo))
       return
-    } else if (globalThis.token) {
+    }
+    if (globalThis.token) {
       try {
         const res = await getUserInfoApi()
         const data: IResponse<IUser> = <IResponse<IUser>> JSON.parse(res.result.toString())
@@ -103,7 +107,7 @@ struct PersonalInformation {
           this.userInfo = data.data
           globalThis.userInfo = this.userInfo
         }
-        console.info('this.userInfo', this.userInfo)
+        console.info('handleLoadUserInfo.this.userInfo', this.userInfo)
       } catch (error) {
         console.error('getUserInfoApi.error: ', error.message)
       }
@@ -174,10 +178,7 @@ struct PersonalInformation {
             .width('100%')
           }
           .padding({ left: 20, right: 20 }).height(80)
-          .onClick(() => router.pushUrl({
-            url: 'pages/mine/setting/PersonalInformationChange',
-            params: { userInfo: JSON.stringify(this.userInfo) }
-          }))
+          .onClick(() => router.pushUrl({ url: 'pages/mine/setting/PersonalInformationChange' }))
 
           ListItem() {
             Row() {
@@ -189,10 +190,7 @@ struct PersonalInformation {
                 .height(16)
             }
             .width('100%')
-            .onClick(() => router.pushUrl({
-              url: 'pages/mine/setting/PasswordChange',
-              params: { userInfo: JSON.stringify(this.userInfo) }
-            }))
+            .onClick(() => router.pushUrl({ url: 'pages/mine/setting/PasswordChange' }))
           }
           .padding({ left: 20, right: 20 })
           .height(80)
