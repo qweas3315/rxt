@@ -43,6 +43,10 @@ export default struct SearchComponent {
     }
   }
 
+  aboutToAppear() {
+    this.handleLoadGoodsPage(1);
+  }
+
   build() {
     Column() {
       Row() {
@@ -70,69 +74,70 @@ export default struct SearchComponent {
       .margin(10)
       .borderRadius(5)
 
-      Scroll(this.scroller) {
-        Flex({ wrap: FlexWrap.Wrap, justifyContent: FlexAlign.SpaceBetween }) {
-          ForEach(this.goodsList, (item: IOrderInfo) => {
-            Row() {
-              Image(`${AppConfig.baseUrl}/file/${item.picture}`)
-                .width(100)
-                .height(100)
-                .borderRadius(10)
-                .margin({ right: 5 })
-              Flex({ direction: FlexDirection.Column }) {
-                Row() {
-                  Text(`[${item.type == 'goods' ? '供' : '需'}]${item.content}`)
-                    .width(280)
-                }
-                .alignItems(VerticalAlign.Top)
+      if (this.goodsList.length > 0) {
+        Scroll(this.scroller) {
+          Flex({ wrap: FlexWrap.Wrap, justifyContent: FlexAlign.SpaceBetween }) {
+            ForEach(this.goodsList, (item: IOrderInfo) => {
+              Row() {
+                Image(`${AppConfig.baseUrl}/file/${item.picture}`)
+                  .width(100)
+                  .height(100)
+                  .borderRadius(10)
+                  .margin({ right: 5 })
+                Flex({ direction: FlexDirection.Column }) {
+                  Row() {
+                    Text(`[${item.type == 'goods' ? '供' : '需'}]${item.content}`)
+                      .width(280)
+                  }
+                  .alignItems(VerticalAlign.Top)
 
-                Text('￥' + item.price)
-                  .fontColor(Color.Red)
-                  .height(20)
-                  .lineHeight(20)
-                  .flexGrow(1)
-                Row() {
-                  Text(item.ownName)
-                    .margin({ right: 5 })
-                    .fontSize(12)
-                  Text('|')
-                    .fontSize(12)
-                    .margin({ left: 10, right: 10 })
-                  Text(timeUtil(item.createTime))
-                    .fontSize(12)
+                  Text('￥' + item.price)
+                    .fontColor(Color.Red)
+                    .height(20)
+                    .lineHeight(20)
+                    .flexGrow(1)
+                  Row() {
+                    Text(item.ownName)
+                      .margin({ right: 5 })
+                      .fontSize(12)
+                    Text('|')
+                      .fontSize(12)
+                      .margin({ left: 10, right: 10 })
+                    Text(timeUtil(item.createTime))
+                      .fontSize(12)
+                  }
                 }
+                .flexGrow(1)
+                .height(100)
+                .padding(5)
               }
-              .flexGrow(1)
-              .height(100)
-              .padding(5)
-            }
-            .width('100%')
-            .height(120)
-            .margin(5)
-            .padding(10)
-            .borderRadius(10)
-            .onClick(() => router.pushUrl({
-              url: 'pages/home/goods/GoodsSourcePurchaseDetail',
-              params: { 'goodsDetail': item }
-            }))
-            .shadow({ radius: 5, color: '#f2f2f2', offsetX: 5, offsetY: 5 })
-            .backgroundColor('#ffffff')
-          })
+              .width('100%')
+              .height(120)
+              .margin(5)
+              .padding(10)
+              .borderRadius(10)
+              .onClick(() => router.pushUrl({
+                url: 'pages/home/goods/GoodsSourcePurchaseDetail',
+                params: { 'goodsDetail': item }
+              }))
+              .shadow({ radius: 5, color: '#f2f2f2', offsetX: 5, offsetY: 5 })
+              .backgroundColor('#ffffff')
+            })
+          }
+          .width('100%')
+          .margin({ bottom: 80 })
         }
-        .width('100%')
-        .margin({ bottom: 80 })
+        .scrollable(ScrollDirection.Vertical)
+        .onScrollEdge(() => {
+          if (this.keyword.trim().length === 0) {
+            this.handleLoadGoodsPage(this.pageNum + 1)
+          } else {
+            this.handleSearch(this.pageNum + 1)
+          }
+        })
+      } else {
+        Text("没有符合条件的数据")
       }
-      .scrollable(ScrollDirection.Vertical)
-      .onAppear(() => {
-        this.handleLoadGoodsPage(1);
-      })
-      .onScrollEdge(() => {
-        if (this.keyword.trim().length === 0) {
-          this.handleLoadGoodsPage(this.pageNum + 1)
-        } else {
-          this.handleSearch(this.pageNum + 1)
-        }
-      })
     }
     .width('100%')
     .height('100%')
