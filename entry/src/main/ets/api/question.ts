@@ -41,3 +41,16 @@ export const addQuestionApi = (data: IQuestion) => {
       extraData: data
     });
 }
+
+export const selectByKindApi = () => {
+  const httpRequest = http.createHttp();
+  return httpRequest.request(
+    encodeURI(`${AppConfig.baseUrl}/question/selectByKind/questioner`),
+    {
+      method: http.RequestMethod.GET,
+      header: {
+        'Content-Type': 'application/json',
+        'Authorization': globalThis.token
+      }
+    });
+}
