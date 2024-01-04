@@ -6,10 +6,13 @@ import router from '@ohos.router'
 @Entry
 @Component
 struct UserList {
+  @State users:any = []
   private scroller: Scroller = new Scroller()
 
+
+
   build() {
-    Stack({ alignContent: Alignment.Top }) {
+    Column() {
       Stack({ alignContent: Alignment.Start }) {
         Text('用户信息')
           .width('100%')
@@ -29,13 +32,40 @@ struct UserList {
       .width('100%')
       .margin({ top: 10 })
 
-      Scroll(this.scroller) {
-        List() {
-
+      List() {
+        ListItem() {
+          Row() {
+            Text("姓名").width('20%').textAlign(TextAlign.Center).fontSize(12)
+            Text("昵称").width('20%').textAlign(TextAlign.Center).fontSize(12)
+            Text("角色").width('10%').textAlign(TextAlign.Center).fontSize(12)
+            Text("电话").width('30%').textAlign(TextAlign.Center).fontSize(12)
+            Text("操作").width('20%').textAlign(TextAlign.Center).fontSize(12)
+          }.height(60).backgroundColor("#b0f4f4f4")
         }
       }
-    }
-    .height('100%')
+
+      Scroll(this.scroller) {
+        Column(){
+          List(){
+            ForEach(this.users,(item,index)=>{
+              ListItem(){
+                Row(){
+                  Text(item.userName).width('20%').textAlign(TextAlign.Center).fontSize(12)
+                  Text(item.nickName).width('20%').textAlign(TextAlign.Center).fontSize(12)
+                  Text(item.role).width('10%').textAlign(TextAlign.Center).fontSize(12)
+                  Text(item.phone).width('30%').textAlign(TextAlign.Center).fontSize(12)
+                  Text("明细").width('20%').textAlign(TextAlign.Center).fontSize(12)
+                }.height(60).backgroundColor(index%2==0 ? "#b0e2eafc" : '#b0f1f1f1')
+                .onClick(()=>{
+                  router.pushUrl({url:'pages/admin/ShowUserInfoPage',params:{item:item}})
+                })
+              }
+            }, item => item.userName);
+          }.backgroundColor('#ffffff')
+          .margin({bottom:5})
+        }.width('100%').layoutWeight(1)
+      }
+    }.height('100%')
     .width('100%')
     .backgroundImage($r('app.media.bg'))
     .backgroundImageSize(ImageSize.Cover)
