@@ -64,7 +64,7 @@ export const getUserSellGoodsList = () => {
     });
 }
 
-export const getUserPurchaseGoodsList = (type: string, current: number) => {
+export const getUserGoodsList = (type: string, current: number) => {
   const httpRequest = http.createHttp();
   return httpRequest.request(
     encodeURI(`${AppConfig.baseUrl}/order/search/${type}/${current}`),
@@ -77,7 +77,7 @@ export const getUserPurchaseGoodsList = (type: string, current: number) => {
     });
 }
 
-export const addUserPurchaseGoods = (data: IOrderInfo) => {
+export const addUserGoods = (data: IOrderInfo) => {
   const httpRequest = http.createHttp();
   return httpRequest.request(
     encodeURI(`${AppConfig.baseUrl}/order`),
@@ -91,7 +91,7 @@ export const addUserPurchaseGoods = (data: IOrderInfo) => {
     });
 }
 
-export const editUserPurchaseGoods = (data: IOrderInfo) => {
+export const editUserGoods = (data: IOrderInfo) => {
   const httpRequest = http.createHttp();
   return httpRequest.request(
     encodeURI(`${AppConfig.baseUrl}/order/${data.orderId}`),
@@ -105,7 +105,7 @@ export const editUserPurchaseGoods = (data: IOrderInfo) => {
     });
 }
 
-export const deleteUserPurchaseGoods = (orderId: number) => {
+export const deleteUserGoods = (orderId: number) => {
   const httpRequest = http.createHttp();
   return httpRequest.request(
     encodeURI(`${AppConfig.baseUrl}/order/${orderId}`),
