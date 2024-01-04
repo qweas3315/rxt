@@ -64,7 +64,7 @@ struct UserList {
                   Text("明细").width('20%').textAlign(TextAlign.Center).fontSize(12)
                 }.height(60).backgroundColor(index%2==0 ? "#b0e2eafc" : '#b0f1f1f1')
                 .onClick(()=>{
-                  router.pushUrl({url:'pages/admin/ShowUserInfoPage',params:{item:item}})
+                  router.pushUrl({url:'pages/mine/user/UserDetail',params:{item:item}})
                 })
               }
             }, item => item.userName);
