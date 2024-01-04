@@ -12,6 +12,8 @@ struct KnowledgeRelease {
   @State title: string = ''
   @State content: string = ''
   @State type: string = ''
+  @State img: string = ''
+  @State picPath: string = ''
 
   build() {
     Stack() {
