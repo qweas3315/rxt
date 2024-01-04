@@ -2,6 +2,8 @@
  * 专家问答管理
  */
 import router from '@ohos.router'
+import http from '@ohos.net.http';
+import { AppConfig } from '../../../config';
 
 @Entry
 @Component
@@ -10,6 +12,12 @@ struct ExpertChatManage {
   @State wenDaData: any = [];
   @State wenDa: any = {}
   private scroller: Scroller = new Scroller()
+
+  findExpertQuestion() {
+    getExpertQuestion().then(rst=>{
+      this.wenDaData=JSON.parse(rst.result.toString()).data;
+    })
+  }
 
   build() {
     Stack({ alignContent: Alignment.Top }) {
@@ -69,4 +77,17 @@ struct ExpertChatManage {
     .backgroundImage($r('app.media.bg'))
     .backgroundImageSize(ImageSize.Cover)
   }
+}
+
+function getExpertQuestion() {
+  const req = http.createHttp()
+  const url = AppConfig.baseUrl+'/question/selectByKind/expert'
+  return req.request(
+    url,
+    {
+      method:http.RequestMethod.GET,
+      header:{
+        Authorization:globalThis.token
+      }
+    })
 }
