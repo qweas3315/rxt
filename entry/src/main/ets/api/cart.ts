@@ -27,3 +27,16 @@ export const addCartApi = (goodsId: string) => {
       }
     });
 }
+
+export const updateCartCountApi = (shoppingId: number, count: number) => {
+  const httpRequest = http.createHttp();
+  return httpRequest.request(
+    encodeURI(`${AppConfig.baseUrl}/cart/update/${shoppingId}/${count}`),
+    {
+      method: http.RequestMethod.PUT,
+      header: {
+        'Content-Type': 'application/json',
+        'Authorization': globalThis.token
+      }
+    });
+}
