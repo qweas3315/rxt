@@ -5,7 +5,7 @@ import { UserRoleEnum } from '../../enums/role'
 import { IResponse } from '../../model/common'
 import { IUser } from '../../model/user'
 import PageHeader from '../header'
-import {UserBasicInfo, AdminBasicInfo, ExpertBasicInfo} from './component/Basic'
+import { UserBasicInfo, AdminBasicInfo, ExpertBasicInfo } from './component/Basic'
 import FinancingInfo from './component/Financing'
 import { UserMineNavigator, AdminMineNavigator, ExpertMineNavigator } from './component/Navigator'
 import OtherOperate from './component/Operate'
@@ -80,6 +80,7 @@ export default struct Mine {
                     .width(20)
                     .height(20)
                 }
+                .onClick(() => router.pushUrl({ url: 'pages/mine/setting/PersonalInformation' }))
               } else {
                 Text('登  录')
                   .fontSize(18)
