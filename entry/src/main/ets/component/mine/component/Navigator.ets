@@ -10,10 +10,10 @@ interface INavigator {
 @Component
 export struct UserMineNavigator {
   private navigatorList: Array<INavigator> = [
-    { title: '我的问答', icon: $r('app.media.3D'), fun: () => router.pushUrl({ url: '' }) },
-    { title: '我的预约', icon: $r('app.media.Clock1'), fun: () => router.pushUrl({ url: '' }) },
-    { title: '我的购买', icon: $r('app.media.car'), fun: () => router.pushUrl({ url: '' }) },
-    { title: '我的售卖', icon: $r('app.media.Inbox'), fun: () => router.pushUrl({ url: '' }) },
+    { title: '我的问答', icon: $r('app.media.3D'), fun: () => router.pushUrl({ url: 'pages/mine/chat/MineChatList' }) },
+    { title: '我的预约', icon: $r('app.media.Clock1'), fun: () => router.pushUrl({ url: 'pages/mine/appointment/MineAppointmentList' }) },
+    { title: '我的购买', icon: $r('app.media.car'), fun: () => router.pushUrl({ url: 'pages/mine/goods/MinePurchasedGoodsList' }) },
+    { title: '我的售卖', icon: $r('app.media.Inbox'), fun: () => router.pushUrl({ url: 'pages/mine/goods/MineSoldGoodsList' }) },
   ]
 
   build() {
@@ -64,9 +64,9 @@ export struct AdminMineNavigator {
 @Component
 export struct ExpertMineNavigator {
   private navigatorList: Array<INavigator> = [
-    { title: '我的问答', icon: $r('app.media.3D'), fun: () => router.pushUrl({ url: '' }) },
-    { title: '我的预约', icon: $r('app.media.Clock1'), fun: () => router.pushUrl({ url: '' }) },
-    { title: '我的知识', icon: $r('app.media.car'), fun: () => router.pushUrl({ url: '' }) },
+    { title: '我的问答', icon: $r('app.media.3D'), fun: () => router.pushUrl({ url: 'pages/mine/chat/ExpertChatManage' }) },
+    { title: '我的预约', icon: $r('app.media.Clock1'), fun: () => router.pushUrl({ url: 'pages/mine/appointment/ExpertAppointmentList' }) },
+    { title: '我的知识', icon: $r('app.media.car'), fun: () => router.pushUrl({ url: 'pages/mine/knowledge/ExpertKnowledgeList' }) },
     { title: '专家信息', icon: $r('app.media.Inbox'), fun: () => router.pushUrl({ url: '' }) },
   ]
 
