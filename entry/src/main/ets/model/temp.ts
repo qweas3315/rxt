@@ -1,11 +1,4 @@
-export type IAddress = {
-  addressDetail: string
-  consignee: string
-  id: number
-  isDefault: boolean
-  ownName: string
-  phone: string
-}
+
 
 export type IFinance = {
   bankId: number
@@ -83,15 +76,4 @@ export type ISellPurchase = {
   sumPrice: number
   uninPricee: number
   updateTime: number
-}
-
-export type IShoppingModel = {
-  content: string
-  count: number
-  orderId: number
-  ownName: string
-  picture: string
-  price: string
-  shoppingId: number
-  title: string
 }
