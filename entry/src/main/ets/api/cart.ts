@@ -53,3 +53,17 @@ export const deleteCartApi = (shoppingId: number) => {
       }
     });
 }
+
+export const submitCartApi = (userId: number, total: number, data: IShoppingModel) => {
+  const httpRequest = http.createHttp();
+  return httpRequest.request(
+    encodeURI(`${AppConfig.baseUrl}/cart/commitOrder/${userId}/${total}`),
+    {
+      method: http.RequestMethod.POST,
+      header: {
+        'Content-Type': 'application/json',
+        'Authorization': globalThis.token
+      },
+      extraData: data
+    });
+}
