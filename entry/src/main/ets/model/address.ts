@@ -1,8 +1,8 @@
 export type IAddress = {
-  addressDetail: string
-  consignee: string
+  addressDetail?: string
+  consignee?: string
   id?: number
   isDefault?: boolean
   ownName?: string
-  phone: string
+  phone?: string
 }
