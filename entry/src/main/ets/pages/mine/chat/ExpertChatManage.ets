@@ -10,7 +10,7 @@ import promptAction from '@ohos.promptAction';
 @Component
 struct ExpertChatManage {
   @State isShow: boolean = false
-  @State wenDaData: any = [];
+  @State wenDaData: any = [0];
   @State wenDa: any = {}
   private scroller: Scroller = new Scroller()
 
@@ -70,9 +70,10 @@ struct ExpertChatManage {
                     this.wenDa = item;
                   })
                 }
+
                 if (item.status == 0) {
                   Text("回答").margin({ right: 10 }).onClick(() => {
-                    router.replaceUrl({ url: 'pages/info/expert/AnswerQuestionaPage', params: { wenda: item } })
+                    router.replaceUrl({ url: 'pages/mine/chat/QuestionAnswering', params: { wenda: item } })
                   })
                 } else {
                   Text("    ").margin({ right: 10 })
