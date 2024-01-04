@@ -15,3 +15,16 @@ export const addReserveApi = (data: IReserve) => {
       extraData: data
     });
 }
+
+export const getUserReserveApi = () => {
+  const httpRequest = http.createHttp();
+  return httpRequest.request(
+    encodeURI(`${AppConfig.baseUrl}/reserve/selectByKind/questioner`),
+    {
+      method: http.RequestMethod.GET,
+      header: {
+        'Content-Type': 'application/json',
+        'Authorization': globalThis.token
+      },
+    });
+}
