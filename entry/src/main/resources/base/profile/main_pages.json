@@ -44,6 +44,7 @@
     "pages/home/guidance/ExpertGuidance",
     "pages/home/guidance/QuestionInformationDetail",
     "pages/home/guidance/AskQuestions",
-    "pages/home/guidance/AppointmentExpert"
+    "pages/home/guidance/AppointmentExpert",
+    "pages/cart/PayResult"
   ]
 }
