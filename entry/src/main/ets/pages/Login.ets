@@ -13,6 +13,7 @@ struct Login {
     const data: IResponse<string> = <IResponse<string>> JSON.parse(res.result.toString())
     if (data.code == 20000) {
       globalThis.token = data.data
+      globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
       router.replaceUrl({ url: "pages/Index" })
     } else {
       AlertDialog.show({
@@ -49,7 +50,10 @@ struct Login {
               .width(40)
               .height(40)
               .margin({ left: 10 })
-              .onClick(() => router.back())
+              .onClick(() => {
+                globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+                router.replaceUrl({ url: 'pages/Index' })
+              })
           }
           .height(60)
           .width('100%')
@@ -117,7 +121,8 @@ struct Login {
               .fontSize(14)
               .margin({ right: 10 })
               .onClick(() => {
-                router.pushUrl({ url: "pages/Register" })
+                globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+                router.replaceUrl({ url: "pages/Register" })
               })
           }
           .width('90%')

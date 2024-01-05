@@ -19,11 +19,12 @@ export default struct OtherOperate {
       title: '注销',
       fun: () => {
         if (!globalThis.token) {
-          promptAction.showToast({ message: "请先登录！", duration: 2000 })
+          promptAction.showToast({ message: "您未登录，无法注销！", duration: 2000 })
         } else {
           globalThis.token = ''
           globalThis.userInfo = null
-          router.pushUrl({ url: 'pages/Index' })
+          globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+          router.replaceUrl({ url: 'pages/Index' })
         }
       }
     }

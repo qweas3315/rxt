@@ -181,7 +181,8 @@ export default struct ShoppingCart {
       const data = JSON.parse(res.result.toString());
       if (data.code = 20000) {
         this.goodsList = noBuyItems;
-        router.pushUrl({ url: 'pages/cart/PayResult' })
+        globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+        router.replaceUrl({ url: 'pages/cart/PayResult' })
       }
       promptAction.showToast({
         message: data.message,
@@ -351,7 +352,10 @@ export default struct ShoppingCart {
             .margin({ top: 30 })
             .textAlign(TextAlign.Center)
             .fontWeight(400)
-            .onClick(() => router.pushUrl({ url: 'pages/Login' }))
+            .onClick(() => {
+              globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+              router.replaceUrl({ url: 'pages/Login' })
+            })
         }
         .justifyContent(FlexAlign.Center)
         .alignItems(HorizontalAlign.Center)
@@ -383,10 +387,13 @@ export default struct ShoppingCart {
             .margin({ top: 30 })
             .textAlign(TextAlign.Center)
             .fontWeight(400)
-            .onClick(() => router.pushUrl({
-              url: 'pages/home/goods/GoodsSourcePurchaseList',
-              params: { type: 'goods' }
-            }))
+            .onClick(() => {
+              globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+              router.replaceUrl({
+                url: 'pages/home/goods/GoodsSourcePurchaseList',
+                params: { type: 'goods' }
+              })
+            })
         }
         .justifyContent(FlexAlign.Center)
         .alignItems(HorizontalAlign.Center)

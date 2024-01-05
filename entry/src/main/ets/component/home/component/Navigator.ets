@@ -16,22 +16,34 @@ export default struct HomeNavigator {
     {
       title: '商品货源',
       icon: $r('app.media.image'),
-      fun: () => router.pushUrl({ url: 'pages/home/goods/GoodsSourcePurchaseList', params: { type: 'goods' } })
+      fun: () => {
+        globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+        router.replaceUrl({ url: 'pages/home/goods/GoodsSourcePurchaseList', params: { type: 'goods' } })
+      }
     },
     {
       title: '求购需求',
       icon: $r('app.media.icon2'),
-      fun: () => router.pushUrl({ url: 'pages/home/goods/GoodsSourcePurchaseList', params: { type: 'needs' } })
+      fun: () => {
+        globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+        router.replaceUrl({ url: 'pages/home/goods/GoodsSourcePurchaseList', params: { type: 'needs' } })
+      }
     },
     {
       title: '农业知识',
       icon: $r('app.media.icon3'),
-      fun: () => router.pushUrl({ url: 'pages/home/knowledge/AgriculturalKnowledgeList' })
+      fun: () => {
+        globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+        router.replaceUrl({ url: 'pages/home/knowledge/AgriculturalKnowledgeList' })
+      }
     },
     {
       title: '专家指导',
       icon: $r('app.media.icon4'),
-      fun: () => router.pushUrl({ url: 'pages/home/guidance/ExpertGuidance' })
+      fun: () => {
+        globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+        router.replaceUrl({ url: 'pages/home/guidance/ExpertGuidance' })
+      }
     }
   ]
 

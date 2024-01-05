@@ -19,7 +19,8 @@ export struct UserMineNavigator {
         if (!globalThis.token) {
           promptAction.showToast({ message: "请先登录！", duration: 2000 })
         } else {
-          router.pushUrl({ url: 'pages/mine/chat/MineChatList' })
+          globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+          router.replaceUrl({ url: 'pages/mine/chat/MineChatList' })
         }
       }
     },
@@ -30,7 +31,8 @@ export struct UserMineNavigator {
         if (!globalThis.token) {
           promptAction.showToast({ message: "请先登录！", duration: 2000 })
         } else {
-          router.pushUrl({ url: 'pages/mine/appointment/MineAppointmentList' })
+          globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+          router.replaceUrl({ url: 'pages/mine/appointment/MineAppointmentList' })
         }
       }
     },
@@ -41,7 +43,8 @@ export struct UserMineNavigator {
         if (!globalThis.token) {
           promptAction.showToast({ message: "请先登录！", duration: 2000 })
         } else {
-          router.pushUrl({ url: 'pages/mine/goods/MinePurchasedGoodsList' })
+          globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+          router.replaceUrl({ url: 'pages/mine/goods/MinePurchasedGoodsList' })
         }
       }
     },
@@ -52,7 +55,8 @@ export struct UserMineNavigator {
         if (!globalThis.token) {
           promptAction.showToast({ message: "请先登录！", duration: 2000 })
         } else {
-          router.pushUrl({ url: 'pages/mine/goods/MineSoldGoodsList' })
+          globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+          router.replaceUrl({ url: 'pages/mine/goods/MineSoldGoodsList' })
         }
       }
     },
@@ -114,7 +118,8 @@ export struct ExpertMineNavigator {
         if (!globalThis.token) {
           promptAction.showToast({ message: "请先登录！", duration: 2000 })
         } else {
-          router.pushUrl({ url: 'pages/mine/chat/ExpertChatManage' })
+          globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+          router.replaceUrl({ url: 'pages/mine/chat/ExpertChatManage' })
         }
       }
     },
@@ -125,7 +130,8 @@ export struct ExpertMineNavigator {
         if (!globalThis.token) {
           promptAction.showToast({ message: "请先登录！", duration: 2000 })
         } else {
-          router.pushUrl({ url: 'pages/mine/appointment/ExpertAppointmentList' })
+          globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+          router.replaceUrl({ url: 'pages/mine/appointment/ExpertAppointmentList' })
         }
       }
     },
@@ -136,7 +142,8 @@ export struct ExpertMineNavigator {
         if (!globalThis.token) {
           promptAction.showToast({ message: "请先登录！", duration: 2000 })
         } else {
-          router.pushUrl({ url: 'pages/mine/knowledge/ExpertKnowledgeList' })
+          globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+          router.replaceUrl({ url: 'pages/mine/knowledge/ExpertKnowledgeList' })
         }
       }
     },
@@ -147,7 +154,8 @@ export struct ExpertMineNavigator {
         if (!globalThis.token) {
           promptAction.showToast({ message: "请先登录！", duration: 2000 })
         } else {
-          router.pushUrl({ url: 'pages/mine/setting/ExpertInformationChange' })
+          globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+          router.replaceUrl({ url: 'pages/mine/setting/ExpertInformationChange' })
         }
       }
     },

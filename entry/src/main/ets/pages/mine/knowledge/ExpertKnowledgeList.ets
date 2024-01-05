@@ -104,10 +104,13 @@ struct ExpertKnowledgeList {
                 .backgroundColor('#ffffff')
                 .padding(10)
                 .margin(5)
-                .onClick(() => router.replaceUrl({
-                  url: 'pages/mine/knowledge/ExpertKnowledgeDetail',
-                  params: { 'knowledgeDetail': item }
-                }))
+                .onClick(() => {
+                  globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+                  router.replaceUrl({
+                    url: 'pages/mine/knowledge/ExpertKnowledgeDetail',
+                    params: { 'knowledgeDetail': item }
+                  })
+                })
               }
             })
           }

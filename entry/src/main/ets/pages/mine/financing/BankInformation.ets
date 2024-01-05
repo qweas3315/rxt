@@ -68,15 +68,21 @@ struct BankInformation {
             if (this.bankIdList.indexOf("[" + this.bankDetail.bankId + "]") == -1) {
               Button('个人贷款')
                 .margin({ right: 10 })
-                .onClick(() => router.pushUrl({
-                  url: 'pages/mine/financing/PersonalLoanInformationEdit',
-                  params: { bankDetail: this.bankDetail }
-                }))
+                .onClick(() => {
+                  globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+                  router.replaceUrl({
+                    url: 'pages/mine/financing/PersonalLoanInformationEdit',
+                    params: { bankDetail: this.bankDetail }
+                  })
+                })
               Button('组合贷款')
-                .onClick(() => router.pushUrl({
-                  url: 'pages/mine/financing/PortfolioLoanInformationEdit',
-                  params: { bankDetail: this.bankDetail }
-                }))
+                .onClick(() => {
+                  globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+                  router.replaceUrl({
+                    url: 'pages/mine/financing/PortfolioLoanInformationEdit',
+                    params: { bankDetail: this.bankDetail }
+                  })
+                })
             } else {
               Text("已申贷款")
                 .backgroundColor("#f3d19e")

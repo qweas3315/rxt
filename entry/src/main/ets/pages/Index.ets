@@ -1,3 +1,4 @@
+import router from '@ohos.router';
 import ShoppingCart from '../component/cart/Index';
 import Home from '../component/home/Index';
 import Mine from '../component/mine';
@@ -37,6 +38,11 @@ struct Index {
     .width('100%')
     .height(56)
     .justifyContent(FlexAlign.Center)
+  }
+
+  aboutToAppear() {
+    globalThis.routerList = []
+    console.info('APP_INDEX: ', JSON.stringify(router.getState()))
   }
 
   build() {

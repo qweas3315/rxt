@@ -79,10 +79,13 @@ struct ReleaseGoodList {
         Row() {
           Text('发布')
             .margin({ right: 10 })
-            .onClick(() => router.pushUrl({
-              url: 'pages/mine/goods/ReleaseGoods',
-              params: { type: this.pageType == 'needs' ? 'addNeeds' : 'addGoods' }
-            }))
+            .onClick(() => {
+              globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+              router.replaceUrl({
+                url: 'pages/mine/goods/ReleaseGoods',
+                params: { type: this.pageType == 'needs' ? 'addNeeds' : 'addGoods' }
+              })
+            })
         }
         .justifyContent(FlexAlign.End).width('100%')
 
@@ -130,10 +133,13 @@ struct ReleaseGoodList {
                         Text('编辑')
                           .fontSize(12)
                           .margin({ right: 5 })
-                          .onClick(() => router.pushUrl({
-                            url: 'pages/mine/goods/ReleaseGoods',
-                            params: { type: this.pageType == 'needs' ? 'editNeeds' : 'editGoods', goodsDetail: item }
-                          }))
+                          .onClick(() => {
+                            globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+                            router.replaceUrl({
+                              url: 'pages/mine/goods/ReleaseGoods',
+                              params: { type: this.pageType == 'needs' ? 'editNeeds' : 'editGoods', goodsDetail: item }
+                            })
+                          })
                         Text('删除')
                           .fontSize(12)
                           .onClick(() => this.handleDeletePurchase(item, index))
@@ -151,10 +157,13 @@ struct ReleaseGoodList {
                 .shadow({ radius: 5, color: Color.Gray, offsetX: 5, offsetY: 5 })
                 .margin(5)
                 .padding(10)
-                .onClick(() => router.pushUrl({
-                  url: 'pages/home/goods/GoodsSourcePurchaseDetail',
-                  params: { 'goodsDetail': item }
-                }))
+                .onClick(() => {
+                  globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+                  router.replaceUrl({
+                    url: 'pages/home/goods/GoodsSourcePurchaseDetail',
+                    params: { 'goodsDetail': item }
+                  })
+                })
               })
             }
             .width('100%')

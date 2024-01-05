@@ -156,10 +156,13 @@ export default struct Home {
               .borderColor('#ffffff')
               .margin(5)
               .padding(10)
-              .onClick(() => router.pushUrl({
-                url: 'pages/home/goods/GoodsSourcePurchaseDetail',
-                params: { 'goodsDetail': item }
-              }))
+              .onClick(() => {
+                globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+                router.replaceUrl({
+                  url: 'pages/home/goods/GoodsSourcePurchaseDetail',
+                  params: { 'goodsDetail': item }
+                })
+              })
             })
           }.width('100%')
         }

@@ -130,10 +130,13 @@ struct ExpertChatManage {
                 if (item.status == 0) {
                   Text("回答")
                     .margin({ right: 10 })
-                    .onClick(() => router.replaceUrl({
-                      url: 'pages/mine/chat/QuestionAnswering',
-                      params: { questionDetail: item }
-                    }))
+                    .onClick(() => {
+                      globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+                      router.replaceUrl({
+                        url: 'pages/mine/chat/QuestionAnswering',
+                        params: { questionDetail: item }
+                      })
+                    })
                 } else {
                   Text("    ")
                     .margin({ right: 10 })

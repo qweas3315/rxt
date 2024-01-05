@@ -116,10 +116,13 @@ export default struct SearchComponent {
               .margin(5)
               .padding(10)
               .borderRadius(10)
-              .onClick(() => router.pushUrl({
-                url: 'pages/home/goods/GoodsSourcePurchaseDetail',
-                params: { 'goodsDetail': item }
-              }))
+              .onClick(() => {
+                globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+                router.replaceUrl({
+                  url: 'pages/home/goods/GoodsSourcePurchaseDetail',
+                  params: { 'goodsDetail': item }
+                })
+              })
               .shadow({ radius: 5, color: '#f2f2f2', offsetX: 5, offsetY: 5 })
               .backgroundColor('#ffffff')
             })

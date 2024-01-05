@@ -13,6 +13,32 @@ struct GoodsSourceDetail {
   @State goodsDetail: IOrderInfo = null
   @State isShow: boolean = false
 
+  async handleAddCart() {
+    if (globalThis.token) {
+      try {
+        const res = await addCartApi(this.goodsDetail.orderId)
+        const data = JSON.parse(res.result.toString());
+        if (data.code == 20000) {
+          promptAction.showToast({ message: "添加商品到购物车成功！", duration: 2000 })
+        } else {
+          promptAction.showToast({ message: "添加商品到购物车失败！", duration: 2000 })
+        }
+      } catch (error) {
+        console.error('handleAddCart.error: ', error.message)
+      }
+    } else {
+      AlertDialog.show({
+        title: '提示',
+        message: "请先登录！",
+        primaryButton: {
+          value: '确定',
+          action: () => {
+          }
+        }
+      })
+    }
+  }
+
   aboutToAppear() {
     this.goodsDetail = router.getParams()['goodsDetail'];
   }
@@ -92,18 +118,12 @@ struct GoodsSourceDetail {
             Button('加入购物车')
               .visibility(this.goodsDetail.type == 'goods' ? Visibility.Visible : Visibility.None)
               .backgroundColor(Color.Red)
+              .onClick(() => this.handleAddCart())
+            Button('联系买家')
+              .visibility(this.goodsDetail.type == 'needs' ? Visibility.Visible : Visibility.None)
               .onClick(() => {
                 if (globalThis.token) {
-                  let id: number = this.goodsDetail.orderId
-                  addCartApi(this.goodsDetail.orderId)
-                    .then((res) => {
-                      let data = JSON.parse(res.result.toString());
-                      if (data.code == 20000) {
-                        promptAction.showToast({ message: "添加商品到购物车成功！", duration: 2000 })
-                      } else {
-                        promptAction.showToast({ message: "添加商品到购物车失败！", duration: 2000 })
-                      }
-                    })
+                  this.isShow = true
                 } else {
                   AlertDialog.show({
                     title: '提示',
@@ -116,9 +136,6 @@ struct GoodsSourceDetail {
                   })
                 }
               })
-            Button('联系买家')
-              .visibility(this.goodsDetail.type == 'needs' ? Visibility.Visible : Visibility.None)
-              .onClick(() => this.isShow = true)
           }
         }.margin({ bottom: 10 })
       }.zIndex(-1).margin({ top: 70, bottom: 10, left: 10, right: 10 })

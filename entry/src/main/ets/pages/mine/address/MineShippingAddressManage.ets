@@ -95,10 +95,13 @@ struct MineShippingAddressManage {
                   .padding({ left: 20, right: 20, bottom: 10, top: 10 })
                   .justifyContent(FlexAlign.SpaceBetween)
                   .width('100%')
-                  .onClick(() => router.pushUrl({
-                    url: "pages/mine/address/MineShippingAddressEdit",
-                    params: { type: 'edit', addressDetail: item }
-                  }))
+                  .onClick(() => {
+                    globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+                    router.replaceUrl({
+                      url: "pages/mine/address/MineShippingAddressEdit",
+                      params: { type: 'edit', addressDetail: item }
+                    })
+                  })
                 }
               }
             })
@@ -144,10 +147,13 @@ struct MineShippingAddressManage {
                   .padding({ left: 20, right: 20, bottom: 10, top: 10 })
                   .justifyContent(FlexAlign.SpaceBetween)
                   .width('100%')
-                  .onClick(() => router.pushUrl({
-                    url: "pages/mine/address/MineShippingAddressEdit",
-                    params: { type: 'edit', addressDetail: item }
-                  }))
+                  .onClick(() => {
+                    globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+                    router.replaceUrl({
+                      url: "pages/mine/address/MineShippingAddressEdit",
+                      params: { type: 'edit', addressDetail: item }
+                    })
+                  })
                 }
               }
             })
@@ -170,10 +176,13 @@ struct MineShippingAddressManage {
             .type(ButtonType.Normal)
             .width('100%')
             .borderRadius(20)
-            .onClick(() => router.pushUrl({
-              url: 'pages/mine/address/MineShippingAddressEdit',
-              params: { type: 'add' }
-            }))
+            .onClick(() => {
+              globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+              router.replaceUrl({
+                url: 'pages/mine/address/MineShippingAddressEdit',
+                params: { type: 'add' }
+              })
+            })
         }
         .alignItems(VerticalAlign.Bottom)
         .padding(10)

@@ -72,17 +72,23 @@ export default struct ExpertInformationList {
                     Blank()
                     Text('向我提问')
                       .fontSize(14)
-                      .onClick(() => router.pushUrl({
-                        url: 'pages/home/guidance/AskQuestions',
-                        params: { expertName: item.realName }
-                      }))
+                      .onClick(() => {
+                        globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+                        router.replaceUrl({
+                          url: 'pages/home/guidance/AskQuestions',
+                          params: { expertName: item.realName }
+                        })
+                      })
                     Blank()
                     Text('线下预约')
                       .fontSize(14)
-                      .onClick(() => router.pushUrl({
-                        url: 'pages/home/guidance/AppointmentExpert',
-                        params: { expertName: item.realName }
-                      }))
+                      .onClick(() => {
+                        globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+                        router.replaceUrl({
+                          url: 'pages/home/guidance/AppointmentExpert',
+                          params: { expertName: item.realName }
+                        })
+                      })
                     Blank()
                   }
                   .height('100%')

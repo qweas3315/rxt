@@ -109,7 +109,10 @@ struct UserList {
                 }
                 .height(60)
                 .backgroundColor(index % 2 == 0 ? "#b0e2eafc" : '#b0f1f1f1')
-                .onClick(() => router.pushUrl({ url: 'pages/mine/user/UserDetail', params: { userDetail: item } }))
+                .onClick(() => {
+                  globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+                  router.replaceUrl({ url: 'pages/mine/user/UserDetail', params: { userDetail: item } })
+                })
               }
             });
           }

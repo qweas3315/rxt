@@ -21,7 +21,8 @@ export default struct FinancingInfo {
         if (!globalThis.token) {
           promptAction.showToast({ message: "请先登录！", duration: 2000 })
         } else {
-          router.pushUrl({ url: 'pages/mine/financing/RecommendFinanciers' })
+          globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+          router.replaceUrl({ url: 'pages/mine/financing/RecommendFinanciers' })
         }
       }
     },
@@ -32,7 +33,8 @@ export default struct FinancingInfo {
         if (!globalThis.token) {
           promptAction.showToast({ message: "请先登录！", duration: 2000 })
         } else {
-          router.pushUrl({ url: 'pages/mine/financing/BankInformationList' })
+          globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+          router.replaceUrl({ url: 'pages/mine/financing/BankInformationList' })
         }
       }
     },
@@ -43,7 +45,8 @@ export default struct FinancingInfo {
         if (!globalThis.token) {
           promptAction.showToast({ message: "请先登录！", duration: 2000 })
         } else {
-          router.pushUrl({ url: 'pages/mine/financing/MineFinancingInformationManage' })
+          globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+          router.replaceUrl({ url: 'pages/mine/financing/MineFinancingInformationManage' })
         }
       }
     }

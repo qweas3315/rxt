@@ -84,10 +84,13 @@ struct AppointmentList {
               Row() {
                 Text("详情")
                   .margin({ right: 10 })
-                  .onClick(() => router.pushUrl({
-                    url: 'pages/mine/appointment/MineAppointmentDetail',
-                    params: { appointmentDetail: item }
-                  }))
+                  .onClick(() => {
+                    globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+                    router.replaceUrl({
+                      url: 'pages/mine/appointment/MineAppointmentDetail',
+                      params: { appointmentDetail: item }
+                    })
+                  })
               }
             }
             .borderWidth(1)

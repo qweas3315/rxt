@@ -103,10 +103,13 @@ struct AgriculturalKnowledgeList {
                 .backgroundColor('#ffffff')
                 .padding(10)
                 .margin(5)
-                .onClick(() => router.pushUrl({
-                  url: 'pages/home/knowledge/AgriculturalKnowledgeDetail',
-                  params: { knowledgeDetail: item }
-                }))
+                .onClick(() => {
+                  globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+                  router.replaceUrl({
+                    url: 'pages/home/knowledge/AgriculturalKnowledgeDetail',
+                    params: { knowledgeDetail: item }
+                  })
+                })
               }
             })
           }

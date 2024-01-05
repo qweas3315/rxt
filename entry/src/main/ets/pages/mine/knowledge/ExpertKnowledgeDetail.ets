@@ -119,10 +119,13 @@ struct ExpertKnowledgeDetail {
           .width(80)
           .borderRadius(10)
           .margin({ right: 20 })
-          .onClick(() => router.pushUrl({
-            url: 'pages/mine/knowledge/ExpertKnowledgeEdit',
-            params: { type: 'edit', knowledgeDetail: this.knowledgeDetail }
-          }))
+          .onClick(() => {
+            globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+            router.replaceUrl({
+              url: 'pages/mine/knowledge/ExpertKnowledgeEdit',
+              params: { type: 'edit', knowledgeDetail: this.knowledgeDetail }
+            })
+          })
         Button("删除")
           .width(80)
           .borderRadius(10)

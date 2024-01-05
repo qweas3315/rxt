@@ -57,10 +57,13 @@ export default struct QuestionAnswerInformationList {
                 }
                 .padding({ left: 20, right: 20, bottom: 20, top: 20 })
                 .width('100%')
-                .onClick(() => router.pushUrl({
-                  url: 'pages/home/guidance/QuestionInformationDetail',
-                  params: { questionDetail: item }
-                }))
+                .onClick(() => {
+                  globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+                  router.replaceUrl({
+                    url: 'pages/home/guidance/QuestionInformationDetail',
+                    params: { questionDetail: item }
+                  })
+                })
               }
             })
           }

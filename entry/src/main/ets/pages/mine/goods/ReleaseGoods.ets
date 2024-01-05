@@ -99,6 +99,7 @@ struct ReleaseGoods {
           duration: 1000,
         });
         setTimeout(() => {
+          globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
           router.replaceUrl({ url: 'pages/mine/goods/ReleaseGoodsList', params: { pageType: this.goods.type } })
         }, 1000)
       } else {
@@ -122,6 +123,7 @@ struct ReleaseGoods {
           duration: 1000,
         });
         setTimeout(() => {
+          globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
           router.replaceUrl({ url: 'pages/mine/goods/ReleaseGoodsList', params: { pageType: this.goods.type } })
         }, 1000)
       } else {
@@ -181,10 +183,13 @@ struct ReleaseGoods {
             .width(40)
             .height(40)
             .margin({ left: 10 })
-            .onClick(() => router.replaceUrl({
-              url: 'pages/mine/goods/ReleaseGoodsList',
-              params: { pageType: this.goods.type }
-            }))
+            .onClick(() => {
+              globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+              router.replaceUrl({
+                url: 'pages/mine/goods/ReleaseGoodsList',
+                params: { pageType: this.goods.type }
+              })
+            })
         }
         .height(60)
         .width('100%')

@@ -15,6 +15,7 @@ struct QuestionAnswering {
 
   async handleAnswerQuestion() {
     try {
+      this.questionDetail.status = 1
       const res = await updateQuestionApi(this.questionDetail)
       console.info('handleAnswerQuestion: ', JSON.stringify(this.questionDetail))
       const code = JSON.parse(res.result.toString()).code;
@@ -24,7 +25,8 @@ struct QuestionAnswering {
           duration: 2000,
         });
         setTimeout(() => {
-          router.back()
+          globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+          router.replaceUrl({url: 'pages/mine/chat/ExpertChatManage'})
         }, 2000)
       } else {
         promptAction.showToast({

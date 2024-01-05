@@ -71,8 +71,10 @@ struct BankInformationList {
               .justifyContent(FlexAlign.Center)
               .shadow({ radius: 5, color: Color.Gray, offsetX: 5, offsetY: 5 })
               .margin(5)
-              .onClick(() =>
-              router.pushUrl({ url: 'pages/mine/financing/BankInformation', params: { 'bankDetail': item } }))
+              .onClick(() => {
+                globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+                router.replaceUrl({ url: 'pages/mine/financing/BankInformation', params: { 'bankDetail': item } })
+              })
             })
           }
           .padding({ bottom: 20 })

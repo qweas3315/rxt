@@ -51,7 +51,10 @@ struct PayResult {
           .margin({ top: 30 })
           .textAlign(TextAlign.Center)
           .fontWeight(400)
-          .onClick(() => router.pushUrl({ url: 'pages/Index', params: { 'type': 'goods' } }))
+          .onClick(() => {
+            globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+            router.replaceUrl({ url: 'pages/Index', params: { 'type': 'goods' } })
+          })
       }
       .justifyContent(FlexAlign.Center)
       .alignItems(HorizontalAlign.Center)

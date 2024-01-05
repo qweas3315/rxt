@@ -178,7 +178,10 @@ struct PersonalInformation {
             .width('100%')
           }
           .padding({ left: 20, right: 20 }).height(80)
-          .onClick(() => router.pushUrl({ url: 'pages/mine/setting/PersonalInformationChange' }))
+          .onClick(() => {
+            globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+            router.replaceUrl({ url: 'pages/mine/setting/PersonalInformationChange' })
+          })
 
           ListItem() {
             Row() {
@@ -190,7 +193,10 @@ struct PersonalInformation {
                 .height(16)
             }
             .width('100%')
-            .onClick(() => router.pushUrl({ url: 'pages/mine/setting/PasswordChange' }))
+            .onClick(() => {
+              globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+              router.replaceUrl({ url: 'pages/mine/setting/PasswordChange' })
+            })
           }
           .padding({ left: 20, right: 20 })
           .height(80)
