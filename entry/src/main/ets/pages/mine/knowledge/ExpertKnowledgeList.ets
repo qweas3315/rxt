@@ -10,7 +10,7 @@ import { IKnowledge } from '../../../model/knowledge';
 
 @Entry
 @Component
-struct MineKnowledgeList {
+struct ExpertKnowledgeList {
   private controller: VideoController;
   @State knowledgeList: Array<IKnowledge> = [];
   private scroller: Scroller = new Scroller();

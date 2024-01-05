@@ -5,25 +5,45 @@ import router from '@ohos.router'
 import http from '@ohos.net.http';
 import { AppConfig } from '../../../config';
 import promptAction from '@ohos.promptAction';
+import { IKnowledge } from '../../../model/knowledge';
+import { deleteKnowledgeApi } from '../../../api/knowledge';
+
 @Entry
 @Component
 struct ExpertKnowledgeDetail {
   private controller: VideoController;
-  @State info: any = '';
-  @State message: string = 'Hello World'
+  @State knowledgeDetail: IKnowledge = {};
 
-  deleteKnowledge(){
-    deleteKnowledge(this.info.knowledgeId).then(rst=>{
-      let data=JSON.parse(rst.result.toString())
-      promptAction.showToast({message:data.message,duration:2000})
-      setTimeout(()=>{
-        router.replaceUrl({url:"pages/mine/knowledge/ExpertKnowledgeList"})
-      },2000)
+  async handleDeleteKnowledge() {
+
+    AlertDialog.show({
+      title: '提示',
+      message: "你确定要删除该知识吗？",
+      primaryButton: {
+        value: '取消',
+        action: () => {
+        }
+      },
+      secondaryButton: {
+        value: '删除',
+        action: async () => {
+          try {
+            const res = await deleteKnowledgeApi(<string> <unknown> this.knowledgeDetail.knowledgeId)
+            const data = JSON.parse(res.result.toString())
+            promptAction.showToast({ message: data.message, duration: 2000 })
+            setTimeout(() => {
+              router.back()
+            }, 2000)
+          } catch (error) {
+            console.error('handleLoadQuestion.error: ', error.message)
+          }
+        }
+      }
     })
   }
 
   aboutToAppear() {
-    this.info = router.getParams()['info'];
+    this.knowledgeDetail = router.getParams()['knowledgeDetail'];
   }
 
   build() {
@@ -36,14 +56,19 @@ struct ExpertKnowledgeDetail {
           .width('100%')
           .textAlign(TextAlign.Center)
           .fontColor(Color.Grey)
-        Image($r('app.media.iv_back_selected')).width(40).height(40)
-          .onClick(() => {
-            router.replaceUrl({url:'pages/info/expert/ExpertKnowledgePage'});
-          }).margin({ left: 10 })
-      }.height(60).width('100%').margin({ top: 10 })
+        Image($r('app.media.iv_back_selected'))
+          .width(40)
+          .height(40)
+          .margin({ left: 10 })
+          .onClick(() => router.back())
+      }
+      .height(60)
+      .width('100%')
+      .margin({ top: 10 })
 
       Row() {
-        Text(this.info.title).fontSize(16)
+        Text(this.knowledgeDetail.title)
+          .fontSize(16)
       }
       .justifyContent(FlexAlign.Center)
       .width('100%')
@@ -52,8 +77,11 @@ struct ExpertKnowledgeDetail {
       .margin({ top: 20 })
 
       Row() {
-        Text(`作者:${this.info.ownName}`).margin({ right: 10 }).fontSize(14)
-        Text(`日期:${this.info.createTime.substring(0, 10)}`).fontSize(14)
+        Text(`作者:${this.knowledgeDetail.ownName}`)
+          .margin({ right: 10 })
+          .fontSize(14)
+        Text(`日期:${this.knowledgeDetail.createTime.substring(0, 10)}`)
+          .fontSize(14)
       }
       .justifyContent(FlexAlign.End)
       .width('100%')
@@ -61,15 +89,15 @@ struct ExpertKnowledgeDetail {
       .height(30)
       .alignItems(VerticalAlign.Center)
 
-      if (this.info.picPath.lastIndexOf('.mp4') == -1) {
-        Image(`${AppConfig.baseUrl}/file/${this.info.picPath}`)
+      if (this.knowledgeDetail.picPath.lastIndexOf('.mp4') == -1) {
+        Image(`${AppConfig.baseUrl}/file/${this.knowledgeDetail.picPath}`)
           .width('100%')
           .height(200)
           .margin({ bottom: 10 })
       }
-      if (this.info.picPath.lastIndexOf('.mp4') >= 0) {
+      if (this.knowledgeDetail.picPath.lastIndexOf('.mp4') >= 0) {
         Video({
-          src: `${AppConfig.baseUrl}/file/${this.info.picPath}`,
+          src: `${AppConfig.baseUrl}/file/${this.knowledgeDetail.picPath}`,
           controller: this.controller
         })
           .width('100%')
@@ -77,34 +105,32 @@ struct ExpertKnowledgeDetail {
           .margin({ bottom: 10 })
       }
       Row() {
-        Text(this.info.content).fontSize(16).lineHeight(30)
-      }.width('100%').margin({ top: 10, bottom: 10 }).layoutWeight(1).alignItems(VerticalAlign.Top)
+        Text(this.knowledgeDetail.content)
+          .fontSize(16)
+          .lineHeight(30)
+      }
+      .width('100%')
+      .margin({ top: 10, bottom: 10 })
+      .layoutWeight(1)
+      .alignItems(VerticalAlign.Top)
 
       Row() {
-        Button("修改").width(80).borderRadius(10).margin({right:20})
-          .onClick(()=>{
-            router.replaceUrl({url:'pages/info/expert/ExpertKnowledgeEditPage',params:{info:this.info}})
-          })
-        Button("删除").width(80).borderRadius(10).onClick(()=>{
-          AlertDialog.show({
-            title: '提示',
-            message: "你确定要删除该知识吗？",
-            primaryButton: {
-              value: '取消',
-              action: () => {
-
-              }
-            },
-            secondaryButton:{
-              value:'删除',
-              action:()=>{
-                this.deleteKnowledge()
-              }
-            }
-          })
-
-        })
-      }.margin({ bottom: 10 }).width('100%').justifyContent(FlexAlign.Center)
+        Button("修改")
+          .width(80)
+          .borderRadius(10)
+          .margin({ right: 20 })
+          .onClick(() => router.pushUrl({
+            url: 'pages/mine/knowledge/ExpertKnowledgeEdit',
+            params: { knowledgeDetail: this.knowledgeDetail }
+          }))
+        Button("删除")
+          .width(80)
+          .borderRadius(10)
+          .onClick(() => this.handleDeleteKnowledge())
+      }
+      .margin({ bottom: 10 })
+      .width('100%')
+      .justifyContent(FlexAlign.Center)
     }
     .width('100%')
     .height('100%')
@@ -112,20 +138,4 @@ struct ExpertKnowledgeDetail {
     .backgroundImage($r('app.media.bg'))
     .backgroundImageSize(ImageSize.Cover)
   }
-}
-
-function deleteKnowledge(id:string){
-  const req = http.createHttp()
-  const url = AppConfig.baseUrl+'/knowledge/${id}'
-  return req.request(
-    url,
-    {
-      method:http.RequestMethod.DELETE,
-      header:{
-        Authorization:globalThis.token
-      },
-      extraData:{
-        knowledgeId:id
-      }
-    })
 }
