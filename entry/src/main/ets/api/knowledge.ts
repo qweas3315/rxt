@@ -56,3 +56,17 @@ export const updateKnowledgeApi = (data: IKnowledge) => {
       extraData: data
     });
 }
+
+export const releaseKnowledgeApi = (data: IKnowledge) => {
+  const httpRequest = http.createHttp();
+  return httpRequest.request(
+    encodeURI(`${AppConfig.baseUrl}/knowledge`),
+    {
+      method: http.RequestMethod.POST,
+      header: {
+        'Content-Type': 'application/json',
+        'Authorization': globalThis.token
+      },
+      extraData: data
+    });
+}

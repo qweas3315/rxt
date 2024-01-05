@@ -76,7 +76,7 @@ export struct ExpertBasicInfo {
         if (!globalThis.token) {
           promptAction.showToast({ message: "请先登录！", duration: 2000 })
         } else {
-          router.pushUrl({ url: 'pages/mine/knowledge/KnowledgeRelease' })
+          router.pushUrl({ url: 'pages/mine/knowledge/ExpertKnowledgeEdit', params: { type: 'add' } })
         }
       }
     },

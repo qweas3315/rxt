@@ -121,7 +121,7 @@ struct ExpertKnowledgeDetail {
           .margin({ right: 20 })
           .onClick(() => router.pushUrl({
             url: 'pages/mine/knowledge/ExpertKnowledgeEdit',
-            params: { knowledgeDetail: this.knowledgeDetail }
+            params: { type: 'edit', knowledgeDetail: this.knowledgeDetail }
           }))
         Button("删除")
           .width(80)

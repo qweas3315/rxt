@@ -10,7 +10,7 @@ import common from '@ohos.app.ability.common';
 import { AppConfig } from '../../../config';
 import http from '@ohos.net.http';
 import { IKnowledge } from '../../../model/knowledge';
-import { updateKnowledgeApi } from '../../../api/knowledge';
+import { releaseKnowledgeApi, updateKnowledgeApi } from '../../../api/knowledge';
 
 const context = getContext(this) as common.UIAbilityContext;
 
@@ -18,18 +18,13 @@ const context = getContext(this) as common.UIAbilityContext;
 @Component
 struct ExpertKnowledgeEdit {
   @State knowledgeDetail: IKnowledge = {};
-  @State image: string = ''
+  @State headTitle: string = ''
   @State type: string = ''
-  @State content: string = ''
-  @State picture: string = ''
-  @State title: string = ''
-  @State price: string = ''
   @State isShow: boolean = false
   @State resultMsg: string = ''
   @State imageList: Array<string> = [];
   private uploadTask: request.UploadTask;
 
-  // 获取照片url集
   handleLoadImageList() {
     try {
       const PhotoSelectOptions = new picker.PhotoSelectOptions();
@@ -38,8 +33,7 @@ struct ExpertKnowledgeEdit {
       const photoPicker = new picker.PhotoViewPicker();
       photoPicker.select(PhotoSelectOptions).then((PhotoSelectResult) => {
         this.imageList = PhotoSelectResult.photoUris;
-        this.image = this.imageList[0];
-        this.handleLoadImageList()
+        this.handleWriteImage()
       }).catch((error) => {
         console.error('photoPicker.select.error: ', error.message)
       });
@@ -86,7 +80,7 @@ struct ExpertKnowledgeEdit {
             const begin = headerStr.indexOf("filename=") + "filename=".length;
             const end = headerStr.indexOf("\\r\\n", begin)
             const fileName = headerStr.substring(begin, end);
-            this.picture = fileName;
+            this.knowledgeDetail.picPath = fileName;
           })
         })
         .catch((error) => {
@@ -98,7 +92,22 @@ struct ExpertKnowledgeEdit {
   }
 
   async handleSaveKnowledge() {
+    try {
+      const res = await releaseKnowledgeApi(this.knowledgeDetail)
+      const data = JSON.parse(res.result.toString());
+      promptAction.showToast({
+        message: data.message,
+        duration: 1000,
+      });
+      setTimeout(() => {
+        router.back()
+      }, 2000)
+    } catch (error) {
+      console.error('handleSaveKnowledge.error: ', error.message)
+    }
+  }
 
+  async handleUpdateKnowledge() {
     try {
       const res = await updateKnowledgeApi(this.knowledgeDetail)
       const data = JSON.parse(res.result.toString());
@@ -107,26 +116,32 @@ struct ExpertKnowledgeEdit {
         duration: 1000,
       });
     } catch (error) {
-      console.error('handleSaveKnowledge.error: ', error.message)
+      console.error('handleUpdateKnowledge.error: ', error.message)
     }
   }
 
   aboutToAppear() {
-    this.knowledgeDetail = router.getParams()['knowledgeDetail'];
-    this.image = `${AppConfig.baseUrl}/file/${this.knowledgeDetail.picPath}`
+    this.type = router.getParams()['type']
+    if (this.type == 'edit') {
+      this.knowledgeDetail = router.getParams()['knowledgeDetail'];
+      this.headTitle = '修改信息'
+    } else {
+      this.headTitle = '添加知识'
+    }
   }
 
   build() {
     Stack() {
       Column() {
         Stack({ alignContent: Alignment.Start }) {
-          Text('修改信息')
+          Text(this.headTitle)
             .width('100%')
             .height(60)
             .fontSize(20)
             .width('100%')
             .textAlign(TextAlign.Center)
             .fontColor(Color.Grey)
+
           Image($r('app.media.iv_back_selected'))
             .width(40)
             .height(40)
@@ -153,7 +168,7 @@ struct ExpertKnowledgeEdit {
               Row() {
                 Text('照片:')
                   .width(40)
-                Image(this.image)
+                Image(`${AppConfig.baseUrl}/file/${this.knowledgeDetail.picPath}`)
                   .width(150)
                   .height(150)
                   .borderRadius(10)
@@ -186,7 +201,8 @@ struct ExpertKnowledgeEdit {
           List() {
             ListItem() {
               Row() {
-                Text('标题:').width(40)
+                Text('标题:')
+                  .width(40)
                 TextInput({ placeholder: '添加商品标题', text: this.knowledgeDetail.title })
                   .onChange((value: string) => this.knowledgeDetail.title = value)
                   .borderWidth(0)
@@ -198,7 +214,8 @@ struct ExpertKnowledgeEdit {
 
             ListItem() {
               Row() {
-                Text('内容:').width(40)
+                Text('内容:')
+                  .width(40)
                 TextArea({ placeholder: '添加商品内容', text: this.knowledgeDetail.content })
                   .onChange((value: string) => this.knowledgeDetail.content = value)
                   .borderWidth(0)
@@ -224,7 +241,14 @@ struct ExpertKnowledgeEdit {
               .type(ButtonType.Normal)
               .width('100%')
               .borderRadius(20)
-              .onClick(() => this.handleSaveKnowledge())
+              .onClick(() => {
+                if (this.type == 'edit') {
+                  this.handleUpdateKnowledge()
+                } else {
+                  this.handleSaveKnowledge()
+                }
+
+              })
           }
           .alignItems(VerticalAlign.Bottom)
           .padding(10)
@@ -254,8 +278,7 @@ struct ExpertKnowledgeEdit {
               Row() {
                 Text("取消")
               }
-              .height(60)
-              .width('100%')
+              .height(60).width('100%')
               .justifyContent(FlexAlign.Center)
               .onClick(() => this.isShow = false)
             }
@@ -278,23 +301,4 @@ struct ExpertKnowledgeEdit {
     .backgroundImage($r('app.media.bg'))
     .backgroundImageSize(ImageSize.Cover)
   }
-}
-
-function updateKnowledge(info: any) {
-  const req = http.createHttp()
-  const url = AppConfig.baseUrl + '/knowledge/${info.knowledgeId}'
-  return req.request(
-    url,
-    {
-      method: http.RequestMethod.PUT,
-      header: {
-        Authorization: globalThis.token
-      },
-      extraData: {
-        content: info.content,
-        knowledgeId: info.knowledgeId,
-        title: info.title,
-        picPath: info.picPath
-      }
-    })
 }
