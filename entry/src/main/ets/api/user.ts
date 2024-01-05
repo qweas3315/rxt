@@ -84,3 +84,34 @@ export const updateExpertApi = (data: IExpert) => {
     extraData: data
   })
 }
+
+export const getUserListApi = () => {
+  const httpRequest = http.createHttp();
+  return httpRequest.request(`${AppConfig.baseUrl}/user/search/1`, {
+    method: http.RequestMethod.GET,
+    header: {
+      Authorization: globalThis.token
+    }
+  })
+}
+
+export const updateUserApi = (data: IUser) => {
+  const httpRequest = http.createHttp();
+  return httpRequest.request(`${AppConfig.baseUrl}/user/${data.userName}`, {
+    method: http.RequestMethod.PUT,
+    header: {
+      Authorization: globalThis.token
+    },
+    extraData: data
+  })
+}
+
+export const deleteUserApi = (content: string) => {
+  const httpRequest = http.createHttp();
+  return httpRequest.request(`${AppConfig.baseUrl}/user/${content}`, {
+    method: http.RequestMethod.DELETE,
+    header: {
+      Authorization: globalThis.token
+    }
+  })
+}
