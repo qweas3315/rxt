@@ -141,6 +141,57 @@ export default struct ShoppingCart {
     }
   }
 
+  handleSelectAllGoods() {
+    let temp: Array<IGoods> = this.goodsList;
+    this.goodsList = new Array();
+    this.isAllSelected = !this.isAllSelected
+    temp.forEach((item: IGoods) => {
+      this.goodsList.push({
+        shoppingId: item?.shoppingId,
+        content: item?.content,
+        count: item?.count,
+        orderId: item?.orderId,
+        ownName: item?.ownName,
+        picture: item?.picture,
+        price: item?.price,
+        isSelected: this.isAllSelected,
+        title: item?.title
+      })
+    })
+    this.handleCalculateTotalPrice()
+  }
+
+  async handleSubmitGoods() {
+    const buyItems = []
+    const noBuyItems = []
+    this.goodsList.forEach((item: IGoods) => {
+      if (item.isSelected) {
+        buyItems.push(item)
+      } else {
+        noBuyItems.push(item)
+      }
+    })
+    if (buyItems.length === 0) {
+      promptAction.showToast({ message: '请选择商品后进行结算！', duration: 1000 })
+      return
+    }
+    const userId = this.defaultAddress.id;
+    try {
+      const res = await submitCartApi(userId, this.totalPrice, buyItems as any)
+      const data = JSON.parse(res.result.toString());
+      if (data.code = 20000) {
+        this.goodsList = noBuyItems;
+        router.pushUrl({ url: 'pages/cart/PayResult' })
+      }
+      promptAction.showToast({
+        message: data.message,
+        duration: 2000
+      })
+    } catch (error) {
+      console.error('handleSubmitGoods.error: ', error.message)
+    }
+  }
+
   handleDeleteGoods() {
     AlertDialog.show({
       title: '提示',
@@ -394,25 +445,7 @@ export default struct ShoppingCart {
                 Text('全选')
                   .fontSize(13)
                   .margin({ left: 5, top: 3 })
-              }.onClick(() => {
-                let temp: Array<IGoods> = this.goodsList;
-                this.goodsList = new Array();
-                this.isAllSelected = !this.isAllSelected
-                temp.forEach((item: IGoods) => {
-                  this.goodsList.push({
-                    shoppingId: item?.shoppingId,
-                    content: item?.content,
-                    count: item?.count,
-                    orderId: item?.orderId,
-                    ownName: item?.ownName,
-                    picture: item?.picture,
-                    price: item?.price,
-                    isSelected: this.isAllSelected,
-                    title: item?.title
-                  })
-                })
-                this.handleCalculateTotalPrice()
-              })
+              }.onClick(() => this.handleSelectAllGoods())
 
               Blank()
               if (this.totalPrice > 0 && this.isFlag) {
@@ -437,31 +470,7 @@ export default struct ShoppingCart {
                   .textAlign(TextAlign.Center)
                   .borderRadius(20)
                   .margin({ left: 10 })
-                  .onClick(() => {
-                    let buyItems = []
-                    let noBuyItems = []
-                    this.goodsList.forEach((item: IGoods) => {
-                      let a = item
-                      if (item.isSelected) {
-                        buyItems.push(item)
-                      } else {
-                        noBuyItems.push(item)
-                      }
-                    })
-                    let userId = this.defaultAddress.id;
-                    submitCartApi(userId, this.totalPrice, buyItems as any)
-                      .then((res) => {
-                        let data = JSON.parse(res.result.toString());
-                        if (data.code = 20000) {
-                          this.goodsList = noBuyItems;
-                          router.pushUrl({ url: 'pages/cart/PayResult' })
-                        }
-                        promptAction.showToast({
-                          message: data.message,
-                          duration: 2000
-                        })
-                      })
-                  })
+                  .onClick(() => this.handleSubmitGoods())
               } else {
                 Text("删除")
                   .width(80)
