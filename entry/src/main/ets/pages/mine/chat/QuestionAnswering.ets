@@ -16,6 +16,7 @@ struct QuestionAnswering {
   async handleAnswerQuestion() {
     try {
       const res = await updateQuestionApi(this.questionDetail)
+      console.info('handleAnswerQuestion: ', JSON.stringify(this.questionDetail))
       const code = JSON.parse(res.result.toString()).code;
       if (code == 20000) {
         promptAction.showToast({

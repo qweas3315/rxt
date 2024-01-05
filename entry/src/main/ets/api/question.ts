@@ -84,7 +84,7 @@ export const deleteQuestionApi = (id: string) => {
 export const updateQuestionApi = (data: IQuestion) => {
   const httpRequest = http.createHttp();
   return httpRequest.request(
-    encodeURI(`${AppConfig.baseUrl}question/update`),
+    encodeURI(`${AppConfig.baseUrl}/question/update`),
     {
       method: http.RequestMethod.PUT,
       header: {

@@ -18,7 +18,6 @@ struct MinePurchasedGoodsList {
   async handleLoadUserBuys() {
     try {
       const res = await getUserBuyGoods()
-      promptAction.showDialog({ message: res.result.toString() })
       const data: IResponse<Array<IOrderInfo>> = <IResponse<Array<IOrderInfo>>> JSON.parse(res.result.toString())
       this.goodsList = data.data || []
     } catch (error) {
