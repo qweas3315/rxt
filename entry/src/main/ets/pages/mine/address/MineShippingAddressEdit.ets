@@ -34,8 +34,9 @@ struct MineShippingAddressEdit {
                 duration: 1000,
               });
               setTimeout(() => {
-                const routerUrl = globalThis.routerList[0]
-                globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+                const routerList: Array<string> = globalThis.routerList
+                const routerUrl = routerList.pop();
+                globalThis.routerList = routerList;
                 router.replaceUrl({ url: routerUrl })
               }, 1000)
             } else {
@@ -71,8 +72,9 @@ struct MineShippingAddressEdit {
             duration: 1000,
           });
           setTimeout(() => {
-            const routerUrl = globalThis.routerList[0]
-            globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+            const routerList: Array<string> = globalThis.routerList
+            const routerUrl = routerList.pop();
+            globalThis.routerList = routerList;
             router.replaceUrl({ url: routerUrl })
           }, 1000)
         } else {
@@ -94,8 +96,9 @@ struct MineShippingAddressEdit {
             duration: 1000,
           });
           setTimeout(() => {
-            const routerUrl = globalThis.routerList[0]
-            globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+            const routerList: Array<string> = globalThis.routerList
+            const routerUrl = routerList.pop();
+            globalThis.routerList = routerList;
             router.replaceUrl({ url: routerUrl })
           }, 1000)
         } else {
@@ -144,8 +147,9 @@ struct MineShippingAddressEdit {
             .height(40)
             .margin({ left: 10 })
             .onClick(() => {
-              const routerUrl = globalThis.routerList[0]
-              globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+              const routerList: Array<string> = globalThis.routerList
+              const routerUrl = routerList.pop();
+              globalThis.routerList = routerList;
               router.replaceUrl({ url: routerUrl })
             })
         }

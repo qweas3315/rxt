@@ -8,12 +8,11 @@ struct Login {
   @State username: string = ''
   @State password: string = ''
 
-  async handleLogon() {
+  async handleLogin() {
     const res = await userLoginApi({ username: this.username, password: this.password })
     const data: IResponse<string> = <IResponse<string>> JSON.parse(res.result.toString())
     if (data.code == 20000) {
       globalThis.token = data.data
-      globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
       router.replaceUrl({ url: "pages/Index" })
     } else {
       AlertDialog.show({
@@ -51,7 +50,6 @@ struct Login {
               .height(40)
               .margin({ left: 10 })
               .onClick(() => {
-                globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
                 router.replaceUrl({ url: 'pages/Index' })
               })
           }
@@ -115,13 +113,15 @@ struct Login {
             .backgroundColor(Color.White)
             .fontColor(Color.Gray)
             .fontSize(16)
-            .onClick(() => this.handleLogon())
+            .onClick(() => this.handleLogin())
           Row() {
             Text("快速注册")
               .fontSize(14)
               .margin({ right: 10 })
               .onClick(() => {
-                globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+                const routerList: Array<string> = globalThis.routerList;
+                routerList.push(`${router.getState().path}${router.getState().name}`)
+                globalThis.routerList = routerList
                 router.replaceUrl({ url: "pages/Register" })
               })
           }

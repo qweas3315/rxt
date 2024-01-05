@@ -42,7 +42,6 @@ struct Index {
 
   aboutToAppear() {
     globalThis.routerList = []
-    console.info('APP_INDEX: ', JSON.stringify(router.getState()))
   }
 
   build() {

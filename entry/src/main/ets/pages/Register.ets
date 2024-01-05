@@ -28,8 +28,9 @@ struct Register {
           primaryButton: {
             value: '确定',
             action: () => {
-              const routerUrl = globalThis.routerList[0]
-              globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+              const routerList: Array<string> = globalThis.routerList
+              const routerUrl = routerList.pop();
+              globalThis.routerList = routerList;
               router.replaceUrl({ url: routerUrl })
             }
           }
@@ -74,8 +75,9 @@ struct Register {
               .height(40)
               .margin({ left: 10 })
               .onClick(() => {
-                const routerUrl = globalThis.routerList[0]
-                globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+                const routerList: Array<string> = globalThis.routerList
+                const routerUrl = routerList.pop();
+                globalThis.routerList = routerList;
                 router.replaceUrl({ url: routerUrl })
               })
           }
@@ -182,8 +184,9 @@ struct Register {
               .fontSize(14)
               .margin({ right: 10 })
               .onClick(() => {
-                const routerUrl = globalThis.routerList[0]
-                globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+                const routerList: Array<string> = globalThis.routerList
+                const routerUrl = routerList.pop();
+                globalThis.routerList = routerList;
                 router.replaceUrl({ url: routerUrl })
               })
           }

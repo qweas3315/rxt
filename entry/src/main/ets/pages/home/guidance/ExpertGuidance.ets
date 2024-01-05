@@ -41,8 +41,9 @@ struct ExpertGuidance {
           .fontColor(Color.Grey)
         Image($r('app.media.iv_back_selected')).width(40).height(40)
           .onClick(() => {
-            const routerUrl = globalThis.routerList[0]
-            globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+            const routerList: Array<string> = globalThis.routerList
+            const routerUrl = routerList.pop();
+            globalThis.routerList = routerList;
             router.replaceUrl({ url: routerUrl })
           }).margin({ left: 10 })
       }.height(60).width('100%').margin({ top: 10 })

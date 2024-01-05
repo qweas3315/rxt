@@ -124,8 +124,9 @@ struct PersonalLoanInformationEdit {
             .height(40)
             .margin({ left: 10 })
             .onClick(() => {
-              const routerUrl = globalThis.routerList[0]
-              globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+              const routerList: Array<string> = globalThis.routerList
+              const routerUrl = routerList.pop();
+              globalThis.routerList = routerList;
               router.replaceUrl({ url: routerUrl })
             })
         }
@@ -243,8 +244,9 @@ struct PersonalLoanInformationEdit {
             .type(ButtonType.Normal)
             .borderRadius(5)
             .onClick(() => {
-              const routerUrl = globalThis.routerList[0]
-              globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+              const routerList: Array<string> = globalThis.routerList
+              const routerUrl = routerList.pop();
+              globalThis.routerList = routerList;
               router.replaceUrl({ url: routerUrl })
             })
         }
