@@ -1,6 +1,6 @@
 import http from '@ohos.net.http';
 import { AppConfig } from '../config'
-import { IIntention } from '../model/finance';
+import { IFinance, IIntention } from '../model/finance';
 
 export const getRecommendUserListApi = () => {
   const httpRequest = http.createHttp();
@@ -66,5 +66,46 @@ export const deleteIntentionApi = () => {
         'Content-Type': 'application/json',
         'Authorization': globalThis.token
       }
+    });
+}
+
+export const getBankApi = () => {
+  const httpRequest = http.createHttp();
+  return httpRequest.request(
+    encodeURI(`${AppConfig.baseUrl}/finance/selectbank`),
+    {
+      method: http.RequestMethod.GET,
+      header: {
+        'Content-Type': 'application/json',
+        'Authorization': globalThis.token
+      }
+    });
+}
+
+export const addFinance = (data: IFinance) => {
+  const httpRequest = http.createHttp();
+  return httpRequest.request(
+    encodeURI(`${AppConfig.baseUrl}/finance/add`),
+    {
+      method: http.RequestMethod.POST,
+      header: {
+        'Content-Type': 'application/json',
+        'Authorization': globalThis.token
+      },
+      extraData: data
+    });
+}
+
+export const addFinanceMulti = (data: IFinance) => {
+  const httpRequest = http.createHttp();
+  return httpRequest.request(
+    encodeURI(`${AppConfig.baseUrl}/finance/addFinanceMulti`),
+    {
+      method: http.RequestMethod.POST,
+      header: {
+        'Content-Type': 'application/json',
+        'Authorization': globalThis.token
+      },
+      extraData: data
     });
 }
