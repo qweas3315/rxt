@@ -34,3 +34,13 @@ export type IIntention = {
   userName?: string
   avatar?: string
 }
+
+export type IBank = {
+  bankId: number;
+  bankName: string;
+  introduce: string;
+  bankPhone: string;
+  money: string;
+  rate: string;
+  repayment: number;
+}
