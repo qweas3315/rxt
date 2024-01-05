@@ -10,12 +10,12 @@ export type IFinance = {
   fileInfo?: string
   financeId?: number
   idNum?: string
-  money?: number
+  money?: string
   ownName?: string
   phone?: string
   rate?: number
   realName?: string
-  repayment?: number
+  repayment?: string
   status?: number
   updateTime?: string
 }
