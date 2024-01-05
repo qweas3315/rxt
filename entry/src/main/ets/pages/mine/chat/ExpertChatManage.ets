@@ -24,17 +24,6 @@ struct ExpertChatManage {
       data.data.forEach((item: IQuestion) => {
         this.questionList.push(item)
       })
-      this.questionList.push({
-        answer: 'string',
-        expertName: 'string',
-        id: 1,
-        phone: 'string',
-        plantName: 'string',
-        question: 'string',
-        questioner: 'string',
-        status: 0,
-        title: 'string'
-      })
     } catch (error) {
       console.error('handleLoadQuestion.error: ', error.message)
     }

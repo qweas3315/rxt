@@ -4,14 +4,14 @@ import { IQuestion } from '../../../model/question'
 @Entry
 @Component
 struct QuestionInformationDetail {
-  @State questionDetail: IQuestion = null
+  @State questionDetail: IQuestion = {}
   @State questionHeight: number = 0
   @State answerHeight: number = 0
 
   aboutToAppear() {
     this.questionDetail = router.getParams()['questionDetail']
-    this.questionHeight = (this.questionDetail.question.length) / 20 + 1
-    this.answerHeight = (this.questionDetail.answer.length) / 20 + 1
+    this.questionHeight = (this.questionDetail?.question?.length || 0) / 20 + 1
+    this.answerHeight = (this.questionDetail?.answer?.length || 0) / 20 + 1
   }
 
   build() {
@@ -37,12 +37,12 @@ struct QuestionInformationDetail {
 
         Column() {
           Column() {
-            Text(`提问者(${this.questionDetail.questioner}):`)
+            Text(`提问者(${this.questionDetail?.questioner}):`)
               .fontSize(16)
               .width(300)
               .fontWeight(FontWeight.Bolder)
               .textAlign(TextAlign.End)
-            Text(this.questionDetail.question)
+            Text(this.questionDetail?.question)
               .width(300)
               .padding({ right: 20, top: 5 })
               .fontSize(14)
@@ -55,13 +55,13 @@ struct QuestionInformationDetail {
           .padding({ top: 10 })
 
           Column() {
-            Text(`专家(${this.questionDetail.expertName}):`)
+            Text(`专家(${this.questionDetail?.expertName}):`)
               .fontSize(14)
               .width(300)
               .fontWeight(FontWeight.Bolder)
               .margin({ right: 10 })
               .textAlign(TextAlign.Start)
-            Text(this.questionDetail.answer)
+            Text(this.questionDetail?.answer)
               .width(300)
               .padding({ right: 20, top: 5 })
               .fontSize(14)

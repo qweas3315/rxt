@@ -4,8 +4,8 @@ import { getAllAddressApi, getDefaultAddressApi } from '../../api/address';
 import { deleteCartApi, getCartListApi, submitCartApi, updateCartCountApi } from '../../api/cart';
 import { AppConfig } from '../../config';
 import { IAddress } from '../../model/address';
-import { IPageInfo, IResponse } from '../../model/common';
-import { IOrderInfo, IShoppingModel } from '../../model/order';
+import { IResponse } from '../../model/common';
+import { IShoppingModel } from '../../model/order';
 
 interface IGoods {
   shoppingId: number,
@@ -529,7 +529,6 @@ export default struct ShoppingCart {
         .height('100%')
         .flexGrow(1)
       }
-
     }
     .width('100%')
     .height('100%')

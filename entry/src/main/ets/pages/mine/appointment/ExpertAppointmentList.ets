@@ -25,21 +25,6 @@ struct ExpertAppointmentList {
       data.data.forEach((item: IReserve) => {
         this.reserveList.push(item)
       })
-      this.reserveList.push({
-        address: 'string',
-        answer: 'string',
-        area: 'string',
-        expertName: 'string',
-        id: 2,
-        message: 'string',
-        phone: 'string',
-        plantCondition: 'string',
-        plantDetail: 'string',
-        plantName: 'string',
-        questioner: 'string',
-        soilCondition: 'string',
-        status: 1
-      })
     } catch (error) {
       console.error('handleLoadReserve.error: ', error.message)
     }

@@ -9,7 +9,6 @@ import { IQuestion } from '../../../model/question';
 @Entry
 @Component
 struct MineChatList {
-  @State message: string = 'Hello World'
   @State isShow: boolean = false
   @State questionList: Array<IQuestion> = [];
   @State question: IQuestion = {}
@@ -19,7 +18,6 @@ struct MineChatList {
       const res = await selectByKindApi()
       const data: IResponse<Array<IQuestion>> = <IResponse<Array<IQuestion>>> JSON.parse(res.result.toString())
       this.questionList = data.data
-      this.questionList.push({title: '15155'})
     } catch (error) {
       console.error('handleUpdatePassword.error: ', error.message)
     }

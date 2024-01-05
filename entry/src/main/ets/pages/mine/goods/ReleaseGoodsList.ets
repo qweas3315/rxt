@@ -21,20 +21,6 @@ struct ReleaseGoodList {
       const res = await getUserGoodsList(this.pageType, this.pageNum)
       const data: IResponse<Array<IOrderInfo>> = <IResponse<Array<IOrderInfo>>> JSON.parse(res.result.toString())
       data?.data.forEach((item: IOrderInfo) => this.goodsList.push(item))
-      this.goodsList.push({
-        address: 'address',
-        content: 'content',
-        cooperationName: 'cooperationName',
-        createTime: 'createTime',
-        orderId: 1,
-        orderStatus: 0,
-        ownName: 'ownName',
-        picture: 'picture',
-        price: 'price',
-        title: 'title',
-        type: 'type',
-        updateTime: 'updateTime'
-      })
     } catch (error) {
       console.error('MinePurchasedGoodsList.error: ', error.message)
     }

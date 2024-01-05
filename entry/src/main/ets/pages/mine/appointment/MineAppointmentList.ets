@@ -21,21 +21,6 @@ struct AppointmentList {
       data.data.forEach((item: IReserve) => {
         this.appointmentList.push(item)
       })
-      this.appointmentList.push({
-        address: 'address',
-        answer: 'answer',
-        area: 'area',
-        expertName: 'expertName',
-        id: 1,
-        message: 'message',
-        phone: 'phone',
-        plantCondition: 'plantCondition',
-        plantDetail: 'plantDetail',
-        plantName: 'plantName',
-        questioner: 'questioner',
-        soilCondition: 'soilCondition',
-        status: 0,
-      })
     } catch (error) {
       console.error('handleReserveList.error: ', error.message)
     }

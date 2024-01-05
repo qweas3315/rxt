@@ -30,15 +30,6 @@ struct ExpertKnowledgeList {
       data.data.forEach((item: IKnowledge) => {
         this.knowledgeList.push(item)
       })
-      this.knowledgeList.push({
-        content: 'string',
-        createTime: 'string',
-        knowledgeId: 12,
-        ownName: 'string',
-        picPath: 'string',
-        title: 'string',
-        updateTime: 'string'
-      })
       console.info('getExpertKnowledgeApi: ', res.result.toString())
     } catch (error) {
       console.error('handleLoadKnowledgeList.error: ', error.message)

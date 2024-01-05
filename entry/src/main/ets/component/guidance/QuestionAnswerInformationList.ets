@@ -28,17 +28,6 @@ export default struct QuestionAnswerInformationList {
 
   aboutToAppear() {
     this.handleLoadQuestion()
-    this.questionList.push({
-      answer: 'answer',
-      expertName: 'expertName',
-      id: 1,
-      phone: 'phone',
-      plantName: 'plantName',
-      question: 'question',
-      questioner: 'questioner',
-      status: 1,
-      title: 'title',
-    })
   }
 
   build() {
@@ -57,7 +46,7 @@ export default struct QuestionAnswerInformationList {
                   .justifyContent(FlexAlign.Start)
 
                   Row() {
-                    Text('提问者:' + item.questioner)
+                    Text('提问者:' + item?.questioner)
                       .fontSize(12)
                       .margin({ right: 10 })
                     Text('专家:' + item.expertName)

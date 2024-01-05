@@ -21,20 +21,6 @@ struct MinePurchasedGoodsList {
       promptAction.showDialog({ message: res.result.toString() })
       const data: IResponse<Array<IOrderInfo>> = <IResponse<Array<IOrderInfo>>> JSON.parse(res.result.toString())
       this.goodsList = data.data || []
-      this.goodsList.push({
-        address: 'address',
-        content: 'content',
-        cooperationName: 'cooperationName',
-        createTime: 'createTime',
-        orderId: 1,
-        orderStatus: 0,
-        ownName: 'ownName',
-        picture: 'picture',
-        price: 'price',
-        title: 'title',
-        type: 'type',
-        updateTime: 'updateTime'
-      })
     } catch (error) {
       console.error('MinePurchasedGoodsList.error: ', error.message)
     }

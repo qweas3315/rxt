@@ -16,14 +16,6 @@ struct MineShippingAddressManage {
       const res = await getAllAddressApi()
       const data: IResponse<Array<IAddress>> = <IResponse<Array<IAddress>>> JSON.parse(res.result.toString())
       data?.data.forEach((item: IAddress) => this.addressList.push(item))
-      this.addressList.push({
-        addressDetail: 'addressDetail',
-        consignee: 'consignee',
-        id: 1,
-        isDefault: false,
-        ownName: 'ownName',
-        phone: 'phone'
-      })
     } catch (error) {
       console.error('handleLoadAddressList.error: ', error.message)
     }
