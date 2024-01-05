@@ -104,6 +104,10 @@ struct PersonalLoanInformationEdit {
     }
   }
 
+  aboutToAppear() {
+    this.bankDetail = router.getParams()["bankDetail"];
+  }
+
   build() {
     Row() {
       Column() {
