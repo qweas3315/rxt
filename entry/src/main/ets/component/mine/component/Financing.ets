@@ -11,7 +11,11 @@ interface IInfoItem {
 @Component
 export default struct FinancingInfo {
   private financingList: Array<IInfoItem> = [
-    { icon: $r('app.media.message_dots'), title: '智能匹配', fun: () => router.pushUrl({ url: '' }) },
+    {
+      icon: $r('app.media.message_dots'),
+      title: '智能匹配',
+      fun: () => router.pushUrl({ url: 'pages/mine/financing/RecommendFinanciers' })
+    },
     { icon: $r('app.media.notes'), title: '融资申请', fun: () => router.pushUrl({ url: '' }) },
     { icon: $r('app.media.star'), title: '我的融资', fun: () => router.pushUrl({ url: '' }) }
   ]
