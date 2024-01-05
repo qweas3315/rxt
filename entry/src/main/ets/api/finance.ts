@@ -109,3 +109,44 @@ export const addFinanceMulti = (data: IFinance) => {
       extraData: data
     });
 }
+
+export const getUserFinanceApi = () => {
+  const httpRequest = http.createHttp();
+  return httpRequest.request(
+    encodeURI(`${AppConfig.baseUrl}/finance/selectByName/`),
+    {
+      method: http.RequestMethod.GET,
+      header: {
+        'Content-Type': 'application/json',
+        'Authorization': globalThis.token
+      }
+    });
+}
+
+export const updateFinance = (data: IFinance) => {
+  const httpRequest = http.createHttp();
+  return httpRequest.request(
+    encodeURI(`${AppConfig.baseUrl}/finance/update/`),
+    {
+      method: http.RequestMethod.PUT,
+      header: {
+        'Content-Type': 'application/json',
+        'Authorization': globalThis.token
+      },
+      extraData: data
+    });
+}
+
+export const deleteUserFinance = (financeId: string) => {
+  const httpRequest = http.createHttp();
+  return httpRequest.request(
+    encodeURI(`${AppConfig.baseUrl}/finance/delete/${financeId}`),
+    {
+      method: http.RequestMethod.DELETE,
+      header: {
+        'Content-Type': 'application/json',
+        'Authorization': globalThis.token
+      }
+    });
+}
+

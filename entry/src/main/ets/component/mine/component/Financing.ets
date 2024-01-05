@@ -1,4 +1,6 @@
 import router from '@ohos.router'
+import promptAction from '@ohos.promptAction'
+import { IUser } from '../../../model/user'
 import { builderCellItem, CellTitle } from './Common'
 
 interface IInfoItem {
@@ -10,19 +12,48 @@ interface IInfoItem {
 @Preview
 @Component
 export default struct FinancingInfo {
+  @State userInfo: IUser | undefined = undefined
   private financingList: Array<IInfoItem> = [
     {
       icon: $r('app.media.message_dots'),
       title: '智能匹配',
-      fun: () => router.pushUrl({ url: 'pages/mine/financing/RecommendFinanciers' })
+      fun: () => {
+        if (!globalThis.token) {
+          promptAction.showToast({ message: "请先登录！", duration: 2000 })
+        } else {
+          router.pushUrl({ url: 'pages/mine/financing/RecommendFinanciers' })
+        }
+      }
     },
     {
       icon: $r('app.media.notes'),
       title: '融资申请',
-      fun: () => router.pushUrl({ url: 'pages/mine/financing/BankInformationList' })
+      fun: () => {
+        if (!globalThis.token) {
+          promptAction.showToast({ message: "请先登录！", duration: 2000 })
+        } else {
+          router.pushUrl({ url: 'pages/mine/financing/BankInformationList' })
+        }
+      }
     },
-    { icon: $r('app.media.star'), title: '我的融资', fun: () => router.pushUrl({ url: '' }) }
+    {
+      icon: $r('app.media.star'),
+      title: '我的融资',
+      fun: () => {
+        if (!globalThis.token) {
+          promptAction.showToast({ message: "请先登录！", duration: 2000 })
+        } else {
+          router.pushUrl({ url: 'pages/mine/financing/MineFinancingInformationManage' })
+        }
+      }
+    }
   ]
+
+  aboutToAppear() {
+    if (globalThis.userInfo) {
+      this.userInfo = globalThis.userInfo
+    }
+  }
 
   build() {
     Column() {

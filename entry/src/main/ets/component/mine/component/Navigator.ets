@@ -1,4 +1,6 @@
 import router from '@ohos.router'
+import promptAction from '@ohos.promptAction'
+import { IUser } from '../../../model/user'
 
 interface INavigator {
   title: string;
@@ -10,10 +12,50 @@ interface INavigator {
 @Component
 export struct UserMineNavigator {
   private navigatorList: Array<INavigator> = [
-    { title: '我的问答', icon: $r('app.media.3D'), fun: () => router.pushUrl({ url: 'pages/mine/chat/MineChatList' }) },
-    { title: '我的预约', icon: $r('app.media.Clock1'), fun: () => router.pushUrl({ url: 'pages/mine/appointment/MineAppointmentList' }) },
-    { title: '我的购买', icon: $r('app.media.car'), fun: () => router.pushUrl({ url: 'pages/mine/goods/MinePurchasedGoodsList' }) },
-    { title: '我的售卖', icon: $r('app.media.Inbox'), fun: () => router.pushUrl({ url: 'pages/mine/goods/MineSoldGoodsList' }) },
+    {
+      title: '我的问答',
+      icon: $r('app.media.3D'),
+      fun: () => {
+        if (!globalThis.token) {
+          promptAction.showToast({ message: "请先登录！", duration: 2000 })
+        } else {
+          router.pushUrl({ url: 'pages/mine/chat/MineChatList' })
+        }
+      }
+    },
+    {
+      title: '我的预约',
+      icon: $r('app.media.Clock1'),
+      fun: () => {
+        if (!globalThis.token) {
+          promptAction.showToast({ message: "请先登录！", duration: 2000 })
+        } else {
+          router.pushUrl({ url: 'pages/mine/appointment/MineAppointmentList' })
+        }
+      }
+    },
+    {
+      title: '我的购买',
+      icon: $r('app.media.car'),
+      fun: () => {
+        if (!globalThis.token) {
+          promptAction.showToast({ message: "请先登录！", duration: 2000 })
+        } else {
+          router.pushUrl({ url: 'pages/mine/goods/MinePurchasedGoodsList' })
+        }
+      }
+    },
+    {
+      title: '我的售卖',
+      icon: $r('app.media.Inbox'),
+      fun: () => {
+        if (!globalThis.token) {
+          promptAction.showToast({ message: "请先登录！", duration: 2000 })
+        } else {
+          router.pushUrl({ url: 'pages/mine/goods/MineSoldGoodsList' })
+        }
+      }
+    },
   ]
 
   build() {
@@ -63,11 +105,52 @@ export struct AdminMineNavigator {
 @Preview
 @Component
 export struct ExpertMineNavigator {
+  @State userInfo: IUser | undefined = undefined
   private navigatorList: Array<INavigator> = [
-    { title: '我的问答', icon: $r('app.media.3D'), fun: () => router.pushUrl({ url: 'pages/mine/chat/ExpertChatManage' }) },
-    { title: '我的预约', icon: $r('app.media.Clock1'), fun: () => router.pushUrl({ url: 'pages/mine/appointment/ExpertAppointmentList' }) },
-    { title: '我的知识', icon: $r('app.media.car'), fun: () => router.pushUrl({ url: 'pages/mine/knowledge/ExpertKnowledgeList' }) },
-    { title: '专家信息', icon: $r('app.media.Inbox'), fun: () => router.pushUrl({ url: '' }) },
+    {
+      title: '我的问答',
+      icon: $r('app.media.3D'),
+      fun: () => {
+        if (!globalThis.token) {
+          promptAction.showToast({ message: "请先登录！", duration: 2000 })
+        } else {
+          router.pushUrl({ url: 'pages/mine/chat/ExpertChatManage' })
+        }
+      }
+    },
+    {
+      title: '我的预约',
+      icon: $r('app.media.Clock1'),
+      fun: () => {
+        if (!globalThis.token) {
+          promptAction.showToast({ message: "请先登录！", duration: 2000 })
+        } else {
+          router.pushUrl({ url: 'pages/mine/appointment/ExpertAppointmentList' })
+        }
+      }
+    },
+    {
+      title: '我的知识',
+      icon: $r('app.media.car'),
+      fun: () => {
+        if (!globalThis.token) {
+          promptAction.showToast({ message: "请先登录！", duration: 2000 })
+        } else {
+          router.pushUrl({ url: 'pages/mine/knowledge/ExpertKnowledgeList' })
+        }
+      }
+    },
+    {
+      title: '专家信息',
+      icon: $r('app.media.Inbox'),
+      fun: () => {
+        if (!globalThis.token) {
+          promptAction.showToast({ message: "请先登录！", duration: 2000 })
+        } else {
+          router.pushUrl({ url: '' })
+        }
+      }
+    },
   ]
 
   build() {

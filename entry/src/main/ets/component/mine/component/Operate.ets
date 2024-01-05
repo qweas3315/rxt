@@ -1,4 +1,6 @@
 import router from '@ohos.router'
+import promptAction from '@ohos.promptAction'
+import { IUser } from '../../../model/user'
 import { builderCellItem, CellTitle } from './Common'
 
 interface IInfoItem {
@@ -10,13 +12,19 @@ interface IInfoItem {
 @Preview
 @Component
 export default struct OtherOperate {
+  @State userInfo: IUser | undefined = undefined
   private otherOperateList: Array<IInfoItem> = [
     {
-      icon: $r('app.media.nologin'), title: '注销',
+      icon: $r('app.media.nologin'),
+      title: '注销',
       fun: () => {
-        globalThis.token = ''
-        globalThis.userInfo = null
-        router.pushUrl({ url: 'pages/Index' })
+        if (!globalThis.token) {
+          promptAction.showToast({ message: "请先登录！", duration: 2000 })
+        } else {
+          globalThis.token = ''
+          globalThis.userInfo = null
+          router.pushUrl({ url: 'pages/Index' })
+        }
       }
     }
   ]
