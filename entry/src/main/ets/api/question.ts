@@ -54,3 +54,29 @@ export const selectByKindApi = () => {
       }
     });
 }
+
+export const getExpertQuestionApi = () => {
+  const httpRequest = http.createHttp();
+  return httpRequest.request(
+    encodeURI(`${AppConfig.baseUrl}/question/selectByKind/expert`),
+    {
+      method: http.RequestMethod.GET,
+      header: {
+        'Content-Type': 'application/json',
+        'Authorization': globalThis.token
+      }
+    });
+}
+
+export const deleteQuestionApi = (id: string) => {
+  const httpRequest = http.createHttp();
+  return httpRequest.request(
+    encodeURI(`${AppConfig.baseUrl}question/delete/${id}`),
+    {
+      method: http.RequestMethod.DELETE,
+      header: {
+        'Content-Type': 'application/json',
+        'Authorization': globalThis.token
+      }
+    });
+}
