@@ -4,7 +4,7 @@
 import router from '@ohos.router';
 import promptAction from '@ohos.promptAction';
 import { deleteUserGoods, getUserGoodsList } from '../../../api/order';
-import { IResponse } from '../../../model/common';
+import { IPageInfo, IResponse } from '../../../model/common';
 import { IOrderInfo } from '../../../model/order';
 import { AppConfig } from '../../../config';
 
@@ -19,8 +19,8 @@ struct ReleaseGoodList {
   async handleLoadPurchaseList() {
     try {
       const res = await getUserGoodsList(this.pageType, this.pageNum)
-      const data: IResponse<Array<IOrderInfo>> = <IResponse<Array<IOrderInfo>>> JSON.parse(res.result.toString())
-      data?.data.forEach((item: IOrderInfo) => this.goodsList.push(item))
+      const data: IResponse<IPageInfo<IOrderInfo>> = <IResponse<IPageInfo<IOrderInfo>>> JSON.parse(res.result.toString())
+      data?.data?.list.forEach((item: IOrderInfo) => this.goodsList.push(item))
     } catch (error) {
       console.error('MinePurchasedGoodsList.error: ', error.message)
     }
