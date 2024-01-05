@@ -74,7 +74,9 @@ struct BankInformation {
               Button('个人贷款')
                 .margin({ right: 10 })
                 .onClick(() => {
-                  globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+                  const routerList: Array<string> = globalThis.routerList;
+                  routerList.push(`${router.getState().path}${router.getState().name}`)
+                  globalThis.routerList = routerList
                   router.replaceUrl({
                     url: 'pages/mine/financing/PersonalLoanInformationEdit',
                     params: { bankDetail: this.bankDetail }
@@ -82,7 +84,9 @@ struct BankInformation {
                 })
               Button('组合贷款')
                 .onClick(() => {
-                  globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+                  const routerList: Array<string> = globalThis.routerList;
+                  routerList.push(`${router.getState().path}${router.getState().name}`)
+                  globalThis.routerList = routerList
                   router.replaceUrl({
                     url: 'pages/mine/financing/PortfolioLoanInformationEdit',
                     params: { bankDetail: this.bankDetail }

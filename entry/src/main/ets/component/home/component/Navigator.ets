@@ -17,7 +17,9 @@ export default struct HomeNavigator {
       title: '商品货源',
       icon: $r('app.media.image'),
       fun: () => {
-        globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+        const routerList: Array<string> = globalThis.routerList;
+        routerList.push(`${router.getState().path}${router.getState().name}`)
+        globalThis.routerList = routerList
         router.replaceUrl({ url: 'pages/home/goods/GoodsSourcePurchaseList', params: { type: 'goods' } })
       }
     },
@@ -25,7 +27,9 @@ export default struct HomeNavigator {
       title: '求购需求',
       icon: $r('app.media.icon2'),
       fun: () => {
-        globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+        const routerList: Array<string> = globalThis.routerList;
+        routerList.push(`${router.getState().path}${router.getState().name}`)
+        globalThis.routerList = routerList
         router.replaceUrl({ url: 'pages/home/goods/GoodsSourcePurchaseList', params: { type: 'needs' } })
       }
     },
@@ -33,7 +37,9 @@ export default struct HomeNavigator {
       title: '农业知识',
       icon: $r('app.media.icon3'),
       fun: () => {
-        globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+        const routerList: Array<string> = globalThis.routerList;
+        routerList.push(`${router.getState().path}${router.getState().name}`)
+        globalThis.routerList = routerList
         router.replaceUrl({ url: 'pages/home/knowledge/AgriculturalKnowledgeList' })
       }
     },
@@ -41,7 +47,9 @@ export default struct HomeNavigator {
       title: '专家指导',
       icon: $r('app.media.icon4'),
       fun: () => {
-        globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+        const routerList: Array<string> = globalThis.routerList;
+        routerList.push(`${router.getState().path}${router.getState().name}`)
+        globalThis.routerList = routerList
         router.replaceUrl({ url: 'pages/home/guidance/ExpertGuidance' })
       }
     }

@@ -90,7 +90,9 @@ struct AppointmentList {
                 Text("详情")
                   .margin({ right: 10 })
                   .onClick(() => {
-                    globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+                    const routerList: Array<string> = globalThis.routerList;
+                    routerList.push(`${router.getState().path}${router.getState().name}`)
+                    globalThis.routerList = routerList
                     router.replaceUrl({
                       url: 'pages/mine/appointment/MineAppointmentDetail',
                       params: { appointmentDetail: item }

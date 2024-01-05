@@ -115,7 +115,9 @@ struct UserList {
                 .height(60)
                 .backgroundColor(index % 2 == 0 ? "#b0e2eafc" : '#b0f1f1f1')
                 .onClick(() => {
-                  globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+                  const routerList: Array<string> = globalThis.routerList;
+                  routerList.push(`${router.getState().path}${router.getState().name}`)
+                  globalThis.routerList = routerList
                   router.replaceUrl({ url: 'pages/mine/user/UserDetail', params: { userDetail: item } })
                 })
               }

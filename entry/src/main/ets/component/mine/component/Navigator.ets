@@ -19,7 +19,9 @@ export struct UserMineNavigator {
         if (!globalThis.token) {
           promptAction.showToast({ message: "请先登录！", duration: 2000 })
         } else {
-          globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+          const routerList: Array<string> = globalThis.routerList;
+          routerList.push(`${router.getState().path}${router.getState().name}`)
+          globalThis.routerList = routerList
           router.replaceUrl({ url: 'pages/mine/chat/MineChatList' })
         }
       }
@@ -31,7 +33,9 @@ export struct UserMineNavigator {
         if (!globalThis.token) {
           promptAction.showToast({ message: "请先登录！", duration: 2000 })
         } else {
-          globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+          const routerList: Array<string> = globalThis.routerList;
+          routerList.push(`${router.getState().path}${router.getState().name}`)
+          globalThis.routerList = routerList
           router.replaceUrl({ url: 'pages/mine/appointment/MineAppointmentList' })
         }
       }
@@ -43,7 +47,9 @@ export struct UserMineNavigator {
         if (!globalThis.token) {
           promptAction.showToast({ message: "请先登录！", duration: 2000 })
         } else {
-          globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+          const routerList: Array<string> = globalThis.routerList;
+          routerList.push(`${router.getState().path}${router.getState().name}`)
+          globalThis.routerList = routerList
           router.replaceUrl({ url: 'pages/mine/goods/MinePurchasedGoodsList' })
         }
       }
@@ -55,7 +61,9 @@ export struct UserMineNavigator {
         if (!globalThis.token) {
           promptAction.showToast({ message: "请先登录！", duration: 2000 })
         } else {
-          globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+          const routerList: Array<string> = globalThis.routerList;
+          routerList.push(`${router.getState().path}${router.getState().name}`)
+          globalThis.routerList = routerList
           router.replaceUrl({ url: 'pages/mine/goods/MineSoldGoodsList' })
         }
       }
@@ -118,7 +126,9 @@ export struct ExpertMineNavigator {
         if (!globalThis.token) {
           promptAction.showToast({ message: "请先登录！", duration: 2000 })
         } else {
-          globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+          const routerList: Array<string> = globalThis.routerList;
+          routerList.push(`${router.getState().path}${router.getState().name}`)
+          globalThis.routerList = routerList
           router.replaceUrl({ url: 'pages/mine/chat/ExpertChatManage' })
         }
       }
@@ -130,7 +140,9 @@ export struct ExpertMineNavigator {
         if (!globalThis.token) {
           promptAction.showToast({ message: "请先登录！", duration: 2000 })
         } else {
-          globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+          const routerList: Array<string> = globalThis.routerList;
+          routerList.push(`${router.getState().path}${router.getState().name}`)
+          globalThis.routerList = routerList
           router.replaceUrl({ url: 'pages/mine/appointment/ExpertAppointmentList' })
         }
       }
@@ -142,7 +154,9 @@ export struct ExpertMineNavigator {
         if (!globalThis.token) {
           promptAction.showToast({ message: "请先登录！", duration: 2000 })
         } else {
-          globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+          const routerList: Array<string> = globalThis.routerList;
+          routerList.push(`${router.getState().path}${router.getState().name}`)
+          globalThis.routerList = routerList
           router.replaceUrl({ url: 'pages/mine/knowledge/ExpertKnowledgeList' })
         }
       }
@@ -154,7 +168,9 @@ export struct ExpertMineNavigator {
         if (!globalThis.token) {
           promptAction.showToast({ message: "请先登录！", duration: 2000 })
         } else {
-          globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+          const routerList: Array<string> = globalThis.routerList;
+          routerList.push(`${router.getState().path}${router.getState().name}`)
+          globalThis.routerList = routerList
           router.replaceUrl({ url: 'pages/mine/setting/ExpertInformationChange' })
         }
       }

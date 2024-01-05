@@ -136,7 +136,9 @@ struct ExpertChatManage {
                   Text("回答")
                     .margin({ right: 10 })
                     .onClick(() => {
-                      globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+                      const routerList: Array<string> = globalThis.routerList;
+                      routerList.push(`${router.getState().path}${router.getState().name}`)
+                      globalThis.routerList = routerList
                       router.replaceUrl({
                         url: 'pages/mine/chat/QuestionAnswering',
                         params: { questionDetail: item }

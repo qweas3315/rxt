@@ -157,7 +157,9 @@ export default struct Home {
               .margin(5)
               .padding(10)
               .onClick(() => {
-                globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+                const routerList: Array<string> = globalThis.routerList;
+                routerList.push(`${router.getState().path}${router.getState().name}`)
+                globalThis.routerList = routerList
                 router.replaceUrl({
                   url: 'pages/home/goods/GoodsSourcePurchaseDetail',
                   params: { 'goodsDetail': item }

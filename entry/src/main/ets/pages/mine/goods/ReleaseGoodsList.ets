@@ -80,7 +80,9 @@ struct ReleaseGoodList {
           Text('发布')
             .margin({ right: 10 })
             .onClick(() => {
-              globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+              const routerList: Array<string> = globalThis.routerList;
+              routerList.push(`${router.getState().path}${router.getState().name}`)
+              globalThis.routerList = routerList
               router.replaceUrl({
                 url: 'pages/mine/goods/ReleaseGoods',
                 params: { type: this.pageType == 'needs' ? 'addNeeds' : 'addGoods' }
@@ -139,7 +141,9 @@ struct ReleaseGoodList {
                           .fontSize(12)
                           .margin({ right: 5 })
                           .onClick(() => {
-                            globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+                            const routerList: Array<string> = globalThis.routerList;
+                            routerList.push(`${router.getState().path}${router.getState().name}`)
+                            globalThis.routerList = routerList
                             router.replaceUrl({
                               url: 'pages/mine/goods/ReleaseGoods',
                               params: { type: this.pageType == 'needs' ? 'editNeeds' : 'editGoods', goodsDetail: item }
@@ -163,7 +167,9 @@ struct ReleaseGoodList {
                 .margin(5)
                 .padding(10)
                 .onClick(() => {
-                  globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+                  const routerList: Array<string> = globalThis.routerList;
+                  routerList.push(`${router.getState().path}${router.getState().name}`)
+                  globalThis.routerList = routerList
                   router.replaceUrl({
                     url: 'pages/home/goods/GoodsSourcePurchaseDetail',
                     params: { 'goodsDetail': item }

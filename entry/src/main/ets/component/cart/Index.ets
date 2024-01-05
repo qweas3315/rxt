@@ -181,7 +181,9 @@ export default struct ShoppingCart {
       const data = JSON.parse(res.result.toString());
       if (data.code = 20000) {
         this.goodsList = noBuyItems;
-        globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+        const routerList: Array<string> = globalThis.routerList;
+        routerList.push(`${router.getState().path}${router.getState().name}`)
+        globalThis.routerList = routerList
         router.replaceUrl({ url: 'pages/cart/PayResult' })
       }
       promptAction.showToast({
@@ -353,7 +355,9 @@ export default struct ShoppingCart {
             .textAlign(TextAlign.Center)
             .fontWeight(400)
             .onClick(() => {
-              globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+              const routerList: Array<string> = globalThis.routerList;
+              routerList.push(`${router.getState().path}${router.getState().name}`)
+              globalThis.routerList = routerList
               router.replaceUrl({ url: 'pages/Login' })
             })
         }
@@ -388,7 +392,9 @@ export default struct ShoppingCart {
             .textAlign(TextAlign.Center)
             .fontWeight(400)
             .onClick(() => {
-              globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+              const routerList: Array<string> = globalThis.routerList;
+              routerList.push(`${router.getState().path}${router.getState().name}`)
+              globalThis.routerList = routerList
               router.replaceUrl({
                 url: 'pages/home/goods/GoodsSourcePurchaseList',
                 params: { type: 'goods' }

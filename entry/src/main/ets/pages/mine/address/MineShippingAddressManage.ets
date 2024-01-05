@@ -101,7 +101,9 @@ struct MineShippingAddressManage {
                   .justifyContent(FlexAlign.SpaceBetween)
                   .width('100%')
                   .onClick(() => {
-                    globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+                    const routerList: Array<string> = globalThis.routerList;
+                    routerList.push(`${router.getState().path}${router.getState().name}`)
+                    globalThis.routerList = routerList
                     router.replaceUrl({
                       url: "pages/mine/address/MineShippingAddressEdit",
                       params: { type: 'edit', addressDetail: item }
@@ -153,7 +155,9 @@ struct MineShippingAddressManage {
                   .justifyContent(FlexAlign.SpaceBetween)
                   .width('100%')
                   .onClick(() => {
-                    globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+                    const routerList: Array<string> = globalThis.routerList;
+                    routerList.push(`${router.getState().path}${router.getState().name}`)
+                    globalThis.routerList = routerList
                     router.replaceUrl({
                       url: "pages/mine/address/MineShippingAddressEdit",
                       params: { type: 'edit', addressDetail: item }
@@ -182,7 +186,9 @@ struct MineShippingAddressManage {
             .width('100%')
             .borderRadius(20)
             .onClick(() => {
-              globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+              const routerList: Array<string> = globalThis.routerList;
+              routerList.push(`${router.getState().path}${router.getState().name}`)
+              globalThis.routerList = routerList
               router.replaceUrl({
                 url: 'pages/mine/address/MineShippingAddressEdit',
                 params: { type: 'add' }

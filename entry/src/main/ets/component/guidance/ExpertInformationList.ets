@@ -73,7 +73,9 @@ export default struct ExpertInformationList {
                     Text('向我提问')
                       .fontSize(14)
                       .onClick(() => {
-                        globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+                        const routerList: Array<string> = globalThis.routerList;
+                        routerList.push(`${router.getState().path}${router.getState().name}`)
+                        globalThis.routerList = routerList
                         router.replaceUrl({
                           url: 'pages/home/guidance/AskQuestions',
                           params: { expertName: item.realName }
@@ -83,7 +85,9 @@ export default struct ExpertInformationList {
                     Text('线下预约')
                       .fontSize(14)
                       .onClick(() => {
-                        globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+                        const routerList: Array<string> = globalThis.routerList;
+                        routerList.push(`${router.getState().path}${router.getState().name}`)
+                        globalThis.routerList = routerList
                         router.replaceUrl({
                           url: 'pages/home/guidance/AppointmentExpert',
                           params: { expertName: item.realName }

@@ -41,7 +41,9 @@ struct ExpertAppointmentList {
           duration: 1000,
         });
         setTimeout(() => {
-          globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+          const routerList: Array<string> = globalThis.routerList;
+          routerList.push(`${router.getState().path}${router.getState().name}`)
+          globalThis.routerList = routerList
           router.replaceUrl({ url: 'pages/mine/appointment/ExpertAppointmentList' })
         }, 2000)
       } else {
@@ -75,7 +77,9 @@ struct ExpertAppointmentList {
                 message: '删除成功!',
                 duration: 1000,
               });
-              globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+              const routerList: Array<string> = globalThis.routerList;
+              routerList.push(`${router.getState().path}${router.getState().name}`)
+              globalThis.routerList = routerList
               router.replaceUrl({ url: 'pages/mine/appointment/ExpertAppointmentList' })
             } else {
               promptAction.showToast({

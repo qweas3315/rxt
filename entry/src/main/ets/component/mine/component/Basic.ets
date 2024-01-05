@@ -20,7 +20,9 @@ export struct UserBasicInfo {
         if (!globalThis.token) {
           promptAction.showToast({ message: "请先登录！", duration: 2000 })
         } else {
-          globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+          const routerList: Array<string> = globalThis.routerList;
+          routerList.push(`${router.getState().path}${router.getState().name}`)
+          globalThis.routerList = routerList
           router.replaceUrl({ url: 'pages/mine/goods/ReleaseGoodsList', params: { pageType: 'needs' } })
         }
       }
@@ -32,7 +34,9 @@ export struct UserBasicInfo {
         if (!globalThis.token) {
           promptAction.showToast({ message: "请先登录！", duration: 2000 })
         } else {
-          globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+          const routerList: Array<string> = globalThis.routerList;
+          routerList.push(`${router.getState().path}${router.getState().name}`)
+          globalThis.routerList = routerList
           router.replaceUrl({ url: 'pages/mine/goods/ReleaseGoodsList', params: { pageType: 'goods' } })
         }
       }
@@ -44,7 +48,9 @@ export struct UserBasicInfo {
         if (!globalThis.token) {
           promptAction.showToast({ message: "请先登录！", duration: 2000 })
         } else {
-          globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+          const routerList: Array<string> = globalThis.routerList;
+          routerList.push(`${router.getState().path}${router.getState().name}`)
+          globalThis.routerList = routerList
           router.replaceUrl({ url: 'pages/mine/address/MineShippingAddressManage' })
         }
       }
@@ -79,7 +85,9 @@ export struct ExpertBasicInfo {
         if (!globalThis.token) {
           promptAction.showToast({ message: "请先登录！", duration: 2000 })
         } else {
-          globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+          const routerList: Array<string> = globalThis.routerList;
+          routerList.push(`${router.getState().path}${router.getState().name}`)
+          globalThis.routerList = routerList
           router.replaceUrl({ url: 'pages/mine/knowledge/ExpertKnowledgeEdit', params: { type: 'add' } })
         }
       }
@@ -91,7 +99,9 @@ export struct ExpertBasicInfo {
         if (!globalThis.token) {
           promptAction.showToast({ message: "请先登录！", duration: 2000 })
         } else {
-          globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+          const routerList: Array<string> = globalThis.routerList;
+          routerList.push(`${router.getState().path}${router.getState().name}`)
+          globalThis.routerList = routerList
           router.replaceUrl({ url: 'pages/mine/address/MineShippingAddressManage' })
         }
       }
@@ -126,7 +136,9 @@ export struct AdminBasicInfo {
         if (!globalThis.token) {
           promptAction.showToast({ message: "请先登录！", duration: 2000 })
         } else {
-          globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+          const routerList: Array<string> = globalThis.routerList;
+          routerList.push(`${router.getState().path}${router.getState().name}`)
+          globalThis.routerList = routerList
           router.replaceUrl({ url: 'pages/mine/user/UserList' })
         }
       }
@@ -138,7 +150,9 @@ export struct AdminBasicInfo {
         if (!globalThis.token) {
           promptAction.showToast({ message: "请先登录！", duration: 2000 })
         } else {
-          globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+          const routerList: Array<string> = globalThis.routerList;
+          routerList.push(`${router.getState().path}${router.getState().name}`)
+          globalThis.routerList = routerList
           router.replaceUrl({ url: 'pages/mine/goods/ReleaseGoodsList', params: { type: 'goods' } })
         }
       }
@@ -150,7 +164,9 @@ export struct AdminBasicInfo {
         if (!globalThis.token) {
           promptAction.showToast({ message: "请先登录！", duration: 2000 })
         } else {
-          globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+          const routerList: Array<string> = globalThis.routerList;
+          routerList.push(`${router.getState().path}${router.getState().name}`)
+          globalThis.routerList = routerList
           router.replaceUrl({ url: 'pages/mine/goods/ReleaseGoodsList', params: { type: 'needs' } })
         }
       }

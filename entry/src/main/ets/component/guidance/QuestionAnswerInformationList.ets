@@ -58,7 +58,9 @@ export default struct QuestionAnswerInformationList {
                 .padding({ left: 20, right: 20, bottom: 20, top: 20 })
                 .width('100%')
                 .onClick(() => {
-                  globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+                  const routerList: Array<string> = globalThis.routerList;
+                  routerList.push(`${router.getState().path}${router.getState().name}`)
+                  globalThis.routerList = routerList
                   router.replaceUrl({
                     url: 'pages/home/guidance/QuestionInformationDetail',
                     params: { questionDetail: item }

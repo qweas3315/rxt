@@ -99,7 +99,9 @@ struct ReleaseGoods {
           duration: 1000,
         });
         setTimeout(() => {
-          globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+          const routerList: Array<string> = globalThis.routerList;
+          routerList.push(`${router.getState().path}${router.getState().name}`)
+          globalThis.routerList = routerList
           router.replaceUrl({ url: 'pages/mine/goods/ReleaseGoodsList', params: { pageType: this.goods.type } })
         }, 1000)
       } else {
@@ -123,7 +125,9 @@ struct ReleaseGoods {
           duration: 1000,
         });
         setTimeout(() => {
-          globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+          const routerList: Array<string> = globalThis.routerList;
+          routerList.push(`${router.getState().path}${router.getState().name}`)
+          globalThis.routerList = routerList
           router.replaceUrl({ url: 'pages/mine/goods/ReleaseGoodsList', params: { pageType: this.goods.type } })
         }, 1000)
       } else {
@@ -184,7 +188,9 @@ struct ReleaseGoods {
             .height(40)
             .margin({ left: 10 })
             .onClick(() => {
-              globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+              const routerList: Array<string> = globalThis.routerList;
+              routerList.push(`${router.getState().path}${router.getState().name}`)
+              globalThis.routerList = routerList
               router.replaceUrl({
                 url: 'pages/mine/goods/ReleaseGoodsList',
                 params: { pageType: this.goods.type }

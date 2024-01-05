@@ -77,7 +77,9 @@ struct BankInformationList {
               .shadow({ radius: 5, color: Color.Gray, offsetX: 5, offsetY: 5 })
               .margin(5)
               .onClick(() => {
-                globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+                const routerList: Array<string> = globalThis.routerList;
+                routerList.push(`${router.getState().path}${router.getState().name}`)
+                globalThis.routerList = routerList
                 router.replaceUrl({ url: 'pages/mine/financing/BankInformation', params: { 'bankDetail': item } })
               })
             })

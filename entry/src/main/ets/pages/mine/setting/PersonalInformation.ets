@@ -184,7 +184,9 @@ struct PersonalInformation {
           }
           .padding({ left: 20, right: 20 }).height(80)
           .onClick(() => {
-            globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+            const routerList: Array<string> = globalThis.routerList;
+            routerList.push(`${router.getState().path}${router.getState().name}`)
+            globalThis.routerList = routerList
             router.replaceUrl({ url: 'pages/mine/setting/PersonalInformationChange' })
           })
 
@@ -199,7 +201,9 @@ struct PersonalInformation {
             }
             .width('100%')
             .onClick(() => {
-              globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+              const routerList: Array<string> = globalThis.routerList;
+              routerList.push(`${router.getState().path}${router.getState().name}`)
+              globalThis.routerList = routerList
               router.replaceUrl({ url: 'pages/mine/setting/PasswordChange' })
             })
           }

@@ -21,7 +21,9 @@ export default struct FinancingInfo {
         if (!globalThis.token) {
           promptAction.showToast({ message: "请先登录！", duration: 2000 })
         } else {
-          globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+          const routerList: Array<string> = globalThis.routerList;
+          routerList.push(`${router.getState().path}${router.getState().name}`)
+          globalThis.routerList = routerList
           router.replaceUrl({ url: 'pages/mine/financing/RecommendFinanciers' })
         }
       }
@@ -33,7 +35,9 @@ export default struct FinancingInfo {
         if (!globalThis.token) {
           promptAction.showToast({ message: "请先登录！", duration: 2000 })
         } else {
-          globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+          const routerList: Array<string> = globalThis.routerList;
+          routerList.push(`${router.getState().path}${router.getState().name}`)
+          globalThis.routerList = routerList
           router.replaceUrl({ url: 'pages/mine/financing/BankInformationList' })
         }
       }
@@ -45,7 +49,9 @@ export default struct FinancingInfo {
         if (!globalThis.token) {
           promptAction.showToast({ message: "请先登录！", duration: 2000 })
         } else {
-          globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+          const routerList: Array<string> = globalThis.routerList;
+          routerList.push(`${router.getState().path}${router.getState().name}`)
+          globalThis.routerList = routerList
           router.replaceUrl({ url: 'pages/mine/financing/MineFinancingInformationManage' })
         }
       }

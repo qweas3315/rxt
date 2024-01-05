@@ -23,7 +23,9 @@ export default struct OtherOperate {
         } else {
           globalThis.token = ''
           globalThis.userInfo = null
-          globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+          const routerList: Array<string> = globalThis.routerList;
+          routerList.push(`${router.getState().path}${router.getState().name}`)
+          globalThis.routerList = routerList
           router.replaceUrl({ url: 'pages/Index' })
         }
       }
