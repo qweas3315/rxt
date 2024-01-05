@@ -36,11 +36,11 @@ export type IIntention = {
 }
 
 export type IBank = {
-  bankId: number;
-  bankName: string;
-  introduce: string;
-  bankPhone: string;
-  money: string;
-  rate: string;
-  repayment: number;
+  bankId?: number;
+  bankName?: string;
+  introduce?: string;
+  bankPhone?: string;
+  money?: string;
+  rate?: string;
+  repayment?: number;
 }
