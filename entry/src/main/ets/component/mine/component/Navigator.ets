@@ -147,7 +147,7 @@ export struct ExpertMineNavigator {
         if (!globalThis.token) {
           promptAction.showToast({ message: "请先登录！", duration: 2000 })
         } else {
-          router.pushUrl({ url: '' })
+          router.pushUrl({ url: 'pages/mine/setting/ExpertInformationChange' })
         }
       }
     },

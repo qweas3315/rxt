@@ -33,7 +33,7 @@
     "pages/mine/knowledge/ExpertKnowledgeList",
     "pages/mine/knowledge/ExpertKnowledgeDetail",
     "pages/mine/knowledge/ExpertKnowledgeEdit",
-    "pages/mine/setting/ExpertInformationChanage",
+    "pages/mine/setting/ExpertInformationChange",
     "pages/mine/knowledge/KnowledgeRelease",
     "pages/mine/user/UserList",
     "pages/mine/user/UserDetail",

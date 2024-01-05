@@ -1,5 +1,6 @@
 import http from '@ohos.net.http';
 import { AppConfig } from '../config'
+import { IExpert } from '../model/question';
 import { IUser, IUserLoginDTO, IUserRegisterDTO } from '../model/user';
 
 export const userLoginApi = (data: IUserLoginDTO) => {
@@ -60,5 +61,26 @@ export const updatePasswordApi = (newPassword: string, oldPassword: string) => {
       newPassword: newPassword,
       oldPassword: oldPassword
     }
+  })
+}
+
+export const searchExpertApi = () => {
+  const httpRequest = http.createHttp();
+  return httpRequest.request(`${AppConfig.baseUrl}/user/searchexpert`, {
+    method: http.RequestMethod.GET,
+    header: {
+      Authorization: globalThis.token
+    }
+  })
+}
+
+export const updateExpertApi = (data: IExpert) => {
+  const httpRequest = http.createHttp();
+  return httpRequest.request(`${AppConfig.baseUrl}/user/addUpdexpert`, {
+    method: http.RequestMethod.POST,
+    header: {
+      Authorization: globalThis.token
+    },
+    extraData: data
   })
 }
