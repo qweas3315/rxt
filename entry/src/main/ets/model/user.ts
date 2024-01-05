@@ -25,3 +25,8 @@ export type IUser = {
   updateTime?: string;
   userName?: string;
 }
+
+export type IPasswordParam = {
+  newPassword?: string
+  oldPassword?: string
+}
