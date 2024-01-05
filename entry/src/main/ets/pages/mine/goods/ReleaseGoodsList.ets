@@ -79,7 +79,7 @@ struct ReleaseGoodList {
         Row() {
           Text('发布')
             .margin({ right: 10 })
-            .onClick(() => router.replaceUrl({
+            .onClick(() => router.pushUrl({
               url: 'pages/mine/goods/ReleaseGoods',
               params: { type: this.pageType == 'needs' ? 'addNeeds' : 'addGoods' }
             }))

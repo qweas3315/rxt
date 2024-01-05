@@ -132,7 +132,7 @@ export struct AdminBasicInfo {
         if (!globalThis.token) {
           promptAction.showToast({ message: "请先登录！", duration: 2000 })
         } else {
-          router.pushUrl({ url: 'pages/home/goods/GoodsSourcePurchaseList', params: { type: 'goods' } })
+          router.pushUrl({ url: 'pages/mine/goods/ReleaseGoodsList', params: { type: 'goods' } })
         }
       }
     },
@@ -143,7 +143,7 @@ export struct AdminBasicInfo {
         if (!globalThis.token) {
           promptAction.showToast({ message: "请先登录！", duration: 2000 })
         } else {
-          router.pushUrl({ url: 'pages/home/goods/GoodsSourcePurchaseList', params: { type: 'needs' } })
+          router.pushUrl({ url: 'pages/mine/goods/ReleaseGoodsList', params: { type: 'needs' } })
         }
       }
     }
