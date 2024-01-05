@@ -32,7 +32,9 @@ struct AppointmentExpert {
           duration: 1000,
         });
         setTimeout(() => {
-          router.back();
+          const routerUrl = globalThis.routerList[0]
+          globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+          router.replaceUrl({ url: routerUrl })
         }, 1000)
       } else {
         promptAction.showToast({ message: '提交失败!', duration: 2000 });
@@ -61,7 +63,11 @@ struct AppointmentExpert {
           .width(40)
           .height(40)
           .margin({ left: 10 })
-          .onClick(() => router.back())
+          .onClick(() => {
+            const routerUrl = globalThis.routerList[0]
+            globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+            router.replaceUrl({ url: routerUrl })
+          })
       }
       .height(60)
       .width('100%')

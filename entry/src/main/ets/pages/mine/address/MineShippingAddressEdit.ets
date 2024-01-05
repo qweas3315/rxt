@@ -9,7 +9,7 @@ import { IAddress } from '../../../model/address';
 @Entry
 @Component
 struct MineShippingAddressEdit {
-  @State addressDetail: IAddress = {isDefault: false};
+  @State addressDetail: IAddress = { isDefault: false };
   @State type: string = ''
   @State title: string = '编辑收货地址'
 
@@ -34,7 +34,9 @@ struct MineShippingAddressEdit {
                 duration: 1000,
               });
               setTimeout(() => {
-                router.back()
+                const routerUrl = globalThis.routerList[0]
+                globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+                router.replaceUrl({ url: routerUrl })
               }, 1000)
             } else {
               promptAction.showToast({
@@ -69,7 +71,9 @@ struct MineShippingAddressEdit {
             duration: 1000,
           });
           setTimeout(() => {
-            router.back()
+            const routerUrl = globalThis.routerList[0]
+            globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+            router.replaceUrl({ url: routerUrl })
           }, 1000)
         } else {
           promptAction.showToast({
@@ -90,7 +94,9 @@ struct MineShippingAddressEdit {
             duration: 1000,
           });
           setTimeout(() => {
-            router.back()
+            const routerUrl = globalThis.routerList[0]
+            globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+            router.replaceUrl({ url: routerUrl })
           }, 1000)
         } else {
           promptAction.showToast({
@@ -137,7 +143,11 @@ struct MineShippingAddressEdit {
             .width(40)
             .height(40)
             .margin({ left: 10 })
-            .onClick(() => router.back())
+            .onClick(() => {
+              const routerUrl = globalThis.routerList[0]
+              globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+              router.replaceUrl({ url: routerUrl })
+            })
         }
         .height(60)
         .width('100%')

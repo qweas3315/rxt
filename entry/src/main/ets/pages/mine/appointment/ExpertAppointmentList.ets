@@ -109,7 +109,11 @@ struct ExpertAppointmentList {
           .width(40)
           .height(40)
           .margin({ left: 10 })
-          .onClick(() => router.back())
+          .onClick(() => {
+            const routerUrl = globalThis.routerList[0]
+            globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+            router.replaceUrl({ url: routerUrl })
+          })
       }
       .height(60)
       .width('100%')
@@ -197,7 +201,11 @@ struct ExpertAppointmentList {
                 .width(40)
                 .height(40)
                 .margin({ left: 10 })
-                .onClick(() => router.back())
+                .onClick(() => {
+                  const routerUrl = globalThis.routerList[0]
+                  globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+                  router.replaceUrl({ url: routerUrl })
+                })
             }
             .height(60)
             .width('100%')

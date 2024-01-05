@@ -37,8 +37,9 @@ struct ShowUserInfoPage {
             if (data.code == 20000) {
               promptAction.showToast({ message: '删除成功!', duration: 2000 })
               setTimeout(() => {
-                // router.clear();
-                router.back()
+                const routerUrl = globalThis.routerList[0]
+                globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+                router.replaceUrl({ url: routerUrl })
               }, 2000);
             } else {
               promptAction.showToast({ message: data.data, duration: 2000 })
@@ -91,7 +92,11 @@ struct ShowUserInfoPage {
           .width(40)
           .height(40)
           .margin({ left: 10 })
-          .onClick(() => router.back())
+          .onClick(() => {
+            const routerUrl = globalThis.routerList[0]
+            globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+            router.replaceUrl({ url: routerUrl })
+          })
       }
       .height(60)
       .width('100%')

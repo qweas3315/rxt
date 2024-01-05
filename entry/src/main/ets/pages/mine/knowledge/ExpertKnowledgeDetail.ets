@@ -2,7 +2,6 @@
  * 专家知识详情
  */
 import router from '@ohos.router'
-import http from '@ohos.net.http';
 import { AppConfig } from '../../../config';
 import promptAction from '@ohos.promptAction';
 import { IKnowledge } from '../../../model/knowledge';
@@ -32,7 +31,9 @@ struct ExpertKnowledgeDetail {
             const data = JSON.parse(res.result.toString())
             promptAction.showToast({ message: data.message, duration: 2000 })
             setTimeout(() => {
-              router.back()
+              const routerUrl = globalThis.routerList[0]
+              globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+              router.replaceUrl({ url: routerUrl })
             }, 2000)
           } catch (error) {
             console.error('handleLoadQuestion.error: ', error.message)
@@ -60,7 +61,11 @@ struct ExpertKnowledgeDetail {
           .width(40)
           .height(40)
           .margin({ left: 10 })
-          .onClick(() => router.back())
+          .onClick(() => {
+            const routerUrl = globalThis.routerList[0]
+            globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+            router.replaceUrl({ url: routerUrl })
+          })
       }
       .height(60)
       .width('100%')

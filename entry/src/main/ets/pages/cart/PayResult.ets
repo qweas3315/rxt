@@ -18,7 +18,11 @@ struct PayResult {
         Image($r('app.media.iv_back_selected'))
           .width(40)
           .height(40)
-          .onClick(() => router.back())
+          .onClick(() => {
+            const routerUrl = globalThis.routerList[0]
+            globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+            router.replaceUrl({ url: routerUrl })
+          })
           .margin({ left: 10 })
       }
       .height(60)

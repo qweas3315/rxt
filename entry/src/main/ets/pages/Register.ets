@@ -27,7 +27,11 @@ struct Register {
           message: data.message,
           primaryButton: {
             value: '确定',
-            action: () => router.back()
+            action: () => {
+              const routerUrl = globalThis.routerList[0]
+              globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+              router.replaceUrl({ url: routerUrl })
+            }
           }
         });
       } else {
@@ -69,7 +73,11 @@ struct Register {
               .width(40)
               .height(40)
               .margin({ left: 10 })
-              .onClick(() => router.back())
+              .onClick(() => {
+                const routerUrl = globalThis.routerList[0]
+                globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+                router.replaceUrl({ url: routerUrl })
+              })
           }
           .height(60)
           .width('100%')
@@ -173,7 +181,11 @@ struct Register {
             Text("登录")
               .fontSize(14)
               .margin({ right: 10 })
-              .onClick(() => router.back())
+              .onClick(() => {
+                const routerUrl = globalThis.routerList[0]
+                globalThis.routerList = [`${router.getState().path}${router.getState().name}`]
+                router.replaceUrl({ url: routerUrl })
+              })
           }
           .width('90%')
           .height(30)
