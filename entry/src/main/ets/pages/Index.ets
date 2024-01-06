@@ -47,6 +47,7 @@ struct Index {
     } else {
       this.currentIndex = globalThis.lastHomeIndex
     }
+    globalThis.lastHomeIndex = 0
     // if (globalThis?.currentHomeComponentIndex?.length > 0) {
     //   this.currentIndex = globalThis.currentHomeComponentIndex[0] || 0
     //   globalThis.currentHomeComponentIndex = []
