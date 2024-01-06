@@ -42,6 +42,10 @@ struct Index {
 
   aboutToAppear() {
     globalThis.routerList = []
+    this.currentIndex = globalThis?.currentHomeIndex || 0
+    console.info('currentHomeIndex11: ', globalThis?.currentHomeIndex)
+    console.info('currentHomeIndex: ', this.currentIndex)
+
   }
 
   build() {
@@ -62,7 +66,10 @@ struct Index {
         })
       }
       .barHeight(56)
-      .onChange((index: number) => this.currentIndex = index)
+      .onChange((index: number) => {
+        this.currentIndex = index
+        globalThis.currentHomeIndex = index
+      })
     }
     .width('100%')
     .height('100%')

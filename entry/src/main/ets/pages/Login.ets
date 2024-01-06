@@ -13,7 +13,10 @@ struct Login {
     const data: IResponse<string> = <IResponse<string>> JSON.parse(res.result.toString())
     if (data.code == 20000) {
       globalThis.token = data.data
-      router.replaceUrl({ url: "pages/Index" })
+      const routerList: Array<string> = globalThis.routerList
+      const routerUrl = routerList.pop();
+      globalThis.routerList = routerList;
+      router.replaceUrl({ url: routerUrl })
     } else {
       AlertDialog.show({
         title: '提示',
@@ -25,6 +28,10 @@ struct Login {
         }
       })
     }
+  }
+
+  aboutToAppear() {
+    console.info('currentHomeIndex11.login: ', globalThis?.currentHomeIndex)
   }
 
   build() {

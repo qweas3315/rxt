@@ -4,7 +4,7 @@
 import router from '@ohos.router';
 import { getBankApi } from '../../../api/finance';
 import { IResponse } from '../../../model/common';
-import { IBank, IFinance } from '../../../model/finance';
+import { IBank } from '../../../model/finance';
 
 @Entry
 @Component
@@ -61,7 +61,7 @@ struct BankInformationList {
           Flex({ wrap: FlexWrap.Wrap, justifyContent: FlexAlign.SpaceBetween }) {
             ForEach(this.bankList, (item: IBank) => {
               Row() {
-                Image($r(`app.media.bank${item.bankId}`))
+                Image(`assets/bank${item.bankId}.jpg`)
                   .width(188)
                   .height(188)
                   .objectFit(ImageFit.Fill)
