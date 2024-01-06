@@ -42,6 +42,11 @@ struct Index {
 
   aboutToAppear() {
     globalThis.routerList = []
+    if (globalThis.lastHomeIndex == undefined) {
+      this.currentIndex = 0
+    } else {
+      this.currentIndex = globalThis.lastHomeIndex
+    }
     // if (globalThis?.currentHomeComponentIndex?.length > 0) {
     //   this.currentIndex = globalThis.currentHomeComponentIndex[0] || 0
     //   globalThis.currentHomeComponentIndex = []

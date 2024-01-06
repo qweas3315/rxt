@@ -23,6 +23,7 @@ export struct UserBasicInfo {
           const routerList: Array<string> = globalThis.routerList;
           routerList.push(`${router.getState().path}${router.getState().name}`)
           globalThis.routerList = routerList
+          globalThis.lastHomeIndex = 3
           router.replaceUrl({ url: 'pages/mine/goods/ReleaseGoodsList', params: { type: 'needs' } })
         }
       }
@@ -37,6 +38,7 @@ export struct UserBasicInfo {
           const routerList: Array<string> = globalThis.routerList;
           routerList.push(`${router.getState().path}${router.getState().name}`)
           globalThis.routerList = routerList
+          globalThis.lastHomeIndex = 3
           router.replaceUrl({ url: 'pages/mine/goods/ReleaseGoodsList', params: { type: 'goods' } })
         }
       }
@@ -51,6 +53,7 @@ export struct UserBasicInfo {
           const routerList: Array<string> = globalThis.routerList;
           routerList.push(`${router.getState().path}${router.getState().name}`)
           globalThis.routerList = routerList
+          globalThis.lastHomeIndex = 3
           router.replaceUrl({ url: 'pages/mine/address/MineShippingAddressManage' })
         }
       }
@@ -88,6 +91,7 @@ export struct ExpertBasicInfo {
           const routerList: Array<string> = globalThis.routerList;
           routerList.push(`${router.getState().path}${router.getState().name}`)
           globalThis.routerList = routerList
+          globalThis.lastHomeIndex = 3
           router.replaceUrl({ url: 'pages/mine/knowledge/ExpertKnowledgeEdit', params: { type: 'add' } })
         }
       }
@@ -102,6 +106,7 @@ export struct ExpertBasicInfo {
           const routerList: Array<string> = globalThis.routerList;
           routerList.push(`${router.getState().path}${router.getState().name}`)
           globalThis.routerList = routerList
+          globalThis.lastHomeIndex = 3
           router.replaceUrl({ url: 'pages/mine/address/MineShippingAddressManage' })
         }
       }
@@ -139,6 +144,7 @@ export struct AdminBasicInfo {
           const routerList: Array<string> = globalThis.routerList;
           routerList.push(`${router.getState().path}${router.getState().name}`)
           globalThis.routerList = routerList
+          globalThis.lastHomeIndex = 3
           router.replaceUrl({ url: 'pages/mine/user/UserList' })
         }
       }
@@ -153,6 +159,7 @@ export struct AdminBasicInfo {
           const routerList: Array<string> = globalThis.routerList;
           routerList.push(`${router.getState().path}${router.getState().name}`)
           globalThis.routerList = routerList
+          globalThis.lastHomeIndex = 3
           router.replaceUrl({ url: 'pages/mine/goods/ReleaseGoodsList', params: { type: 'goods' } })
         }
       }
@@ -167,6 +174,7 @@ export struct AdminBasicInfo {
           const routerList: Array<string> = globalThis.routerList;
           routerList.push(`${router.getState().path}${router.getState().name}`)
           globalThis.routerList = routerList
+          globalThis.lastHomeIndex = 3
           router.replaceUrl({ url: 'pages/mine/goods/ReleaseGoodsList', params: { type: 'needs' } })
         }
       }

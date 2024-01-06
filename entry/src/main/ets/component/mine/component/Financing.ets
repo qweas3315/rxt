@@ -24,6 +24,7 @@ export default struct FinancingInfo {
           const routerList: Array<string> = globalThis.routerList;
           routerList.push(`${router.getState().path}${router.getState().name}`)
           globalThis.routerList = routerList
+          globalThis.lastHomeIndex = 3
           router.replaceUrl({ url: 'pages/mine/financing/RecommendFinanciers' })
         }
       }
@@ -38,6 +39,7 @@ export default struct FinancingInfo {
           const routerList: Array<string> = globalThis.routerList;
           routerList.push(`${router.getState().path}${router.getState().name}`)
           globalThis.routerList = routerList
+          globalThis.lastHomeIndex = 3
           router.replaceUrl({ url: 'pages/mine/financing/BankInformationList' })
         }
       }
@@ -52,6 +54,7 @@ export default struct FinancingInfo {
           const routerList: Array<string> = globalThis.routerList;
           routerList.push(`${router.getState().path}${router.getState().name}`)
           globalThis.routerList = routerList
+          globalThis.lastHomeIndex = 3
           router.replaceUrl({ url: 'pages/mine/financing/MineFinancingInformationManage' })
         }
       }

@@ -22,6 +22,7 @@ export struct UserMineNavigator {
           const routerList: Array<string> = globalThis.routerList;
           routerList.push(`${router.getState().path}${router.getState().name}`)
           globalThis.routerList = routerList
+          globalThis.lastHomeIndex = 3
           router.replaceUrl({ url: 'pages/mine/chat/MineChatList' })
         }
       }
@@ -36,6 +37,7 @@ export struct UserMineNavigator {
           const routerList: Array<string> = globalThis.routerList;
           routerList.push(`${router.getState().path}${router.getState().name}`)
           globalThis.routerList = routerList
+          globalThis.lastHomeIndex = 3
           router.replaceUrl({ url: 'pages/mine/appointment/MineAppointmentList' })
         }
       }
@@ -50,6 +52,7 @@ export struct UserMineNavigator {
           const routerList: Array<string> = globalThis.routerList;
           routerList.push(`${router.getState().path}${router.getState().name}`)
           globalThis.routerList = routerList
+          globalThis.lastHomeIndex = 3
           router.replaceUrl({ url: 'pages/mine/goods/MinePurchasedGoodsList' })
         }
       }
@@ -64,6 +67,7 @@ export struct UserMineNavigator {
           const routerList: Array<string> = globalThis.routerList;
           routerList.push(`${router.getState().path}${router.getState().name}`)
           globalThis.routerList = routerList
+          globalThis.lastHomeIndex = 3
           router.replaceUrl({ url: 'pages/mine/goods/MineSoldGoodsList' })
         }
       }
@@ -129,6 +133,7 @@ export struct ExpertMineNavigator {
           const routerList: Array<string> = globalThis.routerList;
           routerList.push(`${router.getState().path}${router.getState().name}`)
           globalThis.routerList = routerList
+          globalThis.lastHomeIndex = 3
           router.replaceUrl({ url: 'pages/mine/chat/ExpertChatManage' })
         }
       }
@@ -143,6 +148,7 @@ export struct ExpertMineNavigator {
           const routerList: Array<string> = globalThis.routerList;
           routerList.push(`${router.getState().path}${router.getState().name}`)
           globalThis.routerList = routerList
+          globalThis.lastHomeIndex = 3
           router.replaceUrl({ url: 'pages/mine/appointment/ExpertAppointmentList' })
         }
       }
@@ -157,6 +163,7 @@ export struct ExpertMineNavigator {
           const routerList: Array<string> = globalThis.routerList;
           routerList.push(`${router.getState().path}${router.getState().name}`)
           globalThis.routerList = routerList
+          globalThis.lastHomeIndex = 3
           router.replaceUrl({ url: 'pages/mine/knowledge/ExpertKnowledgeList' })
         }
       }
@@ -171,6 +178,7 @@ export struct ExpertMineNavigator {
           const routerList: Array<string> = globalThis.routerList;
           routerList.push(`${router.getState().path}${router.getState().name}`)
           globalThis.routerList = routerList
+          globalThis.lastHomeIndex = 3
           router.replaceUrl({ url: 'pages/mine/setting/ExpertInformationChange' })
         }
       }

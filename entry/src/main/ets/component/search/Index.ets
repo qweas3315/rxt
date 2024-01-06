@@ -120,6 +120,7 @@ export default struct SearchComponent {
                 const routerList: Array<string> = globalThis.routerList;
                 routerList.push(`${router.getState().path}${router.getState().name}`)
                 globalThis.routerList = routerList
+                globalThis.lastHomeIndex = 1
                 router.replaceUrl({
                   url: 'pages/home/goods/GoodsSourcePurchaseDetail',
                   params: { 'goodsDetail': item }

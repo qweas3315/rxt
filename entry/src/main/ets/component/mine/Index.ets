@@ -84,6 +84,7 @@ export default struct Mine {
                   const routerList: Array<string> = globalThis.routerList;
                   routerList.push(`${router.getState().path}${router.getState().name}`)
                   globalThis.routerList = routerList
+                  globalThis.lastHomeIndex = 3
                   router.replaceUrl({ url: 'pages/mine/setting/PersonalInformation' })
                 })
               } else {
@@ -96,6 +97,7 @@ export default struct Mine {
                     const routerList: Array<string> = globalThis.routerList;
                     routerList.push(`${router.getState().path}${router.getState().name}`)
                     globalThis.routerList = routerList
+                    globalThis.lastHomeIndex = 3
                     router.replaceUrl({ url: "pages/Login" })
                   })
               }

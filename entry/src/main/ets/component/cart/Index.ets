@@ -355,6 +355,7 @@ export default struct ShoppingCart {
             .textAlign(TextAlign.Center)
             .fontWeight(400)
             .onClick(() => {
+              globalThis.lastHomeIndex = 2
               const routerList: Array<string> = globalThis.routerList;
               routerList.push(`${router.getState().path}${router.getState().name}`)
               globalThis.routerList = routerList
@@ -395,6 +396,7 @@ export default struct ShoppingCart {
               const routerList: Array<string> = globalThis.routerList;
               routerList.push(`${router.getState().path}${router.getState().name}`)
               globalThis.routerList = routerList
+              globalThis.lastHomeIndex = 2
               router.replaceUrl({
                 url: 'pages/home/goods/GoodsSourcePurchaseList',
                 params: { type: 'goods' }
