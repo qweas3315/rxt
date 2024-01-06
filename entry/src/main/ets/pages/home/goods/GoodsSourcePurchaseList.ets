@@ -28,8 +28,6 @@ struct GoodsSourceList {
   }
 
   aboutToAppear() {
-    console.info('routerList: ', globalThis.routerList)
-    console.info('APP_INDEX: ', JSON.stringify(router.getState()))
     this.type = router.getParams()['type'];
     this.handleLoadGoodsPage()
   }
@@ -97,7 +95,7 @@ struct GoodsSourceList {
                 globalThis.routerList = routerList
                 router.replaceUrl({
                   url: 'pages/home/goods/GoodsSourcePurchaseDetail',
-                  params: { 'goodsDetail': item }
+                  params: { 'goodsDetail': item, pageType: this.type }
                 })
               })
             })

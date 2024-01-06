@@ -31,8 +31,11 @@ struct RecommendFinanciers {
       const res = await getIntentionApi()
       const data: IResponse<Array<IIntention>> = <IResponse<Array<IIntention>>> JSON.parse(res.result.toString())
       if (data?.data.length > 0) {
-        this.intention = data?.data[0] || {}
+        this.intention = data?.data[0] || {} as IIntention
         this.hasIntention = true
+      } else {
+        this.intention = {} as IIntention
+        this.hasIntention = false
       }
     } catch (error) {
       console.error('handleGetIntention.error: ', error.message)
@@ -60,10 +63,8 @@ struct RecommendFinanciers {
           duration: 1000,
         });
         setTimeout(() => {
-          const routerList: Array<string> = globalThis.routerList
-          const routerUrl = routerList.pop();
-          globalThis.routerList = routerList;
-          router.replaceUrl({ url: routerUrl })
+          this.handleLoadIntention()
+          this.isShow = false
         }, 1000)
       } else {
         promptAction.showToast({
@@ -86,10 +87,8 @@ struct RecommendFinanciers {
           duration: 1000,
         });
         setTimeout(() => {
-          const routerList: Array<string> = globalThis.routerList
-          const routerUrl = routerList.pop();
-          globalThis.routerList = routerList;
-          router.replaceUrl({ url: routerUrl })
+          this.handleLoadIntention()
+          this.isShow = false
         }, 1000)
       } else {
         promptAction.showToast({
@@ -111,9 +110,11 @@ struct RecommendFinanciers {
           message: '删除成功!',
           duration: 1000,
         });
+        this.intention = {} as IIntention
         this.handleLoadRecommendUser()
-        this.intention = {}
+        this.handleLoadIntention()
         this.isShow = false
+        console.info('this.intention: ', JSON.stringify(this.intention))
       } else {
         promptAction.showToast({
           message: '删除失败!',
@@ -216,7 +217,7 @@ struct RecommendFinanciers {
             Text('姓名:')
               .width(90)
               .textAlign(TextAlign.End)
-            TextInput({ text: this.intention.realName })
+            TextInput({ text: this.intention?.realName || '' })
               .onChange((value: string) => this.intention.realName = value)
               .width(280)
               .margin({ left: 10 })
@@ -230,7 +231,7 @@ struct RecommendFinanciers {
             Text('联系方式:')
               .width(90)
               .textAlign(TextAlign.End)
-            TextInput({ text: this.intention.phone ? this.intention.phone + '' : '' })
+            TextInput({ text: this.intention?.phone || '' })
               .onChange((value: string) => this.intention.phone = value)
               .width(280)
               .margin({ left: 10 })
@@ -244,7 +245,7 @@ struct RecommendFinanciers {
             Text('金额:')
               .width(90)
               .textAlign(TextAlign.End)
-            TextInput({ text: this.intention.amount ? this.intention.amount + '' : '' })
+            TextInput({ text: this.intention?.amount || '' })
               .onChange((value: string) => this.intention.amount = value)
               .width(200)
               .margin({ left: 10 })
@@ -259,7 +260,7 @@ struct RecommendFinanciers {
             Text('用途:')
               .width(90)
               .textAlign(TextAlign.End)
-            TextInput({ text: this.intention.application })
+            TextInput({ text: this.intention?.application || '' })
               .onChange((value: string) => this.intention.application = value)
               .width(280)
               .margin({ left: 10 })
@@ -273,7 +274,7 @@ struct RecommendFinanciers {
             Text('农作物名称:')
               .width(90)
               .textAlign(TextAlign.End)
-            TextInput({ text: this.intention.item })
+            TextInput({ text: this.intention?.item || '' })
               .onChange((value: string) => this.intention.item = value)
               .width(280)
               .margin({ left: 10 })
@@ -287,7 +288,7 @@ struct RecommendFinanciers {
             Text('种植面积:')
               .width(90)
               .textAlign(TextAlign.End)
-            TextInput({ text: this.intention.area ? this.intention.area + '' : '' })
+            TextInput({ text: this.intention?.area || '' })
               .onChange((value: string) => this.intention.area = value)
               .width(200)
               .margin({ left: 10 })
@@ -303,7 +304,7 @@ struct RecommendFinanciers {
               .width(90)
               .textAlign(TextAlign.End)
             Select([{ value: '六个月' }, { value: '一年' }, { value: '二年' }, { value: '三年' }])
-              .value(!this.intention.repaymentPeriod ? '请选择意向借款期' : this.years[parseInt(<number> <unknown> this.intention.repaymentPeriod / 12 + '')])
+              .value(!this.intention?.repaymentPeriod ? '请选择意向借款期' : this.years[parseInt(<number> <unknown> this.intention.repaymentPeriod / 12 + '')])
               .onSelect((index: number) => this.intention.repaymentPeriod = this.timeLimit[index])
               .width(200)
               .margin({ left: 10 })
@@ -318,7 +319,7 @@ struct RecommendFinanciers {
             Text('地址:')
               .width(90)
               .textAlign(TextAlign.End)
-            TextInput({ text: this.intention.address })
+            TextInput({ text: this.intention?.address || '' })
               .onChange((value: string) => this.intention.address = value)
               .width(280)
               .margin({ left: 10 })

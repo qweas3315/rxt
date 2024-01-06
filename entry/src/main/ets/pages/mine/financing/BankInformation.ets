@@ -25,6 +25,7 @@ struct BankInformation {
   }
 
   aboutToAppear() {
+    console.info('globalThis.routerList: ', globalThis.routerList)
     this.bankDetail = router.getParams()['bankDetail'];
     this.handleLoadUserFinanceBankId()
   }

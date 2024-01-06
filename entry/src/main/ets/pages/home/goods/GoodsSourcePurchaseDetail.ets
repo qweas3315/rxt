@@ -10,7 +10,8 @@ import { IOrderInfo } from '../../../model/order'
 @Entry
 @Component
 struct GoodsSourceDetail {
-  @State goodsDetail: IOrderInfo = null
+  @State pageType: string = undefined
+  @State goodsDetail: IOrderInfo = {}
   @State isShow: boolean = false
 
   async handleAddCart() {
@@ -41,6 +42,9 @@ struct GoodsSourceDetail {
 
   aboutToAppear() {
     this.goodsDetail = router.getParams()['goodsDetail'];
+    if (router.getParams()['pageType']) {
+      this.pageType = router.getParams()['pageType']
+    }
   }
 
   build() {
@@ -61,7 +65,11 @@ struct GoodsSourceDetail {
             const routerList: Array<string> = globalThis.routerList
             const routerUrl = routerList.pop();
             globalThis.routerList = routerList;
-            router.replaceUrl({ url: routerUrl })
+            if (this.pageType) {
+              router.replaceUrl({ url: routerUrl, params: { type: this.pageType } })
+            } else {
+              router.replaceUrl({ url: routerUrl })
+            }
           })
       }
       .height(60)

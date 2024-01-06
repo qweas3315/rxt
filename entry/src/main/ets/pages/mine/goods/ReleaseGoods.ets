@@ -99,10 +99,10 @@ struct ReleaseGoods {
           duration: 1000,
         });
         setTimeout(() => {
-          const routerList: Array<string> = globalThis.routerList;
-          routerList.push(`${router.getState().path}${router.getState().name}`)
-          globalThis.routerList = routerList
-          router.replaceUrl({ url: 'pages/mine/goods/ReleaseGoodsList', params: { pageType: this.goods.type } })
+          const routerList: Array<string> = globalThis.routerList
+          const routerUrl = routerList.pop();
+          globalThis.routerList = routerList;
+          router.replaceUrl({ url: routerUrl, params: { type: this.goods.type } })
         }, 1000)
       } else {
         promptAction.showToast({
@@ -125,10 +125,10 @@ struct ReleaseGoods {
           duration: 1000,
         });
         setTimeout(() => {
-          const routerList: Array<string> = globalThis.routerList;
-          routerList.push(`${router.getState().path}${router.getState().name}`)
-          globalThis.routerList = routerList
-          router.replaceUrl({ url: 'pages/mine/goods/ReleaseGoodsList', params: { pageType: this.goods.type } })
+          const routerList: Array<string> = globalThis.routerList
+          const routerUrl = routerList.pop();
+          globalThis.routerList = routerList;
+          router.replaceUrl({ url: routerUrl, params: { type: this.goods.type } })
         }, 1000)
       } else {
         promptAction.showToast({
@@ -142,6 +142,7 @@ struct ReleaseGoods {
   }
 
   aboutToAppear() {
+    console.info('globalThis.routerList: ', globalThis.routerList)
     this.type = router.getParams()['type'];
     if (this.type == 'addNeeds' || this.type == 'addGoods') {
       this.headTitle = '添加商品信息'
@@ -188,12 +189,18 @@ struct ReleaseGoods {
             .height(40)
             .margin({ left: 10 })
             .onClick(() => {
-              const routerList: Array<string> = globalThis.routerList;
-              routerList.push(`${router.getState().path}${router.getState().name}`)
-              globalThis.routerList = routerList
+              let backType = ''
+              if (this.type == 'addNeeds' || this.type == 'editNeeds') {
+                backType = 'needs'
+              } else if (this.type == 'addGoods' || this.type == 'editGoods') {
+                backType = 'goods'
+              }
+              const routerList: Array<string> = globalThis.routerList
+              const routerUrl = routerList.pop();
+              globalThis.routerList = routerList;
               router.replaceUrl({
-                url: 'pages/mine/goods/ReleaseGoodsList',
-                params: { pageType: this.goods.type }
+                url: routerUrl,
+                params: { type: backType }
               })
             })
         }

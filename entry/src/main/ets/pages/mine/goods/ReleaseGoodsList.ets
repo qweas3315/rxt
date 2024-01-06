@@ -13,12 +13,12 @@ import { AppConfig } from '../../../config';
 struct ReleaseGoodList {
   @State goodsList: Array<IOrderInfo> = [];
   @State pageNum: number = 1;
-  @State pageType: string = ''
+  @State type: string = ''
   private scroller: Scroller = new Scroller();
 
   async handleLoadPurchaseList() {
     try {
-      const res = await getUserGoodsList(this.pageType, this.pageNum)
+      const res = await getUserGoodsList(this.type, this.pageNum)
       const data: IResponse<IPageInfo<IOrderInfo>> = <IResponse<IPageInfo<IOrderInfo>>> JSON.parse(res.result.toString())
       data?.data?.list.forEach((item: IOrderInfo) => this.goodsList.push(item))
     } catch (error) {
@@ -26,7 +26,7 @@ struct ReleaseGoodList {
     }
   }
 
-  handleDeletePurchase(item: IOrderInfo, index: number) {
+  handleDeletePurchase(item: IOrderInfo) {
     AlertDialog.show({
       title: '提示',
       message: "你确定要删除[" + item.title + "]吗?",
@@ -46,7 +46,8 @@ struct ReleaseGoodList {
                 message: '删除成功!',
                 duration: 1000,
               });
-              this.goodsList.splice(index - 1, 1);
+              this.goodsList = []
+             this.handleLoadPurchaseList()
             } else {
               promptAction.showToast({
                 message: '删除失败!',
@@ -62,14 +63,14 @@ struct ReleaseGoodList {
   }
 
   aboutToAppear() {
-    this.pageType = router.getParams()['pageType']
+    this.type = router.getParams()['type']
     this.handleLoadPurchaseList()
   }
 
   build() {
     Flex({ direction: FlexDirection.Column }) {
       Stack({ alignContent: Alignment.Start }) {
-        Text(this.pageType === 'needs' ? '求购需求' : '商品列表')
+        Text(this.type === 'needs' ? '求购需求' : '商品列表')
           .width('100%')
           .height(60)
           .fontSize(20)
@@ -85,7 +86,7 @@ struct ReleaseGoodList {
               globalThis.routerList = routerList
               router.replaceUrl({
                 url: 'pages/mine/goods/ReleaseGoods',
-                params: { type: this.pageType == 'needs' ? 'addNeeds' : 'addGoods' }
+                params: { type: this.type == 'needs' ? 'addNeeds' : 'addGoods' }
               })
             })
         }
@@ -119,7 +120,7 @@ struct ReleaseGoodList {
         Row() {
           Scroll(this.scroller) {
             Flex({ wrap: FlexWrap.Wrap, justifyContent: FlexAlign.SpaceBetween }) {
-              ForEach(this.goodsList, (item, index) => {
+              ForEach(this.goodsList, (item) => {
                 Column() {
                   Image(`${AppConfig.baseUrl}/file/${item.picture}`)
                     .width('100%')
@@ -146,12 +147,12 @@ struct ReleaseGoodList {
                             globalThis.routerList = routerList
                             router.replaceUrl({
                               url: 'pages/mine/goods/ReleaseGoods',
-                              params: { type: this.pageType == 'needs' ? 'editNeeds' : 'editGoods', goodsDetail: item }
+                              params: { type: this.type == 'needs' ? 'editNeeds' : 'editGoods', goodsDetail: item }
                             })
                           })
                         Text('删除')
                           .fontSize(12)
-                          .onClick(() => this.handleDeletePurchase(item, index))
+                          .onClick(() => this.handleDeletePurchase(item))
                       }
                       .height(20)
                     }
@@ -172,7 +173,7 @@ struct ReleaseGoodList {
                   globalThis.routerList = routerList
                   router.replaceUrl({
                     url: 'pages/home/goods/GoodsSourcePurchaseDetail',
-                    params: { 'goodsDetail': item }
+                    params: { 'goodsDetail': item, pageType: this.type }
                   })
                 })
               })

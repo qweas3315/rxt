@@ -23,7 +23,7 @@ export struct UserBasicInfo {
           const routerList: Array<string> = globalThis.routerList;
           routerList.push(`${router.getState().path}${router.getState().name}`)
           globalThis.routerList = routerList
-          router.replaceUrl({ url: 'pages/mine/goods/ReleaseGoodsList', params: { pageType: 'needs' } })
+          router.replaceUrl({ url: 'pages/mine/goods/ReleaseGoodsList', params: { type: 'needs' } })
         }
       }
     },
@@ -37,7 +37,7 @@ export struct UserBasicInfo {
           const routerList: Array<string> = globalThis.routerList;
           routerList.push(`${router.getState().path}${router.getState().name}`)
           globalThis.routerList = routerList
-          router.replaceUrl({ url: 'pages/mine/goods/ReleaseGoodsList', params: { pageType: 'goods' } })
+          router.replaceUrl({ url: 'pages/mine/goods/ReleaseGoodsList', params: { type: 'goods' } })
         }
       }
     },
