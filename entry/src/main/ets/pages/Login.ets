@@ -30,10 +30,6 @@ struct Login {
     }
   }
 
-  aboutToAppear() {
-    console.info('currentHomeIndex11.login: ', globalThis?.currentHomeIndex)
-  }
-
   build() {
     Stack() {
       Row() {

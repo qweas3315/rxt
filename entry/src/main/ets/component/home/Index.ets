@@ -10,7 +10,7 @@ import { IOrderInfo } from '../../model/order'
 import HomeBroadcast from './component/Broadcast'
 import HomeNavigator from './component/Navigator'
 
-@Preview
+@Entry
 @Component
 export default struct Home {
   @State keyword: string = ''

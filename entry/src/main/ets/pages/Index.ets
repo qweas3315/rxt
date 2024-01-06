@@ -42,10 +42,13 @@ struct Index {
 
   aboutToAppear() {
     globalThis.routerList = []
-    this.currentIndex = globalThis?.currentHomeIndex || 0
-    console.info('currentHomeIndex11: ', globalThis?.currentHomeIndex)
-    console.info('currentHomeIndex: ', this.currentIndex)
-
+    // if (globalThis?.currentHomeComponentIndex?.length > 0) {
+    //   this.currentIndex = globalThis.currentHomeComponentIndex[0] || 0
+    //   globalThis.currentHomeComponentIndex = []
+    // } else {
+    //   this.currentIndex = 0
+    //   globalThis.currentHomeComponentIndex = []
+    // }
   }
 
   build() {
@@ -68,7 +71,10 @@ struct Index {
       .barHeight(56)
       .onChange((index: number) => {
         this.currentIndex = index
-        globalThis.currentHomeIndex = index
+        // const indexList: Array<number> = globalThis?.currentHomeComponentIndex || []
+        // indexList.push(index)
+        // globalThis.currentHomeComponentIndex = indexList
+        // console.info('TabsChange: ', this.tabsController)
       })
     }
     .width('100%')
