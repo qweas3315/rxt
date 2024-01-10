@@ -42,17 +42,19 @@ export default struct ShoppingCart {
       const res = await getCartListApi()
       const data: IResponse<Array<IShoppingModel>> = <IResponse<Array<IShoppingModel>>> JSON.parse(res.result.toString())
       data.data.forEach((item: IShoppingModel) => {
-        this.goodsList.push({
-          shoppingId: item?.shoppingId,
-          content: item?.content,
-          count: item?.count,
-          orderId: item?.orderId,
-          ownName: item?.ownName,
-          picture: item?.picture,
-          price: item?.price,
-          isSelected: false,
-          title: item?.title
-        })
+        if (item?.count > 0) {
+          this.goodsList.push({
+            shoppingId: item?.shoppingId,
+            content: item?.content,
+            count: item?.count,
+            orderId: item?.orderId,
+            ownName: item?.ownName,
+            picture: item?.picture,
+            price: item?.price,
+            isSelected: false,
+            title: item?.title
+          })
+        }
       })
       console.error('handleLoadCartList.goodsList: ', JSON.stringify(this.goodsList))
     } catch (error) {
@@ -76,6 +78,9 @@ export default struct ShoppingCart {
       console.info('handleLoadAddress.getAllAddressApi:', res.result.toString())
       const data: IResponse<Array<IAddress>> = <IResponse<Array<IAddress>>> JSON.parse(res.result.toString())
       this.addresses = data.data || []
+      if (this.addresses?.length > 0) {
+        this.defaultAddress = this.addresses[0]
+      }
     } catch (error) {
       console.error('handleLoadAddress.getAllAddressApi.error: ', error.message)
     }
@@ -113,24 +118,26 @@ export default struct ShoppingCart {
     this.isAllSelected = this.selectedCount === this.goodsList.length
   }
 
-  handleAddOrSubtractGoods(data: IGoods, index: number, type: -1 | 1) {
-    if (data.count == 1 && type === -1) {
-      return
-    }
+  async handleAddOrSubtractGoods(data: IGoods, index: number, type: -1 | 1) {
     data.count += type
-    this.goodsList.splice(index, 1, {
-      shoppingId: data.shoppingId,
-      content: data.content,
-      count: data.count,
-      orderId: data.orderId,
-      ownName: data.ownName,
-      picture: data.picture,
-      price: data.price,
-      isSelected: data.isSelected,
-      title: data.title
-    })
+    if (data.count <= 0) {
+      this.goodsList.splice(index, 1)
+      await deleteCartApi(data.shoppingId)
+    } else {
+      this.goodsList.splice(index, 1, {
+        shoppingId: data.shoppingId,
+        content: data.content,
+        count: data.count,
+        orderId: data.orderId,
+        ownName: data.ownName,
+        picture: data.picture,
+        price: data.price,
+        isSelected: data.isSelected,
+        title: data.title
+      })
+      this.handleUpdateGoodsCount(data);
+    }
     this.handleCalculateTotalPrice()
-    this.handleUpdateGoodsCount(data);
   }
 
   async handleUpdateGoodsCount(data: IGoods) {
@@ -162,6 +169,20 @@ export default struct ShoppingCart {
   }
 
   async handleSubmitGoods() {
+    const userId = this.defaultAddress.id;
+    if (userId === 0 || userId === undefined) {
+      AlertDialog.show({
+        title: '提示',
+        message: '你还没有添加收货地址哦',
+        primaryButton: {
+          value: '确定',
+          action: () => {
+            console.info('Callback when the second button is clicked')
+          }
+        }
+      })
+      return
+    }
     const buyItems = []
     const noBuyItems = []
     this.goodsList.forEach((item: IGoods) => {
@@ -172,10 +193,18 @@ export default struct ShoppingCart {
       }
     })
     if (buyItems.length === 0) {
-      promptAction.showToast({ message: '请选择商品后进行结算！', duration: 1000 })
+      AlertDialog.show({
+        title: '提示',
+        message: '你还没有选择商品哦',
+        primaryButton: {
+          value: '确定',
+          action: () => {
+            console.info('Callback when the second button is clicked')
+          }
+        }
+      })
       return
     }
-    const userId = this.defaultAddress.id;
     try {
       const res = await submitCartApi(userId, this.totalPrice, buyItems as any)
       const data = JSON.parse(res.result.toString());
@@ -196,6 +225,21 @@ export default struct ShoppingCart {
   }
 
   handleDeleteGoods() {
+    const selectedGoodsList = this.goodsList.filter((item: IGoods) => item.isSelected)
+    if (selectedGoodsList.length === 0) {
+      AlertDialog.show({
+        title: '提示',
+        message: '你还没有选择商品哦',
+        primaryButton: {
+          value: '确定',
+          action: () => {
+            console.info('Callback when the second button is clicked')
+          }
+        }
+      })
+      return
+    }
+
     AlertDialog.show({
       title: '提示',
       message: this.isAllSelected ? '清空购物车？' : '删除已选中的商品？',
@@ -324,6 +368,8 @@ export default struct ShoppingCart {
   aboutToAppear() {
     this.handleLoadCartList()
     this.handleLoadAddress()
+    this.showAddress = globalThis?.cartShowAddress || false
+    globalThis.cartShowAddress = false
   }
 
   build() {
@@ -512,35 +558,62 @@ export default struct ShoppingCart {
               Text('更换地址')
                 .height(50)
               Divider()
-              List() {
-                ForEach(this.addresses, (item, index) => {
-                  ListItem() {
-                    Row() {
-                      Radio({ value: item.id, group: 'addgroup' })
-                        .checked(item.isDefault)
-                        .onChange((isChecked: boolean) => {
-                          if (isChecked) {
-                            this.selectAddressIndex = index;
-                          }
-                        })
-                      Text(item.addressDetail)
-                      Text(item.phone)
-                    }
-                    .width('100%')
-                    .height(50)
-                  }.padding(10)
-                })
+              if (this.addresses.length === 0) {
+                Row() {
+                  Text('暂无地址数据')
+                }
+                .width('100%')
+                .height(50)
+                .justifyContent(FlexAlign.Center)
+
+                Button("去添加", { type: ButtonType.Normal })
+                  .width('90%')
+                  .onClick(() => {
+                    const routerList: Array<string> = globalThis.routerList;
+                    routerList.push(`${router.getState().path}${router.getState().name}`)
+                    globalThis.routerList = routerList
+                    globalThis.lastHomeIndex = 2
+                    globalThis.cartShowAddress = true
+                    router.replaceUrl({
+                      url: 'pages/mine/address/MineShippingAddressEdit',
+                      params: { type: 'add' }
+                    })
+                  })
+                  .borderRadius(10)
+                  .height(40)
+                  .margin({ top: 20 })
+              } else {
+                List() {
+                  ForEach(this.addresses, (item, index) => {
+                    ListItem() {
+                      Row() {
+                        Radio({ value: item.id, group: 'addgroup' })
+                          .checked(item.isDefault)
+                          .onChange((isChecked: boolean) => {
+                            if (isChecked) {
+                              this.selectAddressIndex = index;
+                            }
+                          })
+                        Text(item.addressDetail)
+                        Text(item.phone)
+                      }
+                      .width('100%')
+                      .height(50)
+                    }.padding(10)
+                  })
+                }
+
+                Button("选择地址", { type: ButtonType.Normal })
+                  .width('90%')
+                  .onClick(() => {
+                    this.defaultAddress = this.addresses[this.selectAddressIndex];
+                    this.showAddress = false;
+                  })
+                  .borderRadius(10)
+                  .height(40)
+                  .margin({ top: 20 })
               }
 
-              Button("选择地址", { type: ButtonType.Normal })
-                .width('90%')
-                .onClick(() => {
-                  this.defaultAddress = this.addresses[this.selectAddressIndex];
-                  this.showAddress = false;
-                })
-                .borderRadius(10)
-                .height(40)
-                .margin({ top: 20 })
             }
           }
           .type(PanelType.Foldable)
@@ -550,6 +623,7 @@ export default struct ShoppingCart {
             console.info(`width:${width},height:${height},mode:${mode}`)
           })
         }
+
         .height('100%')
         .flexGrow(1)
       }
